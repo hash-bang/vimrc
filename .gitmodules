@@ -1,0 +1,3 @@
+[submodule "bundle/cosmic_latte"]
+	path = bundle/cosmic_latte
+	url = git@github.com:nightsense/cosmic_latte.git
