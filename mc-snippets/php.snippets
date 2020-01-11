@@ -1,0 +1,113 @@
+extends html
+
+# CodeIgniter {{{
+snippet cicontroller
+<?
+class ${1:Users} extends CI_Controller {
+	function __construct() {
+		parent::__construct();
+	}
+}
+endsnippet
+
+snippet cimodel
+<?
+class ${1:Foomodel} extends CI_Model {
+	function Get($id) {
+		$this->db->from('${2:foo}');
+		$this->db->where('${2}id', $id);
+		$this->db->limit(1);
+		return $this->db->get()->row_array();
+	}
+
+	function GetAll($where = null, $orderby = 'title') {
+		$this->db->from('${4}');
+		if ($where)
+			$this->db->where($where);
+		if ($orderby)
+			$this->db->order_by($orderby);
+		return $this->db->get()->result_array();
+	}
+}
+endsnippet
+
+snippet cimodelcreate
+function Create($data) {
+	$fields = array();
+	foreach (qw('${2:field1 field2 field3}') as $field)
+		if (isset($data[$field]))
+			$fields[$field] = $data[$field];
+
+	if ($fields) {
+		$fields['created'] = time();
+		$this->db->insert('${1:widgets}', $fields);
+		return $this->db->insert_id();
+	} else {
+		return FALSE;
+	}
+}
+endsnippet
+
+snippet cimodelsave
+function Save($id, $data) {
+	$fields = array();
+
+	foreach (qw('${3:field1 field2 field3}') as $field)
+		if (isset($data[$field]))
+			$fields[$field] = $data[$field];
+
+	if ($fields) {
+		$fields['edited'] = time();
+		$this->db->where('${2}id', $id);
+		$this->db->update('${1:widget}s', $fields);
+		return TRUE;
+	} else {
+		return FALSE;
+	}
+}
+endsnippet
+# }}}
+# Joyst {{{
+snippet joymodel
+function DefineSchema() {
+	$this->On('getall', function(&$where) {
+		if (!isset($where['status'])) // If not specified imply only active items
+			$where['status'] = 'active';
+	});
+	$this->On('create', function(&$row) {
+		$CI = get_instance();
+		$row['created'] = time();
+		$row['creatorid'] = $CI->User->GetActive('userid');
+	});
+	$this->On('save', function($id, &$row) {
+		$row['edited'] = time();
+	});
+	return array(
+		'_model' => '${1:Device}',
+		'_table' => '${2:device}s',
+		'_id' => '$2id',
+		'$2id' => array(
+			'type' => 'pk',
+			'readonly' => true,
+		),
+		'created' => array(
+			'type' => 'epoc',
+			'readonly' => true,
+		),
+		'creatorid' => array(
+			'type' => 'int',
+			'readonly' => true,
+		),
+		'edited' => array(
+			'type' => 'epoc',
+			'readonly' => true,
+		),
+		'status' => array(
+			'type' => 'enum',
+			'options' => array('active', 'deleted'),
+			'default' => 'active',
+		),
+	);
+}
+endsnippet
+# }}}

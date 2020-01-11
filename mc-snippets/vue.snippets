@@ -1,0 +1,119 @@
+extends javascript
+extends html
+
+# Doop snippets - doop* {{{
+snippet doope
+<endpoint>
+app.get('/api/$1', (req, res) => {
+	$2
+});
+</endpoint>
+endsnippet
+
+snippet doops
+<schema>
+app.middleware.db.schema('${1:widgets}', {
+	created: {type: Date, default: Date.now},
+	edited: {type: Date, default: Date.now},
+	status: {type: String, enum: ['active', 'deleted'], default: 'active', index: true},
+});
+</schema>
+endsnippet
+
+snippet doopm
+<endpoint>
+app.use('/api/${1:widgets}/:id?', app.middleware.express.rest('$1', {
+	data: req => req.user ? {user: req.user._id} : undefined,
+	get: false,
+	query: false,
+	count: false,
+	create: false,
+	save: false,
+	meta: true,
+	delete: false,
+}));
+</endpoint>
+endsnippet
+# }}}
+
+# Vue snippets - vue* {{{
+snippet data()
+data() { return {
+	$1
+}},
+endsnippet
+
+snippet vuec
+<component>
+module.exports = {
+	route: '/$1',
+	data() { return {
+	}},
+	methods: {
+	},
+};
+</component>
+
+<template>
+	<div class="card">
+		<div class="card-header">
+			<h2>$1</h2>
+		</div>
+		<div class="card-body">
+			...
+		</div>
+	</div>
+</template>
+endsnippet
+
+snippet vuef
+<filter>
+module.exports = (value, settings) => ${1:value};
+</filter>
+endsnippet
+
+snippet vues
+<service singleton>
+module.exports = function() {
+	var $1 = this;
+
+	return $1;
+};
+</service>
+endsnippet
+
+snippet vuet
+<template>
+	<div class="card">
+		<div class="card-header">
+			<h2>$1</h2>
+		</div>
+		<div class="card-body">
+			...
+		</div>
+	</div>
+</template>
+endsnippet
+
+snippet vue
+<component>
+module.exports = {
+	data: ()=> ({
+	}),
+	methods: {
+	},
+};
+</component>
+
+<template>
+	<div class="card">
+		<div class="card-header">
+			<h2>$1</h2>
+		</div>
+		<div class="card-body">
+			...
+		</div>
+	</div>
+</template>
+endsnippet
+# }}}
