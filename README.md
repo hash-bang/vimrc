@@ -27,7 +27,7 @@ cd
 git clone --recursive https://github.com/hash-bang/vimrc.git .vim
 
 # Setup NeoVIM to point to the same init file
-mkdir .config/nvim 2>/dev/null
+mkdir -p .config/nvim 2>/dev/null
 ln -s .vim/init.vim .config/nvim/init.vim
 
 # Update all remote plugins
