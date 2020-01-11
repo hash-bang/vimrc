@@ -1,3 +1,9 @@
+# IMPORTANT NOTE:
+#      When updating this file make sure that all URLs are https://*
+#      and NOT the git:// ones.
+#      The former doesn't require GitHub credentials while the latter does
+
+
 [submodule "bundle/cosmic_latte"]
 	path = bundle/cosmic_latte
 	url = https://github.com/nightsense/cosmic_latte.git
