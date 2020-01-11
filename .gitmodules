@@ -1,3 +1,81 @@
 [submodule "bundle/cosmic_latte"]
 	path = bundle/cosmic_latte
 	url = git@github.com:nightsense/cosmic_latte.git
+[submodule "bundle/gruvbox"]
+	path = bundle/gruvbox
+	url = git@github.com:morhetz/gruvbox.git
+[submodule "bundle/MatchTagAlways"]
+	path = bundle/MatchTagAlways
+	url = https://github.com/Valloric/MatchTagAlways.git
+[submodule "bundle/nginx.vim"]
+	path = bundle/nginx.vim
+	url = git@github.com:chr4/nginx.vim.git
+[submodule "bundle/taffy.vim"]
+	path = bundle/taffy.vim
+	url = git@github.com:flrnprz/taffy.vim.git
+[submodule "bundle/ultisnips"]
+	path = bundle/ultisnips
+	url = git@github.com:SirVer/ultisnips.git
+[submodule "bundle/vim-addon-mw-utils"]
+	path = bundle/vim-addon-mw-utils
+	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
+[submodule "bundle/vim-babeltrace"]
+	path = bundle/vim-babeltrace
+	url = git@github.com:junousia/vim-babeltrace.git
+[submodule "bundle/vim-color-forest-night"]
+	path = bundle/vim-color-forest-night
+	url = git@github.com:sainnhe/vim-color-forest-night.git
+[submodule "bundle/vim-colors-tender"]
+	path = bundle/vim-colors-tender
+	url = git@github.com:jacoborus/tender.vim.git
+[submodule "bundle/vim-easymotion"]
+	path = bundle/vim-easymotion
+	url = https://github.com/Lokaltog/vim-easymotion.git
+[submodule "bundle/vim-interestingwords"]
+	path = bundle/vim-interestingwords
+	url = git@github.com:vasconcelloslf/vim-interestingwords.git
+[submodule "bundle/vim-javascript"]
+	path = bundle/vim-javascript
+	url = git@github.com:pangloss/vim-javascript.git
+[submodule "bundle/vim-json"]
+	path = bundle/vim-json
+	url = git@github.com:elzr/vim-json.git
+[submodule "bundle/vim-lightline"]
+	path = bundle/vim-lightline
+	url = git@github.com:itchyny/lightline.vim.git
+[submodule "bundle/vim-localvimrc"]
+	path = bundle/vim-localvimrc
+	url = git@github.com:embear/vim-localvimrc.git
+[submodule "bundle/vim-preview-monitor"]
+	path = bundle/vim-preview-monitor
+	url = git@github.com:hash-bang/vim-preview-monitor.git
+[submodule "bundle/vim-slime"]
+	path = bundle/vim-slime
+	url = git://github.com/jpalardy/vim-slime.git
+[submodule "bundle/vim-super-retab"]
+	path = bundle/vim-super-retab
+	url = https://github.com/rhlobo/vim-super-retab.git
+[submodule "bundle/vim-surround"]
+	path = bundle/vim-surround
+	url = https://github.com/tpope/vim-surround.git
+[submodule "bundle/vim-vidir-colors"]
+	path = bundle/vim-vidir-colors
+	url = https://github.com/trapd00r/vim-syntax-vidir-ls.git
+[submodule "bundle/vim-vue"]
+	path = bundle/vim-vue
+	url = git@github.com:hash-bang/vim-vue.git
+[submodule "bundle/vim-todo"]
+	path = bundle/vim-todo
+	url = git@github.com:hash-bang/vim-todo.git
+[submodule "bundle/wildfire.vim"]
+	path = bundle/wildfire.vim
+	url = https://github.com/gcmt/wildfire.vim
+[submodule "bundle/vim-wakatime"]
+	path = bundle/vim-wakatime
+	url = git@github.com:wakatime/vim-wakatime.git
+[submodule "bundle/tlib_vim"]
+	path = bundle/tlib_vim
+	url = https://github.com/tomtom/tlib_vim.git
+[submodule "bundle/vim-indent-guides"]
+	path = bundle/vim-indent-guides
+	url = https://github.com/nathanaelkane/vim-indent-guides
