@@ -24,7 +24,7 @@ This assumes you want to keep your Vim install scripts in `~/.vim` and all submo
 ```
 # Clone repo and all bundles
 cd
-git clone --recursive git@github.com:hash-bang/vimrc.git .vim
+git clone --recursive https://github.com/hash-bang/vimrc.git .vim
 
 # Setup NeoVIM to point to the same init file
 mkdir .config/nvim 2>/dev/null
