@@ -1,2 +1,5 @@
 .netrwhist
+localvim-persistance
+bundle-disabled/
+shada/
 undo/
