@@ -702,8 +702,8 @@ se bg=dark
 " colors anotherdark
 " colors taffy
 " colors cosmic_latte
-" colors forest-night
-colors gruvbox
+colors forest-night
+" colors gruvbox
 
 " let g:lightline = {'colorscheme' : 'forest_night'}
 hi Normal ctermfg=223 ctermbg=236
@@ -741,6 +741,9 @@ call RepairColors()
 " autocmd InsertEnter * set cul
 " autocmd InsertLeave * set nocul
 " set nocul
+
+" FIXME: DISABLED for the moment as NeoVim has a refresh issue when `se cul` - MC 2020-01-13
+set nocul
 " }}}
 " Modes {{{
 " optional reset cursor on start:
