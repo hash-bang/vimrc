@@ -617,9 +617,9 @@ let g:mta_filetypes = {
 " }}}
 " Plugin: preview-monitor {{{
 autocmd BufRead .error se ft=babeltrace
-autocmd BufRead *.doop MonOnLazy
-autocmd BufRead *.js MonOnLazy
-autocmd BufRead *.vue MonOnLazy
+autocmd BufRead *.doop silent! MonOnLazy
+autocmd BufRead *.js silent! MonOnLazy
+autocmd BufRead *.vue silent! MonOnLazy
 " }}}
 " Plugin: Tableize {{{
 " Disable all plugin mappings
