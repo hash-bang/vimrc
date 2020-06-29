@@ -26,9 +26,8 @@ This assumes you want to keep your Vim install scripts in `~/.vim` and all submo
 cd
 git clone --recursive https://github.com/hash-bang/vimrc.git .vim
 
-# Setup NeoVIM to point to the same init file
-mkdir -p .config/nvim 2>/dev/null
-ln -s .vim/init.vim .config/nvim/init.vim
+# Setup NeoVIM to point to the .vim directory
+ln -s .vim .config/nvim
 
 # Update all remote plugins
 nvim +:UpdateRemotePlugins +:quit
