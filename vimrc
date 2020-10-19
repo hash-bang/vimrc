@@ -207,8 +207,9 @@ let g:zenburn_old_Visual=1
 let g:zenburn_alternate_Visual=1
 " }}}
 " File Types {{{ 
-autocmd BufRead,BufNewFile *.PAS se ft=pascal
-autocmd BufRead,BufNewFile *.pas se ft=pascal
+autocmd BufRead,BufNewFile *.PAS set ft=pascal
+autocmd BufRead,BufNewFile *.pas set ft=pascal
+autocmd BufRead,BufNewFile *.ng set ft=vue
 autocmd BufRead *.txt set ft=
 
 let g:git_diff_spawn_mode = 1
@@ -296,6 +297,10 @@ map <m-p> "+p<ESC>
 " F9 toggles paste friendly (VIM only, NVIM has this automatic)
 se pt=<F9>
 " }}}
+" Change {{{
+" `` - change previous ' on line to ` - used to correct the current single speachmark to a backtick when realizing you need ${} halfway though a JS string
+map `` mz?'<cr>r``z
+" }}}
 " Folds {{{
 " z + {up,down} - navigate folds
 map z<up> zk
@@ -310,6 +315,7 @@ map gtb :se ft=sh<CR>
 map gtc :se ft=css<CR>
 map gth :se ft=html<CR>
 map gtj :se ft=javascript<CR>
+map gts :se ft=sql<CR>:se nowrap<CR>
 map gto :se ft=json<CR>
 map gtv :se ft=vue<CR>
 " }}}
@@ -328,6 +334,9 @@ map <c-w>S :split<cr><c-w>j
 
 " <C-W>V (capital V) opens TO RIGHT of current window
 map <c-w>V :vsplit<cr><c-w>h
+
+" <C-W>P Closes all preview windows
+map <c-w>p :pclose<cr>
 " }}}
 " Windows > Terminal {{{
 " Spawn split terminal with c-t / c-w-t or with vsplit c-y c-w-y
@@ -392,6 +401,7 @@ map <F10> :w<CR>:%!hindent -c -i8<CR>:%s/\r//g<CR>gg
 map <A-F10> :%s/\(\/\*\(.\\|\n\)*\*\/\\|\/\/.*\n\)//g<CR>:g/^$/:d
 " F12 - Disable hilighting
 map <F12> :nohlsearch <CR>
+imap <F12> <ESC>:nohlsearch <CR>
 " XX to save (but not quit like ZZ)
 map XX :w <CR>
 " QQ to just quit
@@ -617,9 +627,9 @@ let g:mta_filetypes = {
 " }}}
 " Plugin: preview-monitor {{{
 autocmd BufRead .error se ft=babeltrace
-autocmd BufRead *.doop silent! MonOnLazy
-autocmd BufRead *.js silent! MonOnLazy
-autocmd BufRead *.vue silent! MonOnLazy
+" autocmd BufRead *.doop silent! MonOnLazy
+" autocmd BufRead *.js silent! MonOnLazy
+" autocmd BufRead *.vue silent! MonOnLazy
 " }}}
 " Plugin: Tableize {{{
 " Disable all plugin mappings
@@ -655,7 +665,7 @@ map <BS> <Plug>(wildfire-water)
 let g:wildfire_objects = {
     \ "*" : ["i'", 'i"', "i)", "i]", "i}", "i`"],
     \ "javascript" : ["i'", 'i"', "i`","i)", "i]", "i}"],
-    \ "html,xml" : ["i'", 'i"', "at", "it", "i]", "i}"],
+    \ "html,xml" : ["i'", 'i"', "at", "it", "i]", "i}", "i>"],
 \ }
 " }}}
 " Plugin: WakaTime {{{
@@ -698,12 +708,12 @@ endif
 " Color scheme {{{
 se bg=dark
 
-" colors tender
+colors tender
 " colors anotherdark
 " colors taffy
 " colors cosmic_latte
-colors forest-night
 " colors gruvbox
+" colors forest-night
 
 " let g:lightline = {'colorscheme' : 'forest_night'}
 hi Normal ctermfg=223 ctermbg=236
@@ -738,11 +748,9 @@ call RepairColors()
 " }}}
 " Cursorline highlighting {{{
 " Hide line number highlighting when not in insert mode
-" autocmd InsertEnter * set cul
-" autocmd InsertLeave * set nocul
-" set nocul
-
-" FIXME: DISABLED for the moment as NeoVim has a refresh issue when `se cul` - MC 2020-01-13
+" FIXME: Disabled for now as Nvim@0.5.0 seems to slow down
+"autocmd InsertEnter * set cul
+"autocmd InsertLeave * set nocul
 set nocul
 " }}}
 " Modes {{{
