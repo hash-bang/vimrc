@@ -535,29 +535,51 @@ vmap <silent> // y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
 "endif
 " }}}
 " }}}
-" Pathogen {{{
-call pathogen#infect()
-syntax on
-"filetype plugin indent on
-" }}}
-" Plugin: ChooseWin {{{
-nmap <C-W>` <Plug>(choosewin)
 
-" Enable overlay graphic
-let g:choosewin_overlay_enable = 1
+" Plugins: START {{{
+call plug#begin('~/.vim/plugged')
 " }}}
-" Plugin: Easymotion {{{
-" map ` -> EasyMotion Word
-map ` ,,w
+" Plugins: GENERAL COLORS {{{
+Plug 'nightsense/cosmic_latte'
+Plug 'morhetz/gruvbox'
+Plug 'sainnhe/everforest'
+Plug 'jacoborus/tender.vim'
 " }}}
-" Plugin: vim-markdown {{{
+" Plugins: GENERAL SYNTAX {{{
+Plug 'chr4/nginx'
+Plug 'hash-bang/vim-vue'
+Plug 'hash-bang/vim-todo'
+" }}}
+" Plugin: SYNTAX / vim-markdown {{{
+
+Plug 'plasticboy/vim-markdown'
 " Disable section folding
 let g:vim_markdown_folding_disabled = 1
 
 " Disable concealing
 let g:vim_markdown_conceal = 0
 " }}}
-" Plugin: vim-indent-colors {{{
+
+" Plugin: Easymotion {{{
+Plug 'Lokaltog/vim-easymotion'
+" map ` -> EasyMotion Word
+map ` ,,w
+" }}}
+" Plugin: Fugitive {{{
+Plug 'tpope/vim-fugitive'
+" }}}
+" Plugin: FZF {{{
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+" Map ,g to open FZF file finder
+map ,g :Files<cr>
+
+" Map ,r to RipGrep via FZF
+map ,r :Rg<cr>
+" }}}
+" Plugin: Indent Guides {{{
+Plug 'nathanaelkane/vim-indent-guides'
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
 
@@ -565,7 +587,8 @@ let g:indent_guides_auto_colors = 0
 "autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=237 ctermbg=237
 "autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=238 ctermbg=238
 " }}}
-" Plugin: vim-javascript {{{
+" Plugin: Javascript {{{
+Plug 'pangloss/vim-javascript'
 let g:javascript_conceal = 1
 let g:javascript_conceal_function = "λ"
 let g:javascript_conceal_null = "ø"
@@ -585,10 +608,13 @@ set conceallevel=1
 
 let g:javascript_plugin_jsdoc = 0
 " }}}
-" Plugin: vim-json {{{
+" Plugin: JSON {{{
+Plug 'elzr/vim-json'
 let g:vim_json_syntax_conceal = 0
 " }}}
 " Plugin: Lightline {{{
+Plug 'itchyny/lightline.vim'
+
 let g:tender_lightline = 1
 let g:lightline = {
 	\ 'colorscheme': 'Tomorrow_Night',
@@ -616,6 +642,7 @@ set laststatus=2
 set noshowmode
 " }}}
 " Plugin: MatchTagAlways {{{
+Plug 'Valloric/MatchTagAlways'
 let g:mta_filetypes = {
     \ 'ejs' : 1,
     \ 'html' : 1,
@@ -625,13 +652,26 @@ let g:mta_filetypes = {
     \ 'jinja' : 1,
     \}
 " }}}
-" Plugin: preview-monitor {{{
-autocmd BufRead .error se ft=babeltrace
-" autocmd BufRead *.doop silent! MonOnLazy
-" autocmd BufRead *.js silent! MonOnLazy
-" autocmd BufRead *.vue silent! MonOnLazy
+" Plugin: Nerdtree {{{
+Plug 'preservim/nerdtree'
+" Map ,, to toggle Nerd tree
+map ,, :NERDTreeToggle<cr>
 " }}}
-" Plugin: Tableize {{{
+" Plugin: Strip-trailing-whitespace {{{
+Plug 'axelf4/vim-strip-trailing-whitespace'
+" }}}
+" Plugin: Super-retab {{{
+Plug 'rhlobo/vim-super-retab'
+" }}}
+" Plugin: Surround {{{
+Plug 'tpope/vim-surround'
+" }}}
+" Plugin: Tagalong {{{
+Plug 'AndrewRadev/tagalong.vim'
+let g:tagalong_filetypes = ['doop', 'html', 'vue']
+" }}}
+" Plugin: Table-Mode {{{
+Plug 'dhruvasagar/vim-table-mode'
 " Disable all plugin mappings
 let g:table_mode_disable_mappings = 1
 
@@ -648,6 +688,7 @@ map gtt :TableModeToggle<CR>
 map ,tt yypV:s/[^\|]/-/<CR>:nohlsearch<CR>
 " }}}
 " Plugin: Ultisnips {{{
+Plug 'SirVer/ultisnips'
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
@@ -655,7 +696,12 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " Load only MC's own snippets - single DIR search greatly reduces load time
 let g:UltiSnipsSnippetDirectories=[$HOME."/.vim/mc-snippets"]
 " }}}
+" Plugin: WakaTime {{{
+Plug 'wakatime/vim-wakatime'
+let g:wakatime_PythonBinary = '/usr/bin/python3'
+" }}}
 " Plugin: Wildfire {{{
+Plug 'gcmt/wildfire.vim'
 " Enter - select the next closest text object.
 map <ENTER> <Plug>(wildfire-fuel)
 
@@ -666,22 +712,13 @@ let g:wildfire_objects = {
     \ "*" : ["i'", 'i"', "i)", "i]", "i}", "i`"],
     \ "javascript" : ["i'", 'i"', "i`","i)", "i]", "i}"],
     \ "html,xml" : ["i'", 'i"', "at", "it", "i]", "i}", "i>"],
+    \ "vue" : ["i'", 'i"', "i`", "i)", "at", "it", "i]", "i}", "i>"],
 \ }
 " }}}
-" Plugin: WakaTime {{{
-let g:wakatime_PythonBinary = '/usr/bin/python3'
+" Plugins: END {{{
+call plug#end()
 " }}}
-" Plugin: localvimrc {{{
-let g:localvimrc_persistent = 2
-let g:localvimrc_persistence_file = '/home/mc/.vim/localvim-persistance'
-let g:localvimrc_sandbox = 0
-" }}}
-" Plugin: Slime {{{
-" Map gs to slime mode
-map gs :vsplit<CR>:term screen -RS slime<CR>
-let g:slime_default_config = {"sessionname": "slime", "windowname": "0"}
-let g:slime_dont_ask_default = 1
-" }}}
+
 " Location specific overrides {{{
 if filereadable("/tmp/@location")
 	" We support mode changes
@@ -713,7 +750,7 @@ colors tender
 " colors taffy
 " colors cosmic_latte
 " colors gruvbox
-" colors forest-night
+" colors everforest
 
 " let g:lightline = {'colorscheme' : 'forest_night'}
 hi Normal ctermfg=223 ctermbg=236
@@ -752,6 +789,9 @@ call RepairColors()
 "autocmd InsertEnter * set cul
 "autocmd InsertLeave * set nocul
 set nocul
+
+" NOTE: Trying this again 2020-12-18 to see if it works
+" - NOPE 2020-12-21, drastically slows down .doop editing
 " }}}
 " Modes {{{
 " optional reset cursor on start:
