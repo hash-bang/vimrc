@@ -319,6 +319,10 @@ map gts :se ft=sql<CR>:se nowrap<CR>
 map gto :se ft=json<CR>
 map gtv :se ft=vue<CR>
 " }}}
+" Movement {{{
+" `T` - move to last character within line
+noremap T $F
+" }}}
 " Pasting {{{
 " Map `gp` to select last pasted text
 " gv / gpp - select previously pasted text (`gp` can't be remapped for some reason)
