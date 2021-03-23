@@ -24,11 +24,11 @@ This assumes you want to keep your Vim install scripts in `~/.vim` and all submo
 ```
 # Clone repo and all bundles
 cd
-git clone --recursive https://github.com/hash-bang/vimrc.git .vim
+git clone https://github.com/hash-bang/vimrc.git .vim
 
 # Setup NeoVIM to point to the .vim directory
 ln -s .vim .config/nvim
 
-# Update all remote plugins
-nvim +:UpdateRemotePlugins +:quit
+# Update all remote plugins + install all plugins
+nvim +:UpdateRemotePlugins +:PlugInstall +:quitall
 ```
