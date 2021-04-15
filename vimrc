@@ -592,8 +592,8 @@ let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
 
 " ctermbg is the color to set, lower colors = lighter
-"autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=237 ctermbg=237
-"autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=238 ctermbg=238
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=237 ctermbg=237
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=238 ctermbg=238
 " }}}
 " Plugin: Javascript {{{
 Plug 'pangloss/vim-javascript'
