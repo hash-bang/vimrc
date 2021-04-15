@@ -403,7 +403,6 @@ Jira
 Vue
 Nginx
 RegExp
-MarkApp
 Revman
 CamelCase
 transpile
@@ -430,3 +429,9 @@ Onboarding
 EFTPOS
 Afterpay
 Xero
+Promisable
+promisable
+camelCase
+Dedupe
+deduplicate
+Webpack
