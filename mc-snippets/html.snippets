@@ -1,5 +1,33 @@
 extends javascript
 
+snippet <!
+<!-- $1 {{{ -->
+<!-- }}} -->
+endsnippet
+
+snippet <!{
+<!-- $1 {{{ -->
+endsnippet
+
+snippet <!}
+<!-- }}} -->
+endsnippet
+
+snippet /*
+/* $1 {{{ */
+$2
+/* }}} */
+endsnippet
+
+snippet /*{
+/* $1 {{{ */
+endsnippet
+
+snippet /*}
+/* }}} */
+endsnippet
+
+
 snippet alert
 <div class="alert alert-warning">
 	${1:Alert Message}
