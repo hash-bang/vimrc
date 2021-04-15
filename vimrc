@@ -662,8 +662,8 @@ let g:mta_filetypes = {
 " }}}
 " Plugin: Nerdtree {{{
 Plug 'preservim/nerdtree'
-" Map ,, to toggle Nerd tree
-map ,, :NERDTreeToggle<cr>
+" Map ,` to toggle Nerd tree
+map ,` :NERDTreeToggle<cr>
 " }}}
 " Plugin: Strip-trailing-whitespace {{{
 Plug 'axelf4/vim-strip-trailing-whitespace'
