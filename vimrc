@@ -550,7 +550,7 @@ Plug 'sainnhe/everforest'
 Plug 'jacoborus/tender.vim'
 " }}}
 " Plugins: GENERAL SYNTAX {{{
-Plug 'chr4/nginx'
+Plug 'LeonB/vim-nginx'
 Plug 'hash-bang/vim-vue'
 Plug 'hash-bang/vim-todo'
 " }}}
