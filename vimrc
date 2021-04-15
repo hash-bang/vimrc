@@ -680,8 +680,7 @@ let g:tagalong_filetypes = ['doop', 'html', 'vue']
 " }}}
 " Plugin: Table-Mode {{{
 Plug 'dhruvasagar/vim-table-mode'
-" Disable all plugin mappings
-let g:table_mode_disable_mappings = 1
+" " Move using Cells left / right / above below: [| ]| {| }|
 
 " Setup style like Markdown
 let g:table_mode_delimiter = '|'
