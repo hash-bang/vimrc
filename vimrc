@@ -569,6 +569,10 @@ Plug 'Lokaltog/vim-easymotion'
 " map ` -> EasyMotion Word
 map ` ,,w
 " }}}
+" Plugin: Emmet {{{
+" Ctrl+Y , is default binding
+Plug 'mattn/emmet-vim'
+" }}}
 " Plugin: Fugitive {{{
 Plug 'tpope/vim-fugitive'
 " }}}
