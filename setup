@@ -1,0 +1,5 @@
+#!/bin/bash
+# Setup Nvim with all associated plugins
+# Needs to be run after each `git pull` or any other update of plugin lists
+
+nvim +:UpdateRemotePlugins +:PlugInstall +:quitall

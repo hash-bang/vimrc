@@ -30,5 +30,6 @@ git clone https://github.com/hash-bang/vimrc.git .vim
 ln -s .vim .config/nvim
 
 # Update all remote plugins + install all plugins
-nvim +:UpdateRemotePlugins +:PlugInstall +:quitall
+cd ~/.vim
+./setup
 ```
