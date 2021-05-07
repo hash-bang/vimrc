@@ -665,6 +665,26 @@ Plug 'preservim/nerdtree'
 " Map ,` to toggle Nerd tree
 map ,` :NERDTreeToggle<cr>
 " }}}
+" Plugin: SplitJoin {{{
+Plug 'git@github.com:AndrewRadev/splitjoin.vim.git'
+" }}}
+" Plugin: Startify {{{
+Plug 'mhinz/vim-startify'
+
+" Disable stupid header
+let g:startify_custom_header = ''
+
+" Increase number of files
+let g:startify_files_number = 20
+
+" Skip certain patterns
+let g:startify_skiplist = [
+	\ '^/tmp',
+	\ '^/home/mc/Dropbox',
+	\ '^/home/mc/Papers/Notes/Humour',
+	\ '.git/'
+\ ]
+" }}}
 " Plugin: Strip-trailing-whitespace {{{
 Plug 'axelf4/vim-strip-trailing-whitespace'
 " }}}
@@ -754,7 +774,6 @@ se bg=dark
 
 colors tender
 " colors anotherdark
-" colors taffy
 " colors cosmic_latte
 " colors gruvbox
 " colors everforest
