@@ -77,6 +77,26 @@ app.filter('$1', (value, settings) => {
 </script>
 endsnippet
 
+# Vue-Promise-Refresh
+snippet vuepr
+return Promise.resolve()
+	.then(()=> this.$loader.start())
+	.then(()=> this.$http.get(`/api/${1:widget}s/${this.$route.id}`))
+	.then(({data}) => this.$1 = data)
+	.catch(this.$toast.catch)
+	.finally(()=> this.$loader.stop())
+endsnippet
+
+# Vue-Promise-Save
+snippet vueps
+return Promise.resolve()
+	.then(()=> this.$loader.startBackground())
+	.then(()=> this.$http.post(\`/api/${1:widget}s/${this.$route.id}\`, this.$1))
+	.then(()=> this.$router.go('/$1'))
+	.catch(this.$toast.catch)
+	.finally(()=> this.$loader.stop())
+endsnippet
+
 snippet vues
 <script lang="js" frontend>
 app.service('${1:$widgets}', function() {
