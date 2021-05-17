@@ -718,6 +718,9 @@ let g:startify_skiplist = [
 " Plugin: Strip-trailing-whitespace {{{
 Plug 'axelf4/vim-strip-trailing-whitespace'
 " }}}
+" Plugin: Suda - Sudo read / write access {{{
+Plug 'lambdalisue/suda.vim'
+" }}}
 " Plugin: Super-retab {{{
 Plug 'rhlobo/vim-super-retab'
 " }}}
