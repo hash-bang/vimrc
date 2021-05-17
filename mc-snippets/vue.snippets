@@ -24,7 +24,6 @@ endsnippet
 snippet doopm
 <script lang="js" backend endpoint>
 app.use('/api/${1:widgets}/:id?', app.middleware.express.rest('$1', {
-	data: req => req.user ? {user: req.user._id} : undefined,
 	get: false,
 	query: false,
 	count: false,

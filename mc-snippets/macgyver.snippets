@@ -1,0 +1,40 @@
+snippet mg
+<script>
+macgyver.register('mg${1:Widget}', {
+	title: '$1',
+	icon: 'far fa-pencil',
+	category: 'Simple Inputs',
+	preferId: true,
+	config: {
+		required: {type: 'mgToggle', default: false},
+	},
+	format: true,
+});
+</script>
+
+<component>
+module.exports = {
+	inject: ['$mgForm'],
+	data() {return {
+		data: undefined,
+	}},
+	props: {
+		config: Object,
+	},
+	created() {
+		this.$mgForm.inject(this);
+		this.$on('mgValidate', reply => {
+			if (this.$props.config.required && !this.data) return reply(`${this.$props.config.title} is required`);
+		});
+	},
+};
+</component>
+
+<template>
+	<input
+		v-model="data"
+		type="text"
+		class="form-control"
+	/>
+</template>
+endsnippet
