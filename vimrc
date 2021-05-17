@@ -771,6 +771,9 @@ let g:wildfire_objects = {
     \ "vue" : ["i'", 'i"', "i`", "i)", "at", "it", "i]", "i}", "i>"],
 \ }
 " }}}
+" Plugin: Yankring {{{
+Plug 'vim-scripts/YankRing.vim'
+" }}}
 " Plugins: END {{{
 call plug#end()
 " }}}
