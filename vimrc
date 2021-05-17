@@ -695,9 +695,6 @@ Plug 'preservim/nerdtree'
 " Map ,` to toggle Nerd tree
 map ,` :NERDTreeToggle<cr>
 " }}}
-" Plugin: SplitJoin {{{
-Plug 'git@github.com:AndrewRadev/splitjoin.vim.git'
-" }}}
 " Plugin: Startify {{{
 Plug 'mhinz/vim-startify'
 
