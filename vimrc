@@ -1,6 +1,24 @@
-" TODO - Make status line change color if in cmd mode
-set encoding=utf-8
-set nocompatible   " Disable vi-compatibility
+" MC's overly complex VIM / NeoVIM config file
+" God help you if you're using this
+"
+" @author Matt Carter <m@ttcarter.com>
+" @url https://github.com/hash-bang/vimrc
+
+" Shorthand global config switches
+let g:switch_wakatime=1 " Enable wakatime Plugin
+
+" Color scheme options
+let g:switch_colorscheme = 'tender' " Selected color scheme, must match an entry within `Plugins: COLOR SCHEMES`
+let g:switch_colorscheme_patch_conceal = 0 " Repair conceal coloring (set automatically by colorscheme preference)
+let g:switch_colorscheme_patch_lightline = 0 " Repair lightline coloring (set automatically by colorscheme preference)
+let g:switch_colorscheme_patch_visual = 0 " Repair visua coloring (set automatically by colorscheme preference)
+
+
+" ---------------------------------
+" Below this line - here be dragons
+" ---------------------------------
+
+
 " Functions {{{
 function! GetVisual() range
         let reg_save = getreg('"')
@@ -131,6 +149,9 @@ function! s:RunShellCommand(cmdline)
 endfunction
 " }}}
 " General Options {{{
+set encoding=utf-8
+set nocompatible " Disable vi-compatibility
+
 " Turn off mouse functionality
 set mouse=
 " Turn on Line numering
@@ -543,11 +564,21 @@ vmap <silent> // y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
 " Plugins: START {{{
 call plug#begin('~/.vim/plugged')
 " }}}
-" Plugins: GENERAL COLORS {{{
-Plug 'nightsense/cosmic_latte'
-Plug 'morhetz/gruvbox'
-Plug 'sainnhe/everforest'
-Plug 'jacoborus/tender.vim'
+" Plugins: COLOR SCHEMES {{{
+" This entire section is pretty much a multiplexor based on switch_colorscheme
+if switch_colorscheme == 'cosmic_latte'
+	Plug 'nightsense/cosmic_latte'
+elseif switch_colorscheme == 'gruvbox'
+	Plug 'morhetz/gruvbox'
+elseif switch_colorscheme == 'everforest'
+	Plug 'sainnhe/everforest'
+elseif switch_colorscheme == 'nord'
+	Plug 'shaunsingh/nord.nvim'
+elseif switch_colorscheme == 'tender'
+	Plug 'jacoborus/tender.vim'
+elseif switch_colorscheme == 'tokyonight'
+	Plug 'folke/tokyonight.nvim'
+endif
 " }}}
 " Plugins: GENERAL SYNTAX {{{
 Plug 'LeonB/vim-nginx'
@@ -555,7 +586,6 @@ Plug 'hash-bang/vim-vue'
 Plug 'hash-bang/vim-todo'
 " }}}
 " Plugin: SYNTAX / vim-markdown {{{
-
 Plug 'plasticboy/vim-markdown'
 " Disable section folding
 let g:vim_markdown_folding_disabled = 1
@@ -724,8 +754,10 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsSnippetDirectories=[$HOME."/.vim/mc-snippets"]
 " }}}
 " Plugin: WakaTime {{{
-Plug 'wakatime/vim-wakatime'
-let g:wakatime_PythonBinary = '/usr/bin/python3'
+if switch_wakatime == 1
+	Plug 'wakatime/vim-wakatime'
+	let g:wakatime_PythonBinary = '/usr/bin/python3'
+endif
 " }}}
 " Plugin: Wildfire {{{
 Plug 'gcmt/wildfire.vim'
@@ -771,41 +803,34 @@ endif
 " }}}
 " Color scheme {{{
 se bg=dark
-
-colors tender
-" colors anotherdark
-" colors cosmic_latte
-" colors gruvbox
-" colors everforest
-
-" let g:lightline = {'colorscheme' : 'forest_night'}
-hi Normal ctermfg=223 ctermbg=236
-hi Folded ctermfg=223 ctermbg=238 guifg=Cyan guibg=DarkGrey
-hi LineNr ctermfg=233 ctermbg=239 guifg=Yellow
-hi CursorLineNr ctermfg=233 ctermbg=244 gui=bold guifg=Yellow
+execute 'colors ' . switch_colorscheme
 
 " Override the color or conceals
 function RepairColors()
-	" Light blue
-	"highlight Conceal ctermfg=81 ctermbg=none
-	" Mild purple
-	" highlight Conceal ctermfg=147 ctermbg=none
-	" Mild red
-	 highlight Conceal ctermfg=131 ctermbg=none
+	if g:switch_colorscheme_patch_lightline == 1
+		hi Normal ctermfg=223 ctermbg=236
+		hi Folded ctermfg=223 ctermbg=238 guifg=Cyan guibg=DarkGrey
+		hi LineNr ctermfg=233 ctermbg=239 guifg=Yellow
+		hi CursorLineNr ctermfg=233 ctermbg=244 gui=bold guifg=Yellow
+	endif
 
-	" Override the visual select / searching since most themes royaly screw this up to something discusting like lime-green-on-white
-	hi Visual guifg=#f0e68c guibg=#6b8e23 guisp=#6b8e23 gui=none ctermfg=232 ctermbg=67 cterm=none
-	hi Search guifg=#f0e68c guibg=#6b8e23 guisp=#6b8e23 gui=none ctermfg=232 ctermbg=67 cterm=none
+	if g:switch_colorscheme_patch_conceal == 1
+		" Light blue
+		"highlight Conceal ctermfg=81 ctermbg=none
+		" Mild purple
+		" highlight Conceal ctermfg=147 ctermbg=none
+		" Mild red
+		 highlight Conceal ctermfg=131 ctermbg=none
+	endif
 
-	" Override the visual highlight theme since most themes also screw this up
-	hi Search guifg=#f5deb3 guibg=#cd853f guisp=#cd853f gui=none ctermfg=7 ctermbg=4 cterm=none
+	if g:switch_colorscheme_patch_visual == 1
+		" Override the visual select / searching since most themes royaly screw this up to something discusting like lime-green-on-white
+		hi Visual guifg=#f0e68c guibg=#6b8e23 guisp=#6b8e23 gui=none ctermfg=232 ctermbg=67 cterm=none
+		hi Search guifg=#f0e68c guibg=#6b8e23 guisp=#6b8e23 gui=none ctermfg=232 ctermbg=67 cterm=none
 
-	" Enable conceal all the time
-	" set conceallevel=1
-	" set concealcursor=nvic
-
-	" Highlight concealed characters
-	" hi conceal ctermfg=DarkBlue ctermbg=none guifg=DarkBlue guibg=none
+		" Override the visual highlight theme since most themes also screw this up
+		hi Search guifg=#f5deb3 guibg=#cd853f guisp=#cd853f gui=none ctermfg=7 ctermbg=4 cterm=none
+	endif
 endfunction
 call RepairColors()
 " }}}
