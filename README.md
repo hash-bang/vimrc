@@ -6,10 +6,8 @@ MC's Vim / NeoVim setup
 
 * `vimrc` - Main loading file
 * `autoload/*` - Autoloaded modules, Pathogen module loader lives here
-* `autoload/colorschemes/lightline/*` - Custom lightline themes
-* `bundles/*` - External bundled modules (loaded by Pathogen)
+* `autoload/lightline/*` - Custom lightline themes
 * `colors/*` - Misc color schemes not tracked via bundled modules
-* `doc/*` - Misc documentation not tracked via bundled modules
 * `mc-snippets/*` - Various [UltiSnips](https://github.com/sirver/UltiSnips) managed snippet files
 * `plugin/*` - Misc plugins not tracked by bundled modules
 * `spell/*` - Custom dictionaries
