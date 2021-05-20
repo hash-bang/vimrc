@@ -85,6 +85,27 @@ snippet ng-select-hash
 <select ng-model="${1:types}" ng-options="k as v for (k,v) in $1"></select>
 endsnippet
 # }}}
+# Colors {{{
+snippet blue
+app.log.colors.blue($1)
+endsnippet
+
+snippet cyan
+app.log.colors.cyan($1)
+endsnippet
+
+snippet green
+app.log.colors.green($1)
+endsnippet
+
+snippet red
+app.log.colors.red($1)
+endsnippet
+
+snippet yellow
+app.log.colors.yellow($1)
+endsnippet
+# }}}
 # Chai {{{
 snippet chai
 var expect = require('chai').expect;
