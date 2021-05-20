@@ -8,10 +8,11 @@
 let g:switch_wakatime=1 " Enable wakatime Plugin
 
 " Color scheme options
-let g:switch_colorscheme = 'tender' " Selected color scheme, must match an entry within `Plugins: COLOR SCHEMES`
+let g:switch_colorscheme = 'nord' " Selected color scheme, must match an entry within `Plugins: COLOR SCHEMES`
 let g:switch_colorscheme_patch_conceal = 0 " Repair conceal coloring (set automatically by colorscheme preference)
 let g:switch_colorscheme_patch_lightline = 0 " Repair lightline coloring (set automatically by colorscheme preference)
-let g:switch_colorscheme_patch_visual = 0 " Repair visua coloring (set automatically by colorscheme preference)
+let g:switch_colorscheme_patch_visual = 0 " Repair visual coloring (set automatically by colorscheme preference)
+let g:switch_colorscheme_patch_contrast_folds = 0 " Repair folds in high-contrast mode
 
 
 " ---------------------------------
@@ -574,6 +575,8 @@ elseif switch_colorscheme == 'everforest'
 	Plug 'sainnhe/everforest'
 elseif switch_colorscheme == 'nord'
 	Plug 'shaunsingh/nord.nvim'
+	let g:switch_colorscheme_patch_contrast_folds = 1
+	let g:switch_colorscheme_patch_conceal = 1
 elseif switch_colorscheme == 'tender'
 	Plug 'jacoborus/tender.vim'
 elseif switch_colorscheme == 'tokyonight'
@@ -826,16 +829,20 @@ function RepairColors()
 		" Mild purple
 		" highlight Conceal ctermfg=147 ctermbg=none
 		" Mild red
-		 highlight Conceal ctermfg=131 ctermbg=none
+		 highlight Conceal guifg=#bf616a ctermfg=131 ctermbg=none
 	endif
 
 	if g:switch_colorscheme_patch_visual == 1
 		" Override the visual select / searching since most themes royaly screw this up to something discusting like lime-green-on-white
-		hi Visual guifg=#f0e68c guibg=#6b8e23 guisp=#6b8e23 gui=none ctermfg=232 ctermbg=67 cterm=none
-		hi Search guifg=#f0e68c guibg=#6b8e23 guisp=#6b8e23 gui=none ctermfg=232 ctermbg=67 cterm=none
+		highlight Visual guifg=#f0e68c guibg=#6b8e23 guisp=#6b8e23 gui=none ctermfg=232 ctermbg=67 cterm=none
+		highlight Search guifg=#f0e68c guibg=#6b8e23 guisp=#6b8e23 gui=none ctermfg=232 ctermbg=67 cterm=none
 
 		" Override the visual highlight theme since most themes also screw this up
-		hi Search guifg=#f5deb3 guibg=#cd853f guisp=#cd853f gui=none ctermfg=7 ctermbg=4 cterm=none
+		highlight Search guifg=#f5deb3 guibg=#cd853f guisp=#cd853f gui=none ctermfg=7 ctermbg=4 cterm=none
+	endif
+
+	if g:switch_colorscheme_patch_contrast_folds == 1
+		highlight Folded guifg=#f0e68c guibg=#434c5e guisp=#6b8e23 gui=none ctermfg=232 ctermbg=67 cterm=none
 	endif
 endfunction
 call RepairColors()
