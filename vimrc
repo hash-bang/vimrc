@@ -606,6 +606,15 @@ map ` ,,w
 " Ctrl+Y , is default binding
 Plug 'mattn/emmet-vim'
 " }}}
+" Plugin: Eregex (PCRE / Perl RegEx translations) {{{
+" NOTE: Use :%S// to replace (upper case S)
+Plug 'othree/eregex.vim'
+
+let g:eregex_default_enable = 1
+
+" Toggle using ,/
+nnoremap <leader>/ :call eregex#toggle()<CR>
+" }}}
 " Plugin: Fugitive {{{
 Plug 'tpope/vim-fugitive'
 " }}}
