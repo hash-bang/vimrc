@@ -701,6 +701,10 @@ Plug 'preservim/nerdtree'
 " Map ,` to toggle Nerd tree
 map ,` :NERDTreeToggle<cr>
 " }}}
+" Plugin: Rooter {{{
+Plug 'airblade/vim-rooter'
+let g:rooter_patterns = ['.git', 'Makefile', 'package.json']
+" }}}
 " Plugin: Startify {{{
 Plug 'mhinz/vim-startify'
 
