@@ -597,6 +597,11 @@ let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_conceal = 0
 " }}}
 
+" Plugin: Commentry {{{
+Plug 'tpope/vim-commentary'
+" map # (visual mode) to comment out selected lines
+vmap # gc
+" }}}
 " Plugin: Easymotion {{{
 Plug 'Lokaltog/vim-easymotion'
 " map ` -> EasyMotion Word
