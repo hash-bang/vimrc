@@ -5,7 +5,7 @@
 " @url https://github.com/hash-bang/vimrc
 
 " Shorthand global config switches
-let g:switch_wakatime=1 " Enable wakatime Plugin
+let g:switch_wakatime=0 " Enable wakatime Plugin
 
 " Color scheme options
 let g:switch_colorscheme = 'nord' " Selected color scheme, must match an entry within `Plugins: COLOR SCHEMES`
