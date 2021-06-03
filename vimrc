@@ -615,7 +615,8 @@ Plug 'mattn/emmet-vim'
 " NOTE: Use :%S// to replace (upper case S)
 Plug 'othree/eregex.vim'
 
-let g:eregex_default_enable = 1
+" Disable by default so other plugins work (as-you-type syntax highlighting) use ,/ to enable
+let g:eregex_default_enable = 0
 
 " Toggle using ,/
 nnoremap <leader>/ :call eregex#toggle()<CR>
