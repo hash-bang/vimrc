@@ -574,7 +574,8 @@ elseif switch_colorscheme == 'gruvbox'
 elseif switch_colorscheme == 'everforest'
 	Plug 'sainnhe/everforest'
 elseif switch_colorscheme == 'nord'
-	Plug 'shaunsingh/nord.nvim'
+	" FIXME: Nord seems to drag when quitting past this commit
+	Plug 'shaunsingh/nord.nvim', { 'commit': '6965333' }
 	let g:switch_colorscheme_patch_contrast_folds = 1
 	let g:switch_colorscheme_patch_conceal = 1
 elseif switch_colorscheme == 'tender'
