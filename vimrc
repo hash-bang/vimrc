@@ -603,11 +603,6 @@ Plug 'tpope/vim-commentary'
 " map # (visual mode) to comment out selected lines
 vmap # gc
 " }}}
-" Plugin: Easymotion {{{
-Plug 'Lokaltog/vim-easymotion'
-" map ` -> EasyMotion Word
-map ` ,,w
-" }}}
 " Plugin: Emmet {{{
 " Ctrl+Y , is default binding
 Plug 'mattn/emmet-vim'
@@ -700,6 +695,10 @@ set laststatus=2
 
 " Hide the very bottom footer that VI native uses
 set noshowmode
+" }}}
+" Plugin: Lightspeed (Replaces EasyMotion) {{{
+Plug 'ggandor/lightspeed.nvim'
+" Press 's' / 'S' to begin forward / backward search followed by at least two other characters
 " }}}
 " Plugin: MatchTagAlways {{{
 Plug 'Valloric/MatchTagAlways'
