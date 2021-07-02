@@ -630,6 +630,13 @@ map ,g :Files<cr>
 " Map ,r to RipGrep via FZF
 map ,r :Rg<cr>
 " }}}
+" Plugin: GitGutter {{{
+Plug 'airblade/vim-gitgutter'
+
+" map ]h / ]h to jump to next / previous hunk
+map ]h :GitGutterNextHunk<cr>
+map [h :GitGutterPrevHunk<cr>
+" }}}
 " Plugin: Increment {{{
 Plug 'triglav/vim-visual-increment'
 " }}}
