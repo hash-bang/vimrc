@@ -239,6 +239,18 @@ autocmd BufWritePre *.html %s/\s\+$//e
 " Use {{{ and }}} to denote a fold in a document
 set foldmethod=marker
 set commentstring=//\ %s
+
+function! FoldText()
+	let line = getline(v:foldstart)
+	let folded_line_num = v:foldend - v:foldstart
+	let line_text = substitute(line, '\s*{\+\s*$', '', 'g')
+	let line_text = substitute(line_text, '^\s*\("\|\/\|#\)\+', '', 'g')
+
+	let fillcharcount = winwidth('%') - len(line_text) - len(folded_line_num) - 12
+	return ' ✚ '. line_text . repeat(' ', fillcharcount) . ' (' . folded_line_num . ')'
+endfunction
+set foldtext=FoldText()
+set fillchars=fold:.
 " }}}
 " Abbreviation Map {{{
 " alias :W => :w
