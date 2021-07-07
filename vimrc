@@ -216,18 +216,6 @@ se wmh=0
 " Set default layout to long mode (name, size, date)
 let g:netrw_liststyle=1
 " }}}
-" Themes {{{
-" Set 256 Colors (for consoles that can handle it)
-set t_Co=256 
-
-" Desert colors
-"colorscheme desert256
-
-" ZenBurn (Colors)
-let g:zenburn_high_Contrast=1
-let g:zenburn_old_Visual=1
-let g:zenburn_alternate_Visual=1
-" }}}
 " File Types {{{ 
 autocmd BufRead,BufNewFile *.PAS set ft=pascal
 autocmd BufRead,BufNewFile *.pas set ft=pascal
@@ -566,6 +554,9 @@ vmap <silent> // y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
 call plug#begin('~/.vim/plugged')
 " }}}
 " Plugins: COLOR SCHEMES {{{
+" Set 256 Colors (for consoles that can handle it)
+set t_Co=256
+
 " This entire section is pretty much a multiplexor based on switch_colorscheme
 if switch_colorscheme == 'cosmic_latte'
 	Plug 'nightsense/cosmic_latte'
@@ -582,6 +573,11 @@ elseif switch_colorscheme == 'tender'
 	Plug 'jacoborus/tender.vim'
 elseif switch_colorscheme == 'tokyonight'
 	Plug 'folke/tokyonight.nvim'
+elseif switch_colorscheme == 'zenburn'
+	let g:zenburn_high_Contrast=1
+	let g:zenburn_old_Visual=1
+	let g:zenburn_alternate_Visual=1
+	colorscheme zenburn
 endif
 " }}}
 " Plugins: GENERAL SYNTAX {{{
