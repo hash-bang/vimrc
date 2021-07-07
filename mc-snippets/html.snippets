@@ -76,6 +76,15 @@ snippet btn
 <a class="btn btn-primary">${1:Button Text}</a>
 endsnippet
 
+snippet btn-fab
+<!-- FAB buttons {{{ -->
+<div class="btn-group-float">
+	<a v-href="'/${1:widget}s'" class="btn btn-xs btn-icon btn-circle btn-danger far fa-times" v-tooltip="'Discard changes'"/>
+	<a @click="save()" class="btn btn-icon btn-lg btn-circle btn-success far fa-check" v-tooltip="'Save $1'"/>
+</div>
+<!-- }}} -->
+endsnippet
+
 snippet btn-group
 <div class="btn-group">
 	<a class="btn btn-default">${1:Text 1}</a>
