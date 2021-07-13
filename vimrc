@@ -244,7 +244,9 @@ function! FoldText()
 	let line = getline(v:foldstart)
 	let folded_line_num = v:foldend - v:foldstart
 	let line_text = substitute(line, '\s*{\+\s*$', '', 'g')
-	let line_text = substitute(line_text, '^\s*\("\|\/\|#\)\+', '', 'g')
+	let line_text = substitute(line_text, '^\s*\("\|\/\|#\|<!--\|*\)\+', '', 'g') " starting comments - speachmark (VIMscript) | hash (Bash) | comment (HTML) | asterisks (CSS)
+	let line_text = substitute(line_text, '\(-->\)\+\s*$', '', 'g') " closing comments - comment (HTML)
+	let line_text = substitute(line_text, '\s*{\+\s*$', '', 'g') " General fold markers (tripple open braces)
 
 	let fillcharcount = winwidth('%') - len(line_text) - len(folded_line_num) - 12
 	return ' ✚ '. line_text . repeat(' ', fillcharcount) . ' (' . folded_line_num . ')'
