@@ -608,6 +608,14 @@ let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_conceal = 0
 " }}}
 
+" Plugin: ChooseWin {{{
+Plug 't9md/vim-choosewin'
+"
+" Map Ctrl+E to activate
+nmap <C-E> <Plug>(choosewin)
+
+let g:choosewin_overlay_enable = 1
+" }}}
 " Plugin: Commentry {{{
 Plug 'tpope/vim-commentary'
 " map # (visual mode) to comment out selected lines
