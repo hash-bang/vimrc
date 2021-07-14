@@ -249,7 +249,7 @@ function! FoldText()
 	let line_text = substitute(line_text, '\s*{\+\s*$', '', 'g') " General fold markers (tripple open braces)
 
 	let fillcharcount = winwidth('%') - len(line_text) - len(folded_line_num) - 12
-	return ' ✚ '. line_text . repeat(' ', fillcharcount) . ' (' . folded_line_num . ')'
+	return '  '. line_text . repeat(' ', fillcharcount) . ' (' . folded_line_num . ')'
 endfunction
 set foldtext=FoldText()
 set fillchars=fold:.
