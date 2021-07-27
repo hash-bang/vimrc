@@ -822,6 +822,7 @@ let g:wildfire_objects = {
 " }}}
 " Plugin: Yankring {{{
 Plug 'vim-scripts/YankRing.vim'
+let g:yankring_history_dir=$HOME."/.vim"
 " }}}
 " Plugins: END {{{
 call plug#end()
