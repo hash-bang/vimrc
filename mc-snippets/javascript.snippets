@@ -85,6 +85,7 @@ snippet ng-select-hash
 <select ng-model="${1:types}" ng-options="k as v for (k,v) in $1"></select>
 endsnippet
 # }}}
+
 # Colors {{{
 snippet blue
 app.log.colors.blue($1)
@@ -106,6 +107,7 @@ snippet yellow
 app.log.colors.yellow($1)
 endsnippet
 # }}}
+
 # Chai {{{
 snippet chai
 var expect = require('chai').expect;
@@ -125,6 +127,7 @@ it('${1:should}', ()=> {
 });
 endsnippet
 # }}}
+
 # Gulp {{{
 snippet gulp
 var gulp = require('gulp');
@@ -140,43 +143,7 @@ gulp.task('${1:default}', ()=> {
 });
 endsnippet
 # }}}
-# Mongoose (`mon-something`) {{{
-snippet mon-oid
-{type: mongoose.Schema.ObjectId, ref: '${1:users}', index: true},
-endsnippet
 
-snippet mon-enum
-{type: String, enum: [${1:'active', 'deleted'}], default: '${2:active}', index: true},
-endsnippet
-
-snippet mon-date
-{type: Date, default: Date.now},
-endsnippet
-
-snippet mon-mixed
-{type: mongoose.Schema.Types.Mixed}
-endsnippet
-
-snippet mon-str
-{type: String}
-endsnippet
-
-snippet mon-string
-{type: String}
-endsnippet
-
-snippet mon-int
-{type: Number}
-endsnippet
-
-snippet mon-num
-{type: Number}
-endsnippet
-
-snippet mon-number
-{type: Number}
-endsnippet
-# }}}
 # Monoxide (`o-something`) {{{
 snippet o-model
 var monoxide = require('monoxide');
@@ -325,6 +292,7 @@ snippet dump
 require('dumper.js').dump(${1:foo})
 endsnippet
 # }}}
+
 # Express (`app.something`) {{{
 snippet app.get
 app.get('/${1:widgets}', function(req, res) {
@@ -338,6 +306,7 @@ app.post('/${1:widgets}', function(req, res) {
 });
 endsnippet
 # }}}
+
 # Node / Async-chainable (`async[-something]`) {{{
 snippet async()
 async()
@@ -365,6 +334,7 @@ async()
 	// }}}
 endsnippet
 # }}}
+
 # Promises {{{
 snippet Promise.wait
 new Promise(resolve => setTimeout(()=> resolve($1), ${2:1000}))
@@ -372,6 +342,12 @@ endsnippet
 
 snippet .then
 .then(()=> $1)
+endsnippet
+
+snippet .then{
+.then(()=> {
+	$1
+})
 endsnippet
 
 snippet .thenc
@@ -402,6 +378,41 @@ snippet "var"
 var ${1:module} = require("$1");
 endsnippet
 # }}}
+
+# General JSDoc {{{
+snippet @pa
+@param {array} $1
+endsnippet
+
+snippet @pb
+@param {boolean} $1
+endsnippet
+
+snippet @pf
+@param {function} $1 called as `($2)`
+endsnippet
+
+snippet @po
+@param {Object} $1
+endsnippet
+
+snippet @pn
+@param {number} $1
+endsnippet
+
+snippet @ps
+@param {string} $1
+endsnippet
+
+snippet @poo
+@param {Object} options Additional options
+endsnippet
+
+snippet "@returns {P"
+@returns {Promise} A promise which resolves when the operation has completed
+endsnippet
+# }}}
+
 # General JavaScript {{{
 snippet {{{
 	// $1 {{{
@@ -411,23 +422,23 @@ snippet }}}
 	// }}}
 endsnippet
 
+snippet .map
+.map(${1:item} => {
+	console.log('MAP ${1/^(.*)$/\U$0\E/}:', $1);
+	return $1;
+})
+endsnippet
+
 snippet .tap
-.then(v => {
-	console.log('$1', v);
-	return v;
+.then(${1:v} => {
+	console.log('TAP ${1/^(.*)$/\U$0\E/}:', $1);
+	return $1;
 })
 endsnippet
 
 snippet .dtap
 .then(v => {
-	debug('$1', v);
-	return v;
-})
-endsnippet
-
-snippet .tapa
-.then(v => {
-	app.dump('$1', v);
+	console.debug('$1', v);
 	return v;
 })
 endsnippet
