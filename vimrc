@@ -35,28 +35,35 @@ endfunction
 
 " Work where indenting = tab
 function HeathenTab()
+	IndentGuidesDisable
 	set smarttab
 	set shiftwidth=8
 	set softtabstop=0
+	set noexpandtab
+        let g:indent_guides_space_guides = 0
 	IndentGuidesEnable
 	echo "Heathen (Tab) mode"
 endfunction
 
 " Work where indenting = 2 spaces
 function Heathen2s()
+	IndentGuidesDisable
 	set smarttab
 	set shiftwidth=2
 	set softtabstop=2
-	let g:indent_guides_guide_size = 2
+	set expandtab
+        let g:indent_guides_space_guides = 2
 	IndentGuidesEnable
 	echo "Heathen (2 space) mode"
 endfunction
 
 " Work where indenting = 4 spaces
 function Heathen4s()
+	IndentGuidesDisable
 	set smarttab
 	set shiftwidth=4
 	set softtabstop=4
+	set expandtab
 	let g:indent_guides_guide_size = 4
 	IndentGuidesEnable
 	echo "Heathen (4 space) mode"
