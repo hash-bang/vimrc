@@ -673,10 +673,6 @@ Plug 'triglav/vim-visual-increment'
 Plug 'nathanaelkane/vim-indent-guides'
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
-
-" ctermbg is the color to set, lower colors = lighter
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=237 ctermbg=237
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=238 ctermbg=238
 " }}}
 " Plugin: Javascript {{{
 Plug 'pangloss/vim-javascript'
@@ -897,6 +893,11 @@ function RepairColors()
 	highlight HopNextKey ctermfg=242 ctermbg=0 gui=bold guifg=#D8DEE9 guibg=#5E81AC
 	highlight HopNextKey1 ctermfg=242 ctermbg=0 gui=bold guifg=#D8DEE9 guibg=#5E81AC
 	highlight HopNextKey2 ctermfg=242 ctermbg=0 gui=bold guifg=#D8DEE9 guibg=#5E81AC
+
+	" Patch indent-guide colors
+	" ctermbg is the color to set, lower colors = lighter
+	highlight IndentGuidesOdd ctermbg=237 guibg=#3B4252
+	highlight IndentGuidesEven ctermbg=233 guibg=#4B5262
 endfunction
 call RepairColors()
 " }}}
