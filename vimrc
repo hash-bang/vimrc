@@ -744,6 +744,11 @@ Plug 'preservim/nerdtree'
 " Map ,` to toggle Nerd tree
 map ,` :NERDTreeToggle<cr>
 " }}}
+" Plugin: ProjectConfig (per project .git/project_conf.vim file) {{{
+Plug 'hiberabyss/ProjectConfig'
+" Use :ProjectConfig to edit base file per project
+" e.g. `call Heathen2s()`
+" }}}
 " Plugin: Startify {{{
 Plug 'mhinz/vim-startify'
 
