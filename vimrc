@@ -40,7 +40,6 @@ function HeathenTab()
 	set shiftwidth=8
 	set softtabstop=0
 	set noexpandtab
-        let g:indent_guides_space_guides = 0
 	IndentGuidesEnable
 	echo "Heathen (Tab) mode"
 endfunction
@@ -52,7 +51,6 @@ function Heathen2s()
 	set shiftwidth=2
 	set softtabstop=2
 	set expandtab
-        let g:indent_guides_space_guides = 2
 	IndentGuidesEnable
 	echo "Heathen (2 space) mode"
 endfunction
@@ -64,7 +62,6 @@ function Heathen4s()
 	set shiftwidth=4
 	set softtabstop=4
 	set expandtab
-	let g:indent_guides_guide_size = 4
 	IndentGuidesEnable
 	echo "Heathen (4 space) mode"
 endfunction
@@ -218,6 +215,10 @@ se splitright
 se nows
 " Set minimal window size to 0 (when using Ctrl+W+_ this minimizes all windows to one line)
 se wmh=0
+
+" Set tab width
+set tabstop=4
+set shiftwidth=4
 " }}}
 " File browser (netrw) Options {{{
 " Set default layout to long mode (name, size, date)
@@ -670,9 +671,10 @@ map `` :HopWord<cr>
 Plug 'triglav/vim-visual-increment'
 " }}}
 " Plugin: Indent Guides {{{
-Plug 'nathanaelkane/vim-indent-guides'
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_auto_colors = 0
+Plug 'thaerkh/vim-indentguides'
+
+" Disable indent-guides screwing with concealcursor
+let g:indentguides_concealcursor_unaltered = 1
 " }}}
 " Plugin: Javascript {{{
 Plug 'pangloss/vim-javascript'
@@ -898,11 +900,6 @@ function RepairColors()
 	highlight HopNextKey ctermfg=242 ctermbg=0 gui=bold guifg=#D8DEE9 guibg=#5E81AC
 	highlight HopNextKey1 ctermfg=242 ctermbg=0 gui=bold guifg=#D8DEE9 guibg=#5E81AC
 	highlight HopNextKey2 ctermfg=242 ctermbg=0 gui=bold guifg=#D8DEE9 guibg=#5E81AC
-
-	" Patch indent-guide colors
-	" ctermbg is the color to set, lower colors = lighter
-	highlight IndentGuidesOdd ctermbg=237 guibg=#3B4252
-	highlight IndentGuidesEven ctermbg=233 guibg=#4B5262
 endfunction
 call RepairColors()
 " }}}
