@@ -590,7 +590,7 @@ elseif switch_colorscheme == 'nord'
 	" FIXME: Nord seems to drag when quitting past this commit
 	Plug 'shaunsingh/nord.nvim', { 'commit': '6965333' }
 	let g:switch_colorscheme_patch_contrast_folds = 1
-	let g:switch_colorscheme_patch_conceal = 1
+	let g:switch_colorscheme_patch_conceal = 0
 elseif switch_colorscheme == 'tender'
 	Plug 'jacoborus/tender.vim'
 elseif switch_colorscheme == 'tokyonight'
@@ -674,6 +674,7 @@ Plug 'triglav/vim-visual-increment'
 Plug 'thaerkh/vim-indentguides'
 
 " Disable indent-guides screwing with concealcursor
+let g:indentguides_conceal_color = "guifg=#bf616a ctermfg=131 ctermbg=none"
 let g:indentguides_concealcursor_unaltered = 1
 " }}}
 " Plugin: Javascript {{{
@@ -880,7 +881,7 @@ function RepairColors()
 		" Mild purple
 		" highlight Conceal ctermfg=147 ctermbg=none
 		" Mild red
-		 highlight Conceal guifg=#bf616a ctermfg=131 ctermbg=none
+		highlight Conceal guifg=#bf616a ctermfg=131 ctermbg=none
 	endif
 
 	if g:switch_colorscheme_patch_visual == 1
