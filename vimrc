@@ -759,6 +759,12 @@ Plug 'preservim/nerdtree'
 " Map ,` to toggle Nerd tree
 map ,` :NERDTreeToggle<cr>
 " }}}
+" Plugin: Peekaboo {{{
+Plug 'junegunn/vim-peekaboo'
+" Press " / @ to access preview of registers
+" Use space to toggle fullscreen
+" e.g. to paste from register 2 - "2p
+" }}}
 " Plugin: ProjectConfig (per project .git/project_conf.vim file) {{{
 Plug 'hiberabyss/ProjectConfig'
 " Use :ProjectConfig to edit base file per project
