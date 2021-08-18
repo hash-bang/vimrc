@@ -832,6 +832,23 @@ let g:UltiSnipsSnippetDirectories=[$HOME."/.vim/mc-snippets"]
 if switch_wakatime == 1
 	Plug 'wakatime/vim-wakatime'
 	let g:wakatime_PythonBinary = '/usr/bin/python3'
+
+	function! s:WakaTimeAutoExec(timer_id)
+		echo 'WakaTimeAuto: ' . localtime()
+		:WakaTimePulse
+	endfunction
+
+	function! WakaTimeAutoOn()
+		let s:WakaTimeAutoTimer = timer_start(1000 * 30, function('s:WakaTimeAutoExec'), {'repeat': -1})
+		echo "WakaTimeAuto started"
+	endfunction
+	:command -nargs=0 WakaTimeAutoOn call WakaTimeAutoOn()
+
+	function! WakaTimeAutoOff()
+		call timer_stop(s:WakaTimeAutoTimer)
+		echo "WakaTimeAuto stopped"
+	endfunction
+	:command -nargs=0 WakaTimeAutoOff call WakaTimeAutoOff()
 endif
 " }}}
 " Plugin: Wildfire {{{
