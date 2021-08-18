@@ -743,6 +743,17 @@ let g:mta_filetypes = {
     \ 'jinja' : 1,
     \}
 " }}}
+" Plugin: Miniyank (replaces Yankring) {{{
+Plug 'bfredl/nvim-miniyank'
+" Remap paste to use miniyank-killring
+map p <Plug>(miniyank-autoput)
+map P <Plug>(miniyank-autoPut)
+
+" Map Ctrl-P to cycle through puts
+map <C-P> <Plug>(miniyank-cycle)
+
+let g:miniyank_filename = $HOME."/.vim/miniyank-ring.mpack"
+" }}}
 " Plugin: Nerdtree {{{
 Plug 'preservim/nerdtree'
 " Map ,` to toggle Nerd tree
@@ -831,10 +842,6 @@ let g:wildfire_objects = {
     \ "html,xml" : ["i'", 'i"', "at", "it", "i]", "i}", "i>"],
     \ "vue" : ["i'", 'i"', "i`", "i)", "at", "it", "i]", "i}", "i>"],
 \ }
-" }}}
-" Plugin: Yankring {{{
-Plug 'vim-scripts/YankRing.vim'
-let g:yankring_history_dir=$HOME."/.vim"
 " }}}
 " Plugins: END {{{
 call plug#end()
