@@ -579,7 +579,11 @@ call plug#begin('~/.vim/plugged')
 set t_Co=256
 
 " This entire section is pretty much a multiplexor based on switch_colorscheme
-if switch_colorscheme == 'cosmic_latte'
+if switch_colorscheme == 'anotherdark'
+	" Another dark is a built in anyway
+	let g:switch_colorscheme_patch_lightline = 1
+	let g:switch_colorscheme_patch_visual = 1
+elseif switch_colorscheme == 'cosmic_latte'
 	Plug 'nightsense/cosmic_latte'
 elseif switch_colorscheme == 'gruvbox'
 	Plug 'morhetz/gruvbox'
