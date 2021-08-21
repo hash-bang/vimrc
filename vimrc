@@ -675,13 +675,6 @@ map `` :HopWord<cr>
 " Plugin: Increment {{{
 Plug 'triglav/vim-visual-increment'
 " }}}
-" Plugin: Indent Guides {{{
-Plug 'thaerkh/vim-indentguides'
-
-" Disable indent-guides screwing with concealcursor
-let g:indentguides_conceal_color = "guifg=#bf616a ctermfg=131 ctermbg=none"
-let g:indentguides_concealcursor_unaltered = 1
-" }}}
 " Plugin: Javascript {{{
 Plug 'pangloss/vim-javascript'
 let g:javascript_conceal = 1
@@ -823,6 +816,18 @@ map gtt :TableModeToggle<CR>
 " Map ,tt to create a horizontal header line when any text line is highlighted
 map ,tt yypV:s/[^\|]/-/<CR>:nohlsearch<CR>
 " }}}
+" Plugin: Treesitter {{{
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" Use :TSInstallInfo for a list of languages
+" Use :TSInstall <lang> to update a language
+" }}}
+" Plugin: Treesitter-Indent {{{
+Plug 'lukas-reineke/indent-blankline.nvim'
+" }}}
+" Plugin: Treesitter-Text-Objects {{{
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+" See config in Treesitter section below
+" }}}
 " Plugin: Ultisnips {{{
 Plug 'SirVer/ultisnips'
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -961,6 +966,42 @@ if &term =~ "xterm\\|rxvt"
   autocmd VimLeave * silent !echo -ne "\033]112\007"
   " use \003]12;gray\007 for gnome-terminal and rxvt up to version 9.21
 endif
+" }}}
+" Treesitter (+other plugins) config {{{
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+	ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+	highlight = {
+		enable = true, -- false will disable the whole extension
+		disable = {}, -- list of language that will be disabled e.g. { "c", "rust" }
+		additional_vim_regex_highlighting = false,
+	},
+	indent = {
+		enable = true,
+	},
+}
+
+require'nvim-treesitter.configs'.setup {
+	textobjects = {
+		move = {
+			enable = true,
+			set_jumps = true,
+			goto_next_start = {
+				["]f"] = "@function.outer",
+			},
+			goto_next_end = {
+				["]F"] = "@function.outer",
+			},
+			goto_previous_start = {
+				["[f"] = "@function.outer",
+			},
+			goto_previous_end = {
+				["[F"] = "@function.outer",
+			},
+		},
+	},
+}
+EOF
 " }}}
 
 " BUGFIX: Disable weird cursor support until xfce4-terminal supports it {{{
