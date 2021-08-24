@@ -660,12 +660,14 @@ map ,g :Files<cr>
 " Map ,r to RipGrep via FZF
 map ,r :Rg<cr>
 " }}}
-" Plugin: GitGutter {{{
-Plug 'airblade/vim-gitgutter'
+" Plugin: GitSigns (replaces GitGutter) {{{
+" @url https://github.com/lewis6991/gitsigns.nvim
+Plug 'nvim-lua/plenary.nvim'
+Plug 'lewis6991/gitsigns.nvim', {'done': 'lua require(''gitsigns'').setup()'}
 
 " map ]h / ]h to jump to next / previous hunk
-map ]h :GitGutterNextHunk<cr>
-map [h :GitGutterPrevHunk<cr>
+map ]h :lua require('gitsigns.actions').next_hunk()<CR>
+map [h :lua require('gitsigns.actions').prev_hunk()<CR>
 " }}}
 " Plugin: Hop (Replaces EasyMotion) {{{
 Plug 'phaazon/hop.nvim'
