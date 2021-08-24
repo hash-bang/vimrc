@@ -8,7 +8,7 @@
 let g:switch_wakatime=0 " Enable wakatime Plugin
 
 " Color scheme options
-let g:switch_colorscheme = 'nightfox' " Selected color scheme, must match an entry within `Plugins: COLOR SCHEMES`
+let g:switch_colorscheme = 'nord' " Selected color scheme, must match an entry within `Plugins: COLOR SCHEMES`
 let g:switch_colorscheme_patch_conceal = 0 " Repair conceal coloring (set automatically by colorscheme preference)
 let g:switch_colorscheme_patch_lightline = 0 " Repair lightline coloring (set automatically by colorscheme preference)
 let g:switch_colorscheme_patch_visual = 0 " Repair visual coloring (set automatically by colorscheme preference)
@@ -592,8 +592,7 @@ elseif switch_colorscheme == 'everforest'
 elseif switch_colorscheme == 'nightfox'
 	Plug 'EdenEast/nightfox.nvim'
 elseif switch_colorscheme == 'nord'
-	" FIXME: Nord seems to drag when quitting past this commit
-	Plug 'shaunsingh/nord.nvim', { 'commit': '6965333' }
+	Plug 'shaunsingh/nord.nvim'
 	let g:switch_colorscheme_patch_contrast_folds = 1
 	let g:switch_colorscheme_patch_conceal = 0
 elseif switch_colorscheme == 'tender'
