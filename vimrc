@@ -583,6 +583,8 @@ if switch_colorscheme == 'anotherdark'
 	" Another dark is a built in anyway
 	let g:switch_colorscheme_patch_lightline = 1
 	let g:switch_colorscheme_patch_visual = 1
+elseif switch_colorscheme == 'bronzage'
+	Plug 'habamax/vim-bronzage'
 elseif switch_colorscheme == 'cosmic_latte'
 	Plug 'nightsense/cosmic_latte'
 elseif switch_colorscheme == 'gruvbox'
@@ -591,10 +593,11 @@ elseif switch_colorscheme == 'everforest'
 	Plug 'sainnhe/everforest'
 elseif switch_colorscheme == 'nightfox'
 	Plug 'EdenEast/nightfox.nvim'
+	let g:switch_colorscheme_patch_conceal = 1
 elseif switch_colorscheme == 'nord'
 	Plug 'shaunsingh/nord.nvim'
 	let g:switch_colorscheme_patch_contrast_folds = 1
-	let g:switch_colorscheme_patch_conceal = 0
+	let g:switch_colorscheme_patch_conceal = 1
 elseif switch_colorscheme == 'tender'
 	Plug 'jacoborus/tender.vim'
 elseif switch_colorscheme == 'tokyonight'
