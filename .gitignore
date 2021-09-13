@@ -1,6 +1,5 @@
 .netrwhist
-localvim-persistance
-miniyank-ring.mpack
+miniyank-ring-*.mpack
 plugged/
 shada/
 undo/

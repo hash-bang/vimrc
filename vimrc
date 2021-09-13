@@ -756,7 +756,8 @@ map P <Plug>(miniyank-autoPut)
 " Map Ctrl-P to cycle through puts
 map <C-P> <Plug>(miniyank-cycle)
 
-let g:miniyank_filename = $HOME."/.vim/miniyank-ring.mpack"
+let g:miniyank_maxitems = 10
+let g:miniyank_filename = $HOME . "/.vim/miniyank-ring-" . hostname() . ".mpack"
 " }}}
 " Plugin: Nerdtree {{{
 Plug 'preservim/nerdtree'
