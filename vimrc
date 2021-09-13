@@ -775,6 +775,9 @@ Plug 'hiberabyss/ProjectConfig'
 " Use :ProjectConfig to edit base file per project
 " e.g. `call Heathen2s()`
 " }}}
+" Plugin: SplitJoin {{{
+Plug 'AndrewRadev/splitjoin.vim'
+" }}}
 " Plugin: Startify {{{
 Plug 'mhinz/vim-startify'
 
