@@ -326,6 +326,10 @@ nnoremap <expr> gpp '`[' . getregtype()[0] . '`]'
 " ,n - search from top
 map ,n ggn
 " }}}
+" Tabs {{{
+" Pop current window / buffer out into new tab
+map <C-W>/ :tabe %<CR>
+" }}}
 " Windows {{{
 " <C-W>S (capital S) opens UNDER current window
 map <c-w>S :split<cr><c-w>j
