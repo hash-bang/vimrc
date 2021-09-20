@@ -32,7 +32,7 @@ function! GetVisual() range
         return selection
 endfunction
 
-" Work where indenting = tab
+" HeathenTab() - Work where indenting = tab {{{
 function HeathenTab()
 	IndentGuidesDisable
 	set smarttab
@@ -42,8 +42,9 @@ function HeathenTab()
 	IndentGuidesEnable
 	echo "Heathen (Tab) mode"
 endfunction
+" }}}
 
-" Work where indenting = 2 spaces
+" Heathen2s() - Work where indenting = 2 spaces {{{
 function Heathen2s()
 	IndentGuidesDisable
 	set smarttab
@@ -53,8 +54,9 @@ function Heathen2s()
 	IndentGuidesEnable
 	echo "Heathen (2 space) mode"
 endfunction
+" }}}
 
-" Work where indenting = 4 spaces
+" Heathen4s - Work where indenting = 4 spaces {{{
 function Heathen4s()
 	IndentGuidesDisable
 	set smarttab
@@ -64,35 +66,18 @@ function Heathen4s()
 	IndentGuidesEnable
 	echo "Heathen (4 space) mode"
 endfunction
+" }}}
 
-function! RootW()
-	w !sudo tee %
-endfunction
-command -nargs=* Rootw call RootW()
-
-function! Reformat()
-	:%s/\([a-zA-Z0-9,;\'\-]\)\n/\1 /g
-	:%s/^ \+//g
-endfunction
-command -nargs=* Reformat call Reformat()
-
-function White()
-	colorscheme morning
-endfunction
-command -nargs=* White call White()
-
-function Black()
-	colorscheme darkbone
-endfunction
-command -nargs=* Black call Black()
-
+" Book() - Display text in a readable book format {{{
 function Book()
 	se nonu
 	se lbr
 	se display=lastline
 	se nohls
 endfunction
+" }}}
 
+" GitSplit() Switch to Git comment mode for Git commit types {{{
 function GitSplit()
 	se splitbelow
 	new
@@ -107,11 +92,11 @@ function GitSplit()
 	wincmd k
 endfunction
 
-function! RmDoubleEmptyLines()
-	:%s/\n\n/\r/g
-endfunction
-command -nargs=* RmDoubleEmptyLines call RmDoubleEmptyLines()
+let g:git_diff_spawn_mode = 1
+au! BufRead,BufNewFile COMMIT_EDITMSG call GitSplit()
+" }}}
 
+" CleanTVSeries() - Try to tidy up `vidir` output for TV series {{{
 function! CleanTVSeries()
 	" Remove x264-(AUTHOR) stuff
 	silent %s/x264-.*\.//g
@@ -131,26 +116,7 @@ function! CleanTVSeries()
 	silent %s/S0\(\d\)E\(\d\d\)\./\1x\2\./i
 endfunction
 map <F4> :call CleanTVSeries()<CR>
-
-command! -complete=shellcmd -nargs=+ Shell call s:RunShellCommand(<q-args>)
-function! s:RunShellCommand(cmdline)
-	echo a:cmdline
-	let expanded_cmdline = a:cmdline
-	for part in split(a:cmdline, ' ')
-		if part[0] =~ '\v[%#<]'
-			let expanded_part = fnameescape(expand(part))
-			let expanded_cmdline = substitute(expanded_cmdline, part, expanded_part, '')
-		endif
-	endfor
-	botright new
-	setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
-	call setline(1, 'You entered:    ' . a:cmdline)
-	call setline(2, 'Expanded Form:  ' .expanded_cmdline)
-	call setline(3,substitute(getline(2),'.','=','g'))
-	execute '$read !'. expanded_cmdline
-	setlocal nomodifiable
-	1
-endfunction
+" }}}
 " }}}
 " General Options {{{
 set encoding=utf-8
@@ -228,9 +194,6 @@ autocmd BufRead,BufNewFile *.PAS set ft=pascal
 autocmd BufRead,BufNewFile *.pas set ft=pascal
 autocmd BufRead,BufNewFile *.ng set ft=vue
 autocmd BufRead *.txt set ft=
-
-let g:git_diff_spawn_mode = 1
-au! BufRead,BufNewFile COMMIT_EDITMSG call GitSplit()
 
 " Smart indending for Python
 autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
