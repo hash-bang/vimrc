@@ -797,9 +797,9 @@ map ,tt yypV:s/[^\|]/-/<CR>:nohlsearch<CR>
 " Plugin: Treesitter {{{
 " Use :TSInstallInfo for a list of languages
 " Use :TSInstall <lang> to update a language
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate', 'done': 'call s:ConfigTreeSitter()'}
-Plug 'lukas-reineke/indent-blankline.nvim'
-Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate', 'done': 'call s:ConfigTreeSitter()'}
+" Plug 'lukas-reineke/indent-blankline.nvim'
+" Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
 function s:ConfigTreeSitter()
 lua <<EOF
