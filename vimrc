@@ -189,7 +189,7 @@ set shiftwidth=4
 " Set default layout to long mode (name, size, date)
 let g:netrw_liststyle=1
 " }}}
-" File Types {{{ 
+" File Types {{{
 autocmd BufRead,BufNewFile *.PAS set ft=pascal
 autocmd BufRead,BufNewFile *.pas set ft=pascal
 autocmd BufRead,BufNewFile *.ng set ft=vue
@@ -373,8 +373,8 @@ map cz" cs'"
 map c< ct<
 map c> ct<
 " Ctrl+D Insert date in big-endian format
-map <C-D> :read !date +\%Y-\%m-\%d<CR>$a 
-imap <C-D> :read !date +\%Y-\%m-\%d<CR>$a 
+map <C-D> :read !date +\%Y-\%m-\%d<CR>$a
+imap <C-D> :read !date +\%Y-\%m-\%d<CR>$a
 " Ctrl+H switch to hex mode
 map <C-H> :%!xxd<CR>
 "  Ctrl+K Insert randomly generated 10 character password
@@ -455,7 +455,7 @@ vnoremap <c-s> :IncN<CR>
 
 " Ctrl +/- resizes quickly
 map + <C-W>+
-map - <C-W>- 
+map - <C-W>-
 
 " Assign CTRL+S as ASPELL check
 " map <C-S> :w<CR>:!aspell -c --dont-backup "%"<CR>:e! "%"<CR>
@@ -590,24 +590,16 @@ let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_conceal = 0
 " }}}
 
-" Plugin: ChooseWin {{{
-Plug 't9md/vim-choosewin'
-"
-" Map Ctrl+E to activate
-nmap <C-E> <Plug>(choosewin)
-
-let g:choosewin_overlay_enable = 1
-" }}}
-" Plugin: Commentry {{{
+" Plugin: Commentry - Use # to toggle line comments {{{
 Plug 'tpope/vim-commentary'
 " map # (visual mode) to comment out selected lines
 vmap # gc
 " }}}
-" Plugin: Emmet {{{
+" Plugin: Emmet - Use <C-Y>, to transform CSS under cursor to HTML via Emmet {{{
 " Ctrl+Y , is default binding
 Plug 'mattn/emmet-vim'
 " }}}
-" Plugin: Eregex (PCRE / Perl RegEx translations) {{{
+" Plugin: Eregex - PCRE / Perl RegEx translations {{{
 " NOTE: Use :%S// to replace (upper case S)
 Plug 'othree/eregex.vim'
 
@@ -623,7 +615,7 @@ Plug 'tpope/vim-fugitive'
 " Plugin: Focus {{{
 Plug 'beauwilliams/focus.nvim', {'done': 'lua require(''focus'').setup()'}
 " }}}
-" Plugin: FZF {{{
+" Plugin: FZF - Bind ,g to FZF finder, ,r to RipGrep {{{
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
@@ -633,7 +625,7 @@ map ,g :Files<cr>
 " Map ,r to RipGrep via FZF
 map ,r :Rg<cr>
 " }}}
-" Plugin: GitSigns (replaces GitGutter) {{{
+" Plugin: GitSigns - Screen-side Git Indicators (replaces GitGutter) {{{
 " @url https://github.com/lewis6991/gitsigns.nvim
 Plug 'nvim-lua/plenary.nvim'
 Plug 'lewis6991/gitsigns.nvim', {'done': 'lua require(''gitsigns'').setup()'}
@@ -642,11 +634,11 @@ Plug 'lewis6991/gitsigns.nvim', {'done': 'lua require(''gitsigns'').setup()'}
 map ]h :lua require('gitsigns.actions').next_hunk()<CR>
 map [h :lua require('gitsigns.actions').prev_hunk()<CR>
 " }}}
-" Plugin: Hop (Replaces EasyMotion) {{{
+" Plugin: Hop - Quick navigation via `` (Replaces EasyMotion) {{{
 Plug 'phaazon/hop.nvim'
 map `` :HopWord<cr>
 " }}}
-" Plugin: Increment {{{
+" Plugin: Increment - Improve default incrementing functionality with visual selects {{{
 Plug 'triglav/vim-visual-increment'
 " }}}
 " Plugin: Javascript {{{
@@ -670,11 +662,11 @@ set conceallevel=1
 
 let g:javascript_plugin_jsdoc = 0
 " }}}
-" Plugin: JSON {{{
+" Plugin: JSON - Nicer JSON syntax {{{
 Plug 'elzr/vim-json'
 let g:vim_json_syntax_conceal = 0
 " }}}
-" Plugin: Lightline {{{
+" Plugin: Lightline - Status line {{{
 Plug 'itchyny/lightline.vim'
 
 let g:tender_lightline = 1
@@ -703,18 +695,7 @@ set laststatus=2
 " Hide the very bottom footer that VI native uses
 set noshowmode
 " }}}
-" Plugin: MatchTagAlways {{{
-Plug 'Valloric/MatchTagAlways'
-let g:mta_filetypes = {
-    \ 'ejs' : 1,
-    \ 'html' : 1,
-    \ 'php' : 1,
-    \ 'xhtml' : 1,
-    \ 'xml' : 1,
-    \ 'jinja' : 1,
-    \}
-" }}}
-" Plugin: Miniyank (replaces Yankring) {{{
+" Plugin: Miniyank - Yank using ring buffer (replaces Yankring) {{{
 Plug 'bfredl/nvim-miniyank'
 " Remap paste to use miniyank-killring
 map p <Plug>(miniyank-autoput)
@@ -726,26 +707,26 @@ map <C-P> <Plug>(miniyank-cycle)
 let g:miniyank_maxitems = 10
 let g:miniyank_filename = $HOME . "/.vim/miniyank-ring-" . hostname() . ".mpack"
 " }}}
-" Plugin: Nerdtree {{{
+" Plugin: Nerdtree - Show a file tree using ,` {{{
 Plug 'preservim/nerdtree'
 " Map ,` to toggle Nerd tree
 map ,` :NERDTreeToggle<cr>
 " }}}
-" Plugin: Peekaboo {{{
+" Plugin: Peekaboo - Display sidebar of buffers when pasting or recording {{{
 Plug 'junegunn/vim-peekaboo'
 " Press " / @ to access preview of registers
 " Use space to toggle fullscreen
 " e.g. to paste from register 2 - "2p
 " }}}
-" Plugin: ProjectConfig (per project .git/project_conf.vim file) {{{
+" Plugin: ProjectConfig - per project .git/project_conf.vim file {{{
 Plug 'hiberabyss/ProjectConfig'
 " Use :ProjectConfig to edit base file per project
 " e.g. `call Heathen2s()`
 " }}}
-" Plugin: SplitJoin {{{
+" Plugin: SplitJoin - Smarter Split / Join via gS / gJ {{{
 Plug 'AndrewRadev/splitjoin.vim'
 " }}}
-" Plugin: Startify {{{
+" Plugin: Startify - Nicer default startup screen {{{
 Plug 'mhinz/vim-startify'
 
 " Disable stupid header
@@ -762,23 +743,23 @@ let g:startify_skiplist = [
 	\ '.git/'
 \ ]
 " }}}
-" Plugin: Strip-trailing-whitespace {{{
+" Plugin: Strip-trailing-whitespace - Remove whitespace on save {{{
 Plug 'axelf4/vim-strip-trailing-whitespace'
 " }}}
 " Plugin: Suda - Sudo read / write access {{{
 Plug 'lambdalisue/suda.vim'
 " }}}
-" Plugin: Super-retab {{{
+" Plugin: Super-retab - Fix indenting via :Space2Tab / :Tab2Space {{{
 Plug 'rhlobo/vim-super-retab'
 " }}}
-" Plugin: Surround {{{
+" Plugin: Surround - Surrounding movement support {{{
 Plug 'tpope/vim-surround'
 " }}}
 " Plugin: Tagalong {{{
 Plug 'AndrewRadev/tagalong.vim'
 let g:tagalong_filetypes = ['doop', 'html', 'vue']
 " }}}
-" Plugin: Table-Mode {{{
+" Plugin: Table-Mode - Markdown table editing {{{
 Plug 'dhruvasagar/vim-table-mode'
 " " Move using Cells left / right / above below: [| ]| {| }|
 
@@ -794,7 +775,7 @@ map gtt :TableModeToggle<CR>
 " Map ,tt to create a horizontal header line when any text line is highlighted
 map ,tt yypV:s/[^\|]/-/<CR>:nohlsearch<CR>
 " }}}
-" Plugin: Treesitter {{{
+" Plugin: Treesitter - EXPTERIMENTAL Syntax, Indent marking, text navigation {{{
 " Use :TSInstallInfo for a list of languages
 " Use :TSInstall <lang> to update a language
 " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate', 'done': 'call s:ConfigTreeSitter()'}
@@ -803,7 +784,7 @@ map ,tt yypV:s/[^\|]/-/<CR>:nohlsearch<CR>
 
 function s:ConfigTreeSitter()
 lua <<EOF
-require'nvim-treesitter.configs'.setup {
+require('nvim-treesitter.configs').setup {
 	ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
 	highlight = {
 		enable = true, -- false will disable the whole extension
@@ -818,7 +799,7 @@ require'nvim-treesitter.configs'.setup {
 	},
 }
 
-require'nvim-treesitter.configs'.setup {
+require('nvim-treesitter.configs').setup {
 	textobjects = {
 		move = {
 			enable = true,
@@ -841,7 +822,7 @@ require'nvim-treesitter.configs'.setup {
 EOF
 endfunction
 " }}}
-" Plugin: Ultisnips {{{
+" Plugin: Ultisnips - Snippet library {{{
 Plug 'SirVer/ultisnips'
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
@@ -850,7 +831,7 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " Load only MC's own snippets - single DIR search greatly reduces load time
 let g:UltiSnipsSnippetDirectories=[$HOME."/.vim/mc-snippets"]
 " }}}
-" Plugin: WakaTime {{{
+" Plugin: WakaTime - WakaTime integration {{{
 if switch_wakatime == 1
 	Plug 'wakatime/vim-wakatime'
 	let g:wakatime_PythonBinary = '/usr/bin/python3'
@@ -873,7 +854,7 @@ if switch_wakatime == 1
 	:command -nargs=0 WakaTimeAutoOff call WakaTimeAutoOff()
 endif
 " }}}
-" Plugin: Wildfire {{{
+" Plugin: Wildfire - Inner-to-outer text block selection with <enter> {{{
 Plug 'gcmt/wildfire.vim'
 " Enter - select the next closest text object.
 map <ENTER> <Plug>(wildfire-fuel)
