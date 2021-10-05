@@ -612,9 +612,6 @@ nnoremap <leader>/ :call eregex#toggle()<CR>
 " Plugin: Fugitive {{{
 Plug 'tpope/vim-fugitive'
 " }}}
-" Plugin: Focus {{{
-Plug 'beauwilliams/focus.nvim', {'done': 'lua require(''focus'').setup()'}
-" }}}
 " Plugin: FZF - Bind ,g to FZF finder, ,r to RipGrep {{{
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
