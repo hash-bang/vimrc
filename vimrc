@@ -590,6 +590,10 @@ let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_conceal = 0
 " }}}
 
+" Plugin: General Pre-requisites {{{
+" No idea why is needed but neovim throws if its not present
+Plug 'MunifTanjim/nui.nvim'
+" }}}
 " Plugin: Commentry - Use # to toggle line comments {{{
 Plug 'tpope/vim-commentary'
 " map # (visual mode) to comment out selected lines
