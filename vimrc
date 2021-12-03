@@ -330,6 +330,10 @@ map ,n ggn
 " Pop current window / buffer out into new tab
 map <C-W>/ :tabe %<CR>
 " }}}
+" Visual mode {{{
+" Press @q in visual mode to run that macro on all selected lines
+vmap @q :normal @q<CR>
+" }}}
 " Windows {{{
 " <C-W>S (capital S) opens UNDER current window
 map <c-w>S :split<cr><c-w>j
