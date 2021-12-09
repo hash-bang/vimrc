@@ -34,36 +34,30 @@ endfunction
 
 " HeathenTab() - Work where indenting = tab {{{
 function HeathenTab()
-	IndentGuidesDisable
 	set smarttab
 	set shiftwidth=8
 	set softtabstop=0
 	set noexpandtab
-	IndentGuidesEnable
 	echo "Heathen (Tab) mode"
 endfunction
 " }}}
 
 " Heathen2s() - Work where indenting = 2 spaces {{{
 function Heathen2s()
-	IndentGuidesDisable
 	set smarttab
 	set shiftwidth=2
 	set softtabstop=2
 	set expandtab
-	IndentGuidesEnable
 	echo "Heathen (2 space) mode"
 endfunction
 " }}}
 
 " Heathen4s - Work where indenting = 4 spaces {{{
 function Heathen4s()
-	IndentGuidesDisable
 	set smarttab
 	set shiftwidth=4
 	set softtabstop=4
 	set expandtab
-	IndentGuidesEnable
 	echo "Heathen (4 space) mode"
 endfunction
 " }}}
