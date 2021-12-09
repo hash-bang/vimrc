@@ -848,6 +848,26 @@ require('nvim-treesitter.configs').setup {
 EOF
 endfunction
 " }}}
+" Plugin: Todo-Comments - Highlight various code comments {{{
+Plug 'folke/todo-comments.nvim', {'done': 'call s:ConfigTodoComments()' }
+
+function s:ConfigTodoComments()
+lua <<EOF
+require("todo-comments").setup {
+	keywords = {
+		FIX  = { icon = " ", alt = {"FIXME", "BUG"} },
+		TODO = { icon = " ", color = "info" },
+		HACK = { icon = " ", color = "warning" },
+		WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
+		NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
+	},
+	highlight = {
+		keyword = "bg", -- Only highlight word, not surrounding chars
+	},
+}
+EOF
+endfunction
+" }}}
 " Plugin: Ultisnips - Snippet library {{{
 Plug 'SirVer/ultisnips'
 let g:UltiSnipsExpandTrigger="<tab>"
