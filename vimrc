@@ -599,6 +599,9 @@ vmap # gc
 " }}}
 " Plugin: Easyclip - Yank-ring replacement {{{
 Plug 'svermeulen/vim-easyclip'
+
+" Buffer yankrings to disk
+let g:EasyClipShareYanks = 1
 let g:EasyClipShareYanksDirectory = $HOME . "/.vim/yankrings"
 let g:miniyank_filename = hostname() . ".yring"
 " }}}
