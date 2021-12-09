@@ -408,12 +408,12 @@ map <A-F10> :%s/\(\/\*\(.\\|\n\)*\*\/\\|\/\/.*\n\)//g<CR>:g/^$/:d
 " F12 - Disable hilighting
 map <F12> :nohlsearch <CR>
 imap <F12> <ESC>:nohlsearch <CR>
+" xx to go next (cant use 'nn' as it slows down searching)
+map xx :n <CR>
 " XX to save (but not quit like ZZ)
 map XX :w <CR>
 " QQ to just quit
 map QQ :qa <CR>
-" MM to go next (cant use 'nn' as it slows down searching)
-map mm :n <CR>
 " GL - Toggle line numbers
 map gl :set number! <CR>
 " {{ | }} - Move around functions
@@ -603,6 +603,11 @@ Plug 'tpope/vim-commentary'
 " map # (visual mode) to comment out selected lines
 vmap # gc
 " }}}
+" Plugin: Easyclip - Yank-ring replacement {{{
+Plug 'svermeulen/vim-easyclip'
+let g:EasyClipShareYanksDirectory = $HOME . "/.vim/yankrings"
+let g:miniyank_filename = hostname() . ".yring"
+" }}}
 " Plugin: Emmet - Use <C-Y>, to transform CSS under cursor to HTML via Emmet {{{
 " Ctrl+Y , is default binding
 Plug 'mattn/emmet-vim'
@@ -699,18 +704,6 @@ set laststatus=2
 
 " Hide the very bottom footer that VI native uses
 set noshowmode
-" }}}
-" Plugin: Miniyank - Yank using ring buffer (replaces Yankring) {{{
-Plug 'bfredl/nvim-miniyank'
-" Remap paste to use miniyank-killring
-map p <Plug>(miniyank-autoput)
-map P <Plug>(miniyank-autoPut)
-
-" Map Ctrl-P to cycle through puts
-map <C-P> <Plug>(miniyank-cycle)
-
-let g:miniyank_maxitems = 10
-let g:miniyank_filename = $HOME . "/.vim/miniyank-ring-" . hostname() . ".mpack"
 " }}}
 " Plugin: Nerdtree - Show a file tree using ,` {{{
 Plug 'preservim/nerdtree'
@@ -905,6 +898,7 @@ let g:wildfire_objects = {
     \ "vue" : ["i'", 'i"', "i`", "i)", "at", "it", "i]", "i}", "i>"],
 \ }
 " }}}
+
 " Plugins: END {{{
 call plug#end()
 " }}}
