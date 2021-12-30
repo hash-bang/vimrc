@@ -679,7 +679,7 @@ let g:javascript_conceal_noarg_arrow_function = "🞅"
 let g:javascript_conceal_underscore_arrow_function = "🞅"
 set conceallevel=1
 
-let g:javascript_plugin_jsdoc = 0
+let g:javascript_plugin_jsdoc = 1
 " }}}
 " Plugin: JSON - Nicer JSON syntax {{{
 Plug 'elzr/vim-json'
