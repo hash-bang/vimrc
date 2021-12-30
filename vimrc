@@ -724,7 +724,7 @@ map P <Plug>(miniyank-autoPut)
 map <C-P> <Plug>(miniyank-cycle)
 
 let g:miniyank_maxitems = 10
-let g:miniyank_filename = $HOME . "/.vim/miniyank-ring-" . hostname() . ".mpack"
+let g:miniyank_filename = $HOME . "/.vim/yankrings/" . hostname() . ".mpack"
 " }}}
 " Plugin: Nerdtree - Show a file tree using ,` {{{
 Plug 'preservim/nerdtree'
