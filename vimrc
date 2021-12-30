@@ -773,6 +773,15 @@ Plug 'hiberabyss/ProjectConfig'
 " Use :ProjectConfig to edit base file per project
 " e.g. `call Heathen2s()`
 " }}}
+" Plugin: Schlep - Move buffers around with ALT + Movement {{{
+Plug 'zirrostig/vim-schlepp'
+
+" Map Alt+Movement to move text in visual mode
+vmap <A-UP>    <Plug>SchleppUp
+vmap <A-DOWN>  <Plug>SchleppDown
+vmap <A-LEFT>  <Plug>SchleppLeft
+vmap <A-RIGHT> <Plug>SchleppRight
+" }}}
 " Plugin: SplitJoin - Smarter Split / Join via gS / gJ {{{
 Plug 'AndrewRadev/splitjoin.vim'
 " }}}
