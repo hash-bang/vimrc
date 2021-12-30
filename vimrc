@@ -634,7 +634,7 @@ map ]h :lua require('gitsigns.actions').next_hunk()<CR>
 map [h :lua require('gitsigns.actions').prev_hunk()<CR>
 " }}}
 " Plugin: Hop - Quick navigation via `` (Replaces EasyMotion) {{{
-Plug 'phaazon/hop.nvim'
+Plug 'phaazon/hop.nvim', {'done': 'lua require(''hop'').setup()'}
 map `` :HopWord<cr>
 " }}}
 " Plugin: Increment - Improve default incrementing functionality with visual selects {{{
