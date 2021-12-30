@@ -597,14 +597,6 @@ Plug 'tpope/vim-commentary'
 " map # (visual mode) to comment out selected lines
 vmap # gc
 " }}}
-" Plugin: Easyclip - Yank-ring replacement {{{
-Plug 'svermeulen/vim-easyclip'
-
-" Buffer yankrings to disk
-let g:EasyClipShareYanks = 1
-let g:EasyClipShareYanksDirectory = $HOME . "/.vim/yankrings"
-let g:miniyank_filename = hostname() . ".yring"
-" }}}
 " Plugin: Emmet - Use <C-Y>, to transform CSS under cursor to HTML via Emmet {{{
 " Ctrl+Y , is default binding
 Plug 'mattn/emmet-vim'
@@ -701,6 +693,18 @@ set laststatus=2
 
 " Hide the very bottom footer that VI native uses
 set noshowmode
+" }}}
+" Plugin: Miniyank - Yank using ring buffer (replaces Yankring) {{{
+Plug 'bfredl/nvim-miniyank'
+" Remap paste to use miniyank-killring
+map p <Plug>(miniyank-autoput)
+map P <Plug>(miniyank-autoPut)
+
+" Map Ctrl-P to cycle through puts
+map <C-P> <Plug>(miniyank-cycle)
+
+let g:miniyank_maxitems = 10
+let g:miniyank_filename = $HOME . "/.vim/miniyank-ring-" . hostname() . ".mpack"
 " }}}
 " Plugin: Nerdtree - Show a file tree using ,` {{{
 Plug 'preservim/nerdtree'
