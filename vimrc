@@ -640,7 +640,27 @@ map `` :HopWord<cr>
 " Plugin: Increment - Improve default incrementing functionality with visual selects {{{
 Plug 'triglav/vim-visual-increment'
 " }}}
-" Plugin: Javascript {{{
+" Plugin: Indent Guides {{{
+" Plug 'glepnir/indent-guides.nvim', {'done': 'call s:ConfigIndentGuides()'}
+
+function s:ConfigIndentGuides()
+lua <<EOF
+require('indent_guides').setup({
+	indent_levels = 30;
+	indent_guide_size = 1;
+	indent_start_level = 1;
+	indent_enable = true;
+	indent_space_guides = true;
+	indent_tab_guides = true;
+	indent_soft_pattern = '\\s';
+	exclude_filetypes = {'help','dashboard','dashpreview','NvimTree','vista','sagahover'};
+	even_colors = { fg ='reverse',bg='#2B3242' };
+	odd_colors = {fg='reverse',bg='#2E3440'};
+})
+EOF
+endfunction
+" }}}
+" Plugin: Javascript - Nicer Javascript syntax {{{
 Plug 'pangloss/vim-javascript'
 let g:javascript_conceal = 1
 let g:javascript_conceal_function = "λ"
@@ -805,12 +825,12 @@ map gtt :TableModeToggle<CR>
 " Map ,tt to create a horizontal header line when any text line is highlighted
 map ,tt yypV:s/[^\|]/-/<CR>:nohlsearch<CR>
 " }}}
-" Plugin: Treesitter - EXPTERIMENTAL Syntax, Indent marking, text navigation {{{
+" Plugin: Treesitter (et al.) - EXPTERIMENTAL Syntax, Indent marking, text navigation {{{
 " Use :TSInstallInfo for a list of languages
 " Use :TSInstall <lang> to update a language
-" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate', 'done': 'call s:ConfigTreeSitter()'}
-" Plug 'lukas-reineke/indent-blankline.nvim'
-" Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate', 'done': 'call s:ConfigTreeSitter()'}
+Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
 function s:ConfigTreeSitter()
 lua <<EOF
@@ -827,9 +847,6 @@ require('nvim-treesitter.configs').setup {
 	indent = {
 		enable = true,
 	},
-}
-
-require('nvim-treesitter.configs').setup {
 	textobjects = {
 		move = {
 			enable = true,
