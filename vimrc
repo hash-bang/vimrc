@@ -685,34 +685,91 @@ let g:javascript_plugin_jsdoc = 1
 Plug 'elzr/vim-json'
 let g:vim_json_syntax_conceal = 0
 " }}}
-" Plugin: Lightline - Status line {{{
-Plug 'itchyny/lightline.vim'
+" Plugin: Lualine - Statusline display {{{
+Plug 'nvim-lualine/lualine.nvim', {'done': 'call s:ConfigLualine()'}
+Plug 'kyazdani42/nvim-web-devicons'
 
-let g:tender_lightline = 1
-let g:lightline = {
-	\ 'colorscheme': 'Tomorrow_Night',
-	\ 'active': {
-	\ 	'left': [ [ 'mode', 'paste' ], [ 'readonly', 'filename', 'modified' ] ]
-	\ },
-	\ 'inactive': {
-	\ 	'left': [ [ 'mode', 'paste' ], [ 'readonly', 'filename', 'modified' ] ]
-	\ },
-	\ 'component': {
-	\	'filename': '%f'
-	\ },
-	\ 'separator': { 'left': '', 'right': '' },
-	\ 'subseparator': { 'left': '', 'right': '' }
-\ }
-
-" Only usable if using the a lightline compatible font
-" \ 'separator': { 'left': "", 'right': "" },
-" \ 'subseparator': { 'left': '', 'right': '' },
-
-" Always show the status line
-set laststatus=2
-
-" Hide the very bottom footer that VI native uses
-set noshowmode
+function s:ConfigLualine()
+lua <<EOF
+require('lualine').setup({
+	options = {
+		icons_enabled = true,
+		theme = 'auto',
+		component_separators = { left = '', right = ''},
+		section_separators = { left = '', right = ''},
+		always_divide_middle = true,
+	},
+	sections = {
+		lualine_a = {
+			'mode'
+		},
+		lualine_b = {
+			'branch',
+			'diff',
+			'diagnostics',
+		},
+		lualine_c = {
+			{'filetype',
+				icon_only = true,
+				separator = '', -- Join with next section
+				padding = {left = 1},
+			},
+			{'filename',
+				padding = {left = 1, right = 0},
+				symbols = {
+					modified = ' [+]',
+					readonly = ' [-]',
+					unnamed = '[No Name]',
+				}
+			},
+		},
+		lualine_x = {},
+		lualine_y = {
+			{'filetype',
+				icons_enabled = false,
+				separator = '/',
+			},
+			{'encoding',
+				separator = '/',
+			},
+			{'fileformat',
+				separator = '/',
+			},
+		},
+		lualine_z = {
+			{'progress',
+				separator = '/',
+			},
+			'location',
+		}
+	},
+	inactive_sections = {
+		lualine_a = {},
+		lualine_b = {},
+		lualine_c = {
+			{'filetype',
+				padding = { left = 7, right = 1 },
+				icon_only = true,
+				separator = '', -- Join with next section
+			},
+			{'filename',
+				padding = 0,
+				symbols = {
+					modified = ' [+]',
+					readonly = ' [-]',
+					unnamed = '[No Name]',
+				}
+			},
+		},
+		lualine_x = {'location'},
+		lualine_y = {},
+		lualine_z = {}
+	},
+	tabline = {},
+	extensions = {}
+})
+EOF
+endfunction
 " }}}
 " Plugin: Miniyank - Yank using ring buffer (replaces Yankring) {{{
 Plug 'bfredl/nvim-miniyank'
