@@ -124,8 +124,8 @@ set nu
 set ic
 " Enable smart-casing (use of upper char overrides case-insensitive)
 set scs
-" Auto-indent
-set ai
+" Disable Auto-indent as its almost never right
+set noai
 " Smart indent (drop back when using })
 set si
 " Include <> and "" as a bracket pairing
