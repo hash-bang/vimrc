@@ -940,7 +940,7 @@ require('nvim-treesitter.configs').setup {
 		enable = true,
 	},
 	indent = {
-		enable = true,
+		enable = false,
 	},
 	textobjects = {
 		move = {
@@ -973,7 +973,7 @@ require("todo-comments").setup {
 	keywords = {
 		FIX  = { icon = " ", color = "warning", alt = {"FIXME", "BUG", "EXPERIMENTAL"} },
 		TODO = { icon = " ", color = "info" },
-		HACK = { icon = " ", color = "warning", alt = { "BUG" } },
+		HACK = { icon = " ", color = "warning", alt = { "BUG", "KLUDGE" } },
 		WARN = { icon = " ", color = "error", alt = { "WARNING", "WARN", "XXX", "CRIT", "CRITICAL" } },
 		NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
 	},
