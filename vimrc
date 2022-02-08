@@ -204,6 +204,8 @@ autocmd BufWritePre *.html %s/\s\+$//e
 set foldmethod=marker
 set commentstring=//\ %s
 
+" NOTE: This function gets overriden by the pretty-fold plugin anyway and is
+"       maintained here for historical reference / fallback
 function! FoldText()
 	let line = getline(v:foldstart)
 	let folded_line_num = v:foldend - v:foldstart
@@ -824,6 +826,28 @@ Plug 'junegunn/vim-peekaboo'
 " Press " / @ to access preview of registers
 " Use space to toggle fullscreen
 " e.g. to paste from register 2 - "2p
+" }}}
+" Plugin: Pretty-fold - Nicer folds with stats + previews (`h` key) {{{
+Plug 'anuvyklack/pretty-fold.nvim', {'done': 'call s:ConfigPrettyFold()'}
+
+function s:ConfigPrettyFold()
+lua <<EOF
+	require('pretty-fold').setup({
+		keep_indentation = true,
+		remove_fold_markers = true,
+		fill_char = '🞄',
+		sections = {
+			left = {
+				' ', 'content'
+			},
+			right = {
+				' ', 'number_of_folded_lines', ' / ', 'percentage', ' ',
+			}
+		}
+	})
+	require('pretty-fold.preview').setup_keybinding('h')
+EOF
+endfunction
 " }}}
 " Plugin: ProjectConfig - per project .git/project_conf.vim file {{{
 Plug 'hiberabyss/ProjectConfig'
