@@ -721,6 +721,7 @@ require('lualine').setup({
 			},
 			{'filename',
 				padding = {left = 1, right = 0},
+				path = 1, -- 0 = Basename, 1 = Relative path, 2 = Absolute path
 				symbols = {
 					modified = ' [+]',
 					readonly = ' [-]',
@@ -759,6 +760,7 @@ require('lualine').setup({
 			},
 			{'filename',
 				padding = 0,
+				path = 1, -- 0 = Basename, 1 = Relative path, 2 = Absolute path
 				symbols = {
 					modified = ' [+]',
 					readonly = ' [-]',
