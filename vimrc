@@ -597,6 +597,9 @@ let g:vim_markdown_conceal = 0
 " No idea why is needed but neovim throws if its not present
 Plug 'MunifTanjim/nui.nvim'
 " }}}
+" Plugin: Bling - Blink match when jumping between searches {{{
+Plug 'ivyl/vim-bling'
+" }}}
 " Plugin: Commentry - Use # to toggle line comments {{{
 Plug 'tpope/vim-commentary'
 " map # (visual mode) to comment out selected lines
