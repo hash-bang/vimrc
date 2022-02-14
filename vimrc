@@ -609,7 +609,7 @@ vmap # gc
 " Ctrl+Y , is default binding
 Plug 'mattn/emmet-vim'
 " }}}
-" Plugin: Eregex - PCRE / Perl RegEx translations {{{
+" Plugin: Eregex - PCRE / Perl RegEx (Use %S to replace ,/ to toggle) {{{
 " NOTE: Use :%S// to replace (upper case S)
 Plug 'othree/eregex.vim'
 
