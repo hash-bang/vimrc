@@ -1048,6 +1048,30 @@ let g:wildfire_objects = {
     \ "vue" : ["i'", 'i"', "i`", "i)", "at", "it", "i]", "i}", "i>"],
 \ }
 " }}}
+" Plugin: WinShift - Move windows interactively (Ctrl+W+M) {{{
+Plug 'sindrets/winshift.nvim', {'done': 'call s:ConfigWinShift()' }
+
+" Start Win-Move mode:
+nnoremap <C-W><C-M> <Cmd>WinShift<CR>
+nnoremap <C-W>m <Cmd>WinShift<CR>
+
+function s:ConfigWinShift()
+lua <<EOF
+require("winshift").setup({
+	highlight_moving_win = true,  -- Highlight the window being moved
+	focused_hl_group = "Visual",  -- The highlight group used for the moving window
+	moving_win_options = {
+		-- These are local options applied to the moving window while it's
+		-- being moved. They are unset when you leave Win-Move mode.
+		wrap = false,
+		cursorline = false,
+		cursorcolumn = false,
+		colorcolumn = "",
+	},
+})
+EOF
+endfunction
+" }}}
 
 " Plugins: END {{{
 call plug#end()
