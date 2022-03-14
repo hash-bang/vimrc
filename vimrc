@@ -188,6 +188,8 @@ autocmd BufRead,BufNewFile *.PAS set ft=pascal
 autocmd BufRead,BufNewFile *.pas set ft=pascal
 autocmd BufRead,BufNewFile *.ng set ft=vue
 autocmd BufRead *.txt set ft=
+autocmd BufRead NOTES set ft=todo
+autocmd BufRead MEETINGS set ft=todo
 
 " Smart indending for Python
 autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
