@@ -650,6 +650,11 @@ map `` :HopWord<cr>
 " Plugin: Increment - Improve default incrementing functionality with visual selects {{{
 Plug 'triglav/vim-visual-increment'
 " }}}
+" Plugin: Indent Jump - Jump around with Ctrl+{Up,Dn} {{{
+Plug 'w3bdev1/IndentJump.vim'
+nmap <c-up> <Plug>(Indent-Jump-Backward)
+nmap <c-down> <Plug>(Indent-Jump-Forward)
+" }}}
 " Plugin: Indent Guides {{{
 " Plug 'glepnir/indent-guides.nvim', {'done': 'call s:ConfigIndentGuides()'}
 
