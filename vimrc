@@ -548,6 +548,7 @@ call plug#begin('~/.vim/plugged')
 " }}}
 " Plugins: COLOR SCHEMES {{{
 " Set 256 Colors (for consoles that can handle it)
+set termguicolors
 set t_Co=256
 
 " This entire section is pretty much a multiplexor based on switch_colorscheme
@@ -561,8 +562,12 @@ elseif switch_colorscheme == 'cosmic_latte'
 	Plug 'nightsense/cosmic_latte'
 elseif switch_colorscheme == 'gruvbox'
 	Plug 'morhetz/gruvbox'
+elseif switch_colorscheme == 'embark'
+	Plug 'sainnhe/everforest'
 elseif switch_colorscheme == 'everforest'
 	Plug 'sainnhe/everforest'
+elseif switch_colorscheme == 'melange'
+	Plug 'savq/melange'
 elseif switch_colorscheme == 'nightfox'
 	Plug 'EdenEast/nightfox.nvim'
 	let g:switch_colorscheme_patch_conceal = 1
