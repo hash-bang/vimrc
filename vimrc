@@ -229,6 +229,8 @@ cabbr W w
 cabbr qwa wqa
 " alias :Wqa => :wqa
 cabbr Wqa wqa
+" alias :WQA => :wqa
+cabbr Wqa wqa
 " alias :Q => :q
 cabbr Q q
 " command alias f -> function. Useful when locating function names as you can just type 'f ' followed by the name
@@ -563,7 +565,7 @@ elseif switch_colorscheme == 'cosmic_latte'
 elseif switch_colorscheme == 'gruvbox'
 	Plug 'morhetz/gruvbox'
 elseif switch_colorscheme == 'embark'
-	Plug 'sainnhe/everforest'
+	Plug 'embark-theme/vim'
 elseif switch_colorscheme == 'everforest'
 	Plug 'sainnhe/everforest'
 elseif switch_colorscheme == 'falcon'
