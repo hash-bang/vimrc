@@ -995,7 +995,7 @@ require("todo-comments").setup {
 		TODO = { icon = " ", color = "info" },
 		HACK = { icon = " ", color = "warning", alt = { "BUG", "KLUDGE" } },
 		WARN = { icon = " ", color = "error", alt = { "WARNING", "WARN", "XXX", "CRIT", "CRITICAL" } },
-		NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
+		NOTE = { icon = " ", color = "hint", alt = { "INFO", "UX" } },
 	},
 	highlight = {
 		keyword = "bg", -- Only highlight word, not surrounding chars
@@ -1135,6 +1135,14 @@ function RepairColors()
 		" highlight Conceal ctermfg=147 ctermbg=none
 		" Mild red
 		highlight Conceal guifg=#bf616a ctermfg=131 ctermbg=none
+
+		syntax match jsArrowFunction /function/ skipwhite skipempty conceal cchar=λ
+		syntax match jsArrowFunction /null/ skipwhite skipempty conceal cchar=ø
+		syntax match jsArrowFunction /undefined/ skipwhite skipempty conceal cchar=¿
+		syntax match jsArrowFunction /this/ skipwhite skipempty conceal cchar=◉
+		syntax match jsArrowFunction /return/ skipwhite skipempty conceal cchar=∴
+		syntax match jsArrowFunction /()=>/ skipwhite skipempty conceal cchar=🞅
+		syntax match jsArrowFunction /=>/ skipwhite skipempty conceal cchar=🡆
 	endif
 
 	if g:switch_colorscheme_patch_visual == 1
