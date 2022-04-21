@@ -604,9 +604,36 @@ let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_conceal = 0
 " }}}
 
+
 " Plugin: General Pre-requisites {{{
 " No idea why is needed but neovim throws if its not present
 Plug 'MunifTanjim/nui.nvim'
+" }}}
+" Plugin: Ariel - Sidebar code outline jumping with F1 {{{
+Plug 'stevearc/aerial.nvim', {'done': 'call s:ConfigAerial()' }
+
+function s:ConfigAerial()
+lua <<EOF
+require("aerial").setup({
+	close_behavior = "persist", -- ENUM: auto, close, persist
+	default_direction = "prefer_right",
+	close_on_select = false, -- When true, aerial will automatically close after jumping to a symbol
+
+	on_attach = function(bufnr)
+		-- Toggle the aerial window with F1
+		vim.api.nvim_buf_set_keymap(bufnr, 'n', '<F1>', '<cmd>AerialToggle right<CR>', {})
+
+		-- Jump forwards/backwards with '{' and '}'
+		vim.api.nvim_buf_set_keymap(bufnr, 'n', '{', '<cmd>AerialPrev<CR>', {})
+		vim.api.nvim_buf_set_keymap(bufnr, 'n', '}', '<cmd>AerialNext<CR>', {})
+
+		-- Jump up the tree with '[[' or ']]'
+		vim.api.nvim_buf_set_keymap(bufnr, 'n', '[[', '<cmd>AerialPrevUp<CR>', {})
+		vim.api.nvim_buf_set_keymap(bufnr, 'n', ']]', '<cmd>AerialNextUp<CR>', {})
+	end
+})
+EOF
+endfunction
 " }}}
 " Plugin: Bling - Blink match when jumping between searches {{{
 Plug 'ivyl/vim-bling'
