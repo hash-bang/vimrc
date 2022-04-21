@@ -314,7 +314,7 @@ map gto :se ft=json<CR>
 map gtv :se ft=vue<CR>
 
 " KLUDGE: Disable Treesitter until AOS moves to Doop@3
-map gtx :TSDisableAll highlight<CR>
+map gtx :TSDisable highlight<CR>
 " }}}
 " Movement {{{
 " `T` - move to last character within line
