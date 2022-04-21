@@ -616,7 +616,7 @@ Plug 'tpope/vim-commentary'
 " map # (visual mode) to comment out selected lines
 vmap # gc
 " }}}
-" Plugin: Emmet - Use <C-Y>, to transform CSS under cursor to HTML via Emmet {{{
+" Plugin: Emmet - Use <C-Y> to transform CSS under cursor to HTML via Emmet {{{
 " Ctrl+Y , is default binding
 Plug 'mattn/emmet-vim'
 " }}}
@@ -663,26 +663,6 @@ Plug 'triglav/vim-visual-increment'
 Plug 'w3bdev1/IndentJump.vim'
 nmap <c-up> <Plug>(Indent-Jump-Backward)
 nmap <c-down> <Plug>(Indent-Jump-Forward)
-" }}}
-" Plugin: Indent Guides {{{
-" Plug 'glepnir/indent-guides.nvim', {'done': 'call s:ConfigIndentGuides()'}
-
-function s:ConfigIndentGuides()
-lua <<EOF
-require('indent_guides').setup({
-	indent_levels = 30;
-	indent_guide_size = 1;
-	indent_start_level = 1;
-	indent_enable = true;
-	indent_space_guides = true;
-	indent_tab_guides = true;
-	indent_soft_pattern = '\\s';
-	exclude_filetypes = {'help','dashboard','dashpreview','NvimTree','vista','sagahover'};
-	even_colors = { fg ='reverse',bg='#2B3242' };
-	odd_colors = {fg='reverse',bg='#2E3440'};
-})
-EOF
-endfunction
 " }}}
 " Plugin: Javascript - Nicer Javascript syntax {{{
 Plug 'pangloss/vim-javascript'
@@ -808,11 +788,6 @@ map <C-P> <Plug>(miniyank-cycle)
 
 let g:miniyank_maxitems = 10
 let g:miniyank_filename = $HOME . "/.vim/yankrings/" . hostname() . ".mpack"
-" }}}
-" Plugin: Nerdtree - Show a file tree using ,` {{{
-Plug 'preservim/nerdtree'
-" Map ,` to toggle Nerd tree
-map ,` :NERDTreeToggle<cr>
 " }}}
 " Plugin: Package-info - Display meta information for package.json files {{{
 Plug 'vuki656/package-info.nvim', {'done': 'call s:ConfigPackageInfo()'}
