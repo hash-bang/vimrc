@@ -855,10 +855,12 @@ Plug 'junegunn/vim-peekaboo'
 " }}}
 " Plugin: Pretty-fold - Nicer folds with stats + previews (`h` key) {{{
 Plug 'anuvyklack/pretty-fold.nvim', {'done': 'call s:ConfigPrettyFold()'}
+Plug 'anuvyklack/nvim-keymap-amend' " Needed for preview
 
 function s:ConfigPrettyFold()
 lua <<EOF
 	require('pretty-fold').setup({
+		default_keybindings = false, -- See custom mappings below
 		keep_indentation = true,
 		remove_fold_markers = true,
 		fill_char = '🞄',
@@ -871,7 +873,11 @@ lua <<EOF
 			}
 		}
 	})
-	require('pretty-fold.preview').setup_keybinding('h')
+
+	require('pretty-fold.preview').setup()
+	local keymap_amend = require('keymap-amend')
+	local mapping = require('pretty-fold.preview').mapping
+	keymap_amend('n', 'h',  mapping.show_close_preview_open_fold)
 EOF
 endfunction
 " }}}
