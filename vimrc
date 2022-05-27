@@ -575,6 +575,7 @@ elseif switch_colorscheme == 'everforest'
 	Plug 'sainnhe/everforest'
 elseif switch_colorscheme == 'falcon'
 	Plug 'fenetikm/falcon'
+	let g:switch_colorscheme_patch_cursor = 1
 elseif switch_colorscheme == 'melange'
 	Plug 'savq/melange'
 elseif switch_colorscheme == 'nightfox'
@@ -1148,6 +1149,15 @@ function RepairColors()
 		hi Folded ctermfg=223 ctermbg=238 guifg=Cyan guibg=DarkGrey
 		hi LineNr ctermfg=233 ctermbg=239 guifg=Yellow
 		hi CursorLineNr ctermfg=233 ctermbg=244 gui=bold guifg=Yellow
+	endif
+
+	if g:switch_colorscheme_patch_cursor == 1
+		highlight Cursor ctermfg=0 ctermbg=221 guifg=#020221 guibg=#FFC552
+		highlight iCursor ctermfg=0 ctermbg=221 guifg=#020221 guibg=#FFC552
+		set guicursor=n-v-c:block-Cursor
+		set guicursor+=i:ver100-iCursor
+		set guicursor+=n-v-c:blinkon0
+		set guicursor+=i:blinkwait10
 	endif
 
 	if g:switch_colorscheme_patch_conceal == 1
