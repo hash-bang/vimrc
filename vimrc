@@ -1247,6 +1247,24 @@ if &term =~ "xterm\\|rxvt"
 endif
 " }}}
 
-" BUGFIX: Disable weird cursor support until xfce4-terminal supports it {{{
-set guicursor=
+" FIX: Treesitter weird indents for JavaScript + JSDoc {{{
+" Taken from https://github.com/nvim-treesitter/nvim-treesitter/issues/1167#issuecomment-920824125
+lua <<EOF
+function _G.javascript_indent()
+	local line = vim.fn.getline(vim.v.lnum)
+	local prev_line = vim.fn.getline(vim.v.lnum - 1)
+	if line:match('^%s*[%*/]%s*') then
+		if prev_line:match('^%s*%*%s*') then
+			return vim.fn.indent(vim.v.lnum - 1)
+		end
+		if prev_line:match('^%s*/%*%*%s*$') then
+			return vim.fn.indent(vim.v.lnum - 1) + 1
+		end
+	end
+
+	return vim.fn['GetJavascriptIndent']()
+end
+
+vim.cmd[[autocmd FileType javascript setlocal indentexpr=v:lua.javascript_indent()]]
+EOF
 " }}}
