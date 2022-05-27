@@ -21,15 +21,15 @@ let g:switch_colorscheme_patch_contrast_folds = 0 " Repair folds in high-contras
 
 " Functions {{{
 function! GetVisual() range
-        let reg_save = getreg('"')
-        let regtype_save = getregtype('"')
-        let cb_save = &clipboard
-        set clipboard&
-        normal! ""gvy
-        let selection = getreg('"')
-        call setreg('"', reg_save, regtype_save)
-        let &clipboard = cb_save
-        return selection
+	let reg_save = getreg('"')
+	let regtype_save = getregtype('"')
+	let cb_save = &clipboard
+	set clipboard&
+	normal! ""gvy
+	let selection = getreg('"')
+	call setreg('"', reg_save, regtype_save)
+	let &clipboard = cb_save
+	return selection
 endfunction
 
 " HeathenTab() - Work where indenting = tab {{{
@@ -505,7 +505,7 @@ map ,[ gg
 map ,] G
 
 " Map g/ to global search (i.e. top-of-doc + search)
- map g/ gg/
+map g/ gg/
 
 " OTHER MAPS
 " --- Yankring ---
