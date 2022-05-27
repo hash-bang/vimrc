@@ -201,6 +201,11 @@ autocmd BufWritePre *.js %s/\s\+$//e
 autocmd BufWritePre *.json %s/\s\+$//e
 autocmd BufWritePre *.html %s/\s\+$//e
 " }}}
+" File paths {{{
+" Set the PWD to the current buffer when changing
+" Which allows relative path addressing
+set autochdir
+" }}}
 " Folding {{{
 " Use {{{ and }}} to denote a fold in a document
 set foldmethod=marker
@@ -893,6 +898,9 @@ endfunction
 Plug 'hiberabyss/ProjectConfig'
 " Use :ProjectConfig to edit base file per project
 " e.g. `call Heathen2s()`
+" }}}
+" Plugin: Rooter - Set project root directory from known files {{{
+Plug 'airblade/vim-rooter'
 " }}}
 " Plugin: Schlep - Move buffers around with ALT + Movement {{{
 Plug 'zirrostig/vim-schlepp'
