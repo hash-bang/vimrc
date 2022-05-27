@@ -680,8 +680,16 @@ map ]h :lua require('gitsigns.actions').next_hunk()<CR>
 map [h :lua require('gitsigns.actions').prev_hunk()<CR>
 " }}}
 " Plugin: Hop - Quick navigation via `` (Replaces EasyMotion) {{{
-Plug 'phaazon/hop.nvim', {'done': 'lua require(''hop'').setup()'}
+Plug 'phaazon/hop.nvim', {'done': 'call s:ConfigHop()'}
 map `` :HopWord<cr>
+
+function s:ConfigHop()
+lua <<EOF
+require('hop').setup({
+	uppercase_labels = true,
+})
+EOF
+endfunction
 " }}}
 " Plugin: Increment - Improve default incrementing functionality with visual selects {{{
 Plug 'triglav/vim-visual-increment'
