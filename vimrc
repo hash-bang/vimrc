@@ -985,6 +985,9 @@ highlight link SyntasticErrorSign SignColumn
 highlight link SyntasticWarningSign SignColumn
 highlight link SyntasticStyleErrorSign SignColumn
 highlight link SyntasticStyleWarningSign SignColumn
+
+map l] :lnext<CR>
+map l[ :lprevious<CR>
 " }}}
 " Plugin: Tagalong {{{
 Plug 'AndrewRadev/tagalong.vim'
