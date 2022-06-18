@@ -1059,7 +1059,7 @@ function s:ConfigTodoComments()
 lua <<EOF
 require("todo-comments").setup {
 	keywords = {
-		FIX  = { icon = " ", color = "warning", alt = {"FIXME", "BUG", "EXPERIMENTAL"} },
+		FIX  = { icon = " ", color = "warning", alt = {"FIXME", "@FIXME", "BUG", "EXPERIMENTAL"} },
 		TODO = { icon = " ", color = "info" },
 		HACK = { icon = " ", color = "warning", alt = { "BUG", "KLUDGE" } },
 		WARN = { icon = " ", color = "error", alt = { "WARNING", "WARN", "XXX", "CRIT", "CRITICAL" } },
