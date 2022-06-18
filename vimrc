@@ -414,8 +414,8 @@ map <F10> :w<CR>:%!hindent -c -i8<CR>:%s/\r//g<CR>gg
 " Alt-F10 - Stip C-like comments and remove blank lines
 map <A-F10> :%s/\(\/\*\(.\\|\n\)*\*\/\\|\/\/.*\n\)//g<CR>:g/^$/:d
 " F12 - Disable hilighting
-map <F12> :nohlsearch <CR>
-imap <F12> <ESC>:nohlsearch <CR>
+map <F12> :set nohls<CR>
+imap <F12> <ESC>:set nohls<CR>
 " xx to go next (cant use 'nn' as it slows down searching)
 map xx :n <CR>
 " XX to save (but not quit like ZZ)
