@@ -830,6 +830,22 @@ map <C-P> <Plug>(miniyank-cycle)
 let g:miniyank_maxitems = 10
 let g:miniyank_filename = $HOME . "/.vim/yankrings/" . hostname() . ".mpack"
 " }}}
+" Plugin: OldFiles - Use :Ol[d] to show a list of previously edited files {{{
+Plug 'gpanders/vim-oldfiles', {'done': 'call s:ConfigOldFiles()'}
+
+function s:ConfigOldFiles()
+	" Queue up a call to s:ConfigOldFilesBuffer when the quickfix window opens
+	autocmd FileType qf if get(w:, 'quickfix_title') == ':Oldfiles' | call timer_start(100, function('s:ConfigOldFilesBuffer')) | endif
+endfunction
+
+" Autoclose quickfix window on select
+" NOTE: This function fires after 100ms
+" Wildfire tries to take over the Quickfix window so we need to patch the
+" remap AFTER its done mangling the keymap
+function s:ConfigOldFilesBuffer(timerId)
+	nnoremap <buffer> <CR> <CR>:cclose<CR>
+endfunction
+" }}}
 " Plugin: Package-info - Display meta information for package.json files {{{
 Plug 'vuki656/package-info.nvim', {'done': 'call s:ConfigPackageInfo()'}
 
