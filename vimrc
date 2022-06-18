@@ -1110,17 +1110,18 @@ endif
 " }}}
 " Plugin: Wildfire - Inner-to-outer text block selection with <enter> {{{
 Plug 'gcmt/wildfire.vim'
+
 " Enter - select the next closest text object.
-map <ENTER> <Plug>(wildfire-fuel)
+map <CR> <Plug>(wildfire-fuel)
 
 " Backspace - select the previous text object
 map <BS> <Plug>(wildfire-water)
 
 let g:wildfire_objects = {
-    \ "*" : ["i'", 'i"', "i)", "i]", "i}", "i`"],
-    \ "javascript" : ["i'", 'i"', "i`","i)", "i]", "i}"],
-    \ "html,xml" : ["i'", 'i"', "at", "it", "i]", "i}", "i>"],
-    \ "vue" : ["i'", 'i"', "i`", "i)", "at", "it", "i]", "i}", "i>"],
+	\ "*" : ["i'", 'i"', "i)", "i]", "i}", "i`"],
+	\ "javascript" : ["i'", 'i"', "i`","i)", "i]", "i}"],
+	\ "html,xml" : ["i'", 'i"', "at", "it", "i]", "i}", "i>"],
+	\ "vue" : ["i'", 'i"', "i`", "i)", "at", "it", "i]", "i}", "i>"],
 \ }
 " }}}
 " Plugin: WinShift - Move windows interactively (Ctrl+W+M) {{{
