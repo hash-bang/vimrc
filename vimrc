@@ -893,10 +893,11 @@ lua <<EOF
 		default_keybindings = false, -- See custom mappings below
 		keep_indentation = true,
 		remove_fold_markers = true,
-		fill_char = '🞄',
+		process_comment_signs = 'delete',
+		fill_char = '·',
 		sections = {
 			left = {
-				' ', 'content'
+				'  ', 'content'
 			},
 			right = {
 				' ', 'number_of_folded_lines', ' / ', 'percentage', ' ',
