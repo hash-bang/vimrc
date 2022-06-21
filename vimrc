@@ -1165,29 +1165,6 @@ for spec in filter(values(g:plugs), 'has_key(v:val, ''done'')')
 endfor
 " }}}
 
-" Location specific overrides {{{
-if filereadable("/tmp/@location")
-	" We support mode changes
-	function! s:ModeCheck(id)
-		if (mode() =~# '\v(n|no)')
-			call system("/home/mc/Scripts/mood normal &")
-		elseif (mode() =~# '\v(v|V)')
-			call system("/home/mc/Scripts/mood visual &")
-		elseif (mode() ==# 'i')
-			call system("/home/mc/Scripts/mood insert &")
-		elseif (mode() =~# 'R')
-			call system("/home/mc/Scripts/mood replace &")
-		endif
-	endfunction
-	call timer_start(100, function('s:ModeCheck'), {'repeat': -1})
-
-	autocmd CmdlineEnter * call system("/home/mc/Scripts/mood command &")
-	autocmd CmdlineLeave * call system("/home/mc/Scripts/mood normal &")
-	autocmd VimLeave * call system("/home/mc/Scripts/mood normal")
-	autocmd FocusLost * call system("/home/mc/Scripts/mood normal &")
-
-endif
-" }}}
 " Color scheme {{{
 se bg=dark
 execute 'colors ' . switch_colorscheme
