@@ -919,6 +919,9 @@ Plug 'hiberabyss/ProjectConfig'
 " }}}
 " Plugin: Rooter - Set project root directory from known files {{{
 Plug 'airblade/vim-rooter'
+
+" Be Quiet on startup
+let g:rooter_silent_chdir = 1
 " }}}
 " Plugin: Schlep - Move buffers around with ALT + Movement {{{
 Plug 'zirrostig/vim-schlepp'
