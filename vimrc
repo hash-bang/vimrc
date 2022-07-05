@@ -420,9 +420,9 @@ map <A-F10> :%s/\(\/\*\(.\\|\n\)*\*\/\\|\/\/.*\n\)//g<CR>:g/^$/:d
 map <F12> :set nohls<CR>
 imap <F12> <ESC>:set nohls<CR>
 " xx to go next (cant use 'nn' as it slows down searching)
-map xx :n <CR>
+nmap xx :next<CR>
 " XX to save (but not quit like ZZ)
-map XX :w <CR>
+nmap XX :write<CR>
 " QQ to just quit
 map QQ :qa <CR>
 " GL - Toggle line numbers
