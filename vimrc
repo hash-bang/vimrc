@@ -178,6 +178,9 @@ se wmh=0
 " Set tab width
 set tabstop=4
 set shiftwidth=4
+
+" Set the command line height to zero to only show when needed
+set cmdheight=0
 " }}}
 " File browser (netrw) Options {{{
 " Set default layout to long mode (name, size, date)
