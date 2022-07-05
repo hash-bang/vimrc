@@ -1107,11 +1107,12 @@ endfunction
 " Plugin: Ultisnips - Snippet library {{{
 Plug 'SirVer/ultisnips'
 let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsListSnippets="<s-tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " Load only MC's own snippets - single DIR search greatly reduces load time
-let g:UltiSnipsSnippetDirectories=[$HOME."/.vim/mc-snippets"]
+let g:UltiSnipsSnippetDirectories=[$HOME . "/.vim/mc-snippets"]
 " }}}
 " Plugin: WakaTime - WakaTime integration {{{
 if switch_wakatime == 1
