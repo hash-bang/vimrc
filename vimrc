@@ -733,6 +733,19 @@ let g:javascript_plugin_jsdoc = 1
 Plug 'elzr/vim-json'
 let g:vim_json_syntax_conceal = 0
 " }}}
+" Plugin: LastPlace - Return to the last editing position on fread {{{
+Plug 'ethanholz/nvim-lastplace', {'done': 'call s:ConfigLastPlace()'}
+
+function s:ConfigLastPlace()
+lua <<EOF
+require('nvim-lastplace').setup({
+	lastplace_ignore_buftype = {"quickfix", "nofile", "help"},
+	lastplace_ignore_filetype = {"gitcommit", "gitrebase", "svn", "hgcommit", "todo"},
+	lastplace_open_folds = true,
+})
+EOF
+endfunction
+" }}}
 " Plugin: Lualine - Statusline display {{{
 Plug 'nvim-lualine/lualine.nvim', {'done': 'call s:ConfigLualine()'}
 Plug 'kyazdani42/nvim-web-devicons'
