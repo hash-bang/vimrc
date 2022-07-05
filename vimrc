@@ -652,6 +652,11 @@ Plug 'tpope/vim-commentary'
 " map # (visual mode) to comment out selected lines
 vmap # gc
 " }}}
+" Plugin: Conoline - CUL line highlight for current window {{{
+Plug 'miyakogi/conoline.vim'
+
+let g:conoline_auto_enable = 1
+" }}}
 " Plugin: Emmet - Use <C-Y> to transform CSS under cursor to HTML via Emmet {{{
 " Ctrl+Y , is default binding
 Plug 'mattn/emmet-vim'
@@ -1239,29 +1244,6 @@ function RepairColors()
 	highlight HopNextKey2 ctermfg=242 ctermbg=0 gui=bold guifg=#D8DEE9 guibg=#5E81AC
 endfunction
 call RepairColors()
-" }}}
-" Cursorline highlighting {{{
-" Hide line number highlighting when not in insert mode
-" FIXME: Disabled for now as Nvim@0.5.0 seems to slow down
-"autocmd InsertEnter * set cul
-"autocmd InsertLeave * set nocul
-set nocul
-
-" NOTE: Trying this again 2020-12-18 to see if it works
-" - NOPE 2020-12-21, drastically slows down .doop editing
-" }}}
-" Modes {{{
-" optional reset cursor on start:
-if &term =~ "xterm\\|rxvt"
-  " use an orange cursor in insert mode
-  let &t_SI = "\<Esc>]12;orange\x7"
-  " use a red cursor otherwise
-  let &t_EI = "\<Esc>]12;red\x7"
-  silent !echo -ne "\033]12;red\007"
-  " reset cursor when vim exits
-  autocmd VimLeave * silent !echo -ne "\033]112\007"
-  " use \003]12;gray\007 for gnome-terminal and rxvt up to version 9.21
-endif
 " }}}
 
 " FIX: Treesitter weird indents for JavaScript + JSDoc {{{
