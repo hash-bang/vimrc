@@ -359,11 +359,11 @@ map <c-w>p :pclose<cr>
 " Windows > Terminal {{{
 " Spawn split terminal with c-t / c-w-t or with vsplit c-y c-w-y
 if has('nvim')
-	map <c-t> :split<CR>:term<CR>
-	map <c-w>t :split<CR>:term<CR>
+	nmap <c-t> :split<CR>:term<CR>
+	nmap <c-w>t :split<CR>:term<CR>
 
-	map <c-y> :vsplit<CR>:term<CR>
-	map <c-w>y :vsplit<CR>:term<CR>
+	nmap <c-y> :vsplit<CR>:term<CR>
+	nmap <c-w>y :vsplit<CR>:term<CR>
 
 	" Allow Esc to escape
 	tnoremap <esc> <c-\><c-n>
@@ -421,11 +421,11 @@ map <A-F10> :%s/\(\/\*\(.\\|\n\)*\*\/\\|\/\/.*\n\)//g<CR>:g/^$/:d
 map <F12> :set nohls<CR>
 imap <F12> <ESC>:set nohls<CR>
 " xx to go next (cant use 'nn' as it slows down searching)
-nmap xx :next<CR>
+nmap xx <ESC>:next<CR>
 " XX to save (but not quit like ZZ)
-nmap XX :write<CR>
+nmap XX <ESC>:write<CR>
 " QQ to just quit
-map QQ :qa <CR>
+map QQ <ESC>:qa <CR>
 " GL - Toggle line numbers
 map gl :set number! <CR>
 " {{ | }} - Move around functions
