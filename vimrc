@@ -851,6 +851,12 @@ map <C-P> <Plug>(miniyank-cycle)
 
 let g:miniyank_maxitems = 10
 let g:miniyank_filename = $HOME . "/.vim/yankrings/" . hostname() . ".mpack"
+
+" Highlight on yank
+augroup highlight_yank
+	autocmd!
+	au TextYankPost * silent! lua vim.highlight.on_yank{ higroup="IncSearch", timeout=250 }
+augroup END
 " }}}
 " Plugin: OldFiles - Use :Ol[d] to show a list of previously edited files {{{
 Plug 'gpanders/vim-oldfiles', {'done': 'call s:ConfigOldFiles()'}
