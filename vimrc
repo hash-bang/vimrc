@@ -701,7 +701,7 @@ map `` :HopWord<cr>
 function s:ConfigHop()
 lua <<EOF
 require('hop').setup({
-	uppercase_labels = true,
+	uppercase_labels = false,
 })
 EOF
 endfunction
