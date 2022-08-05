@@ -1027,7 +1027,7 @@ let g:tagalong_filetypes = ['doop', 'html', 'vue']
 " }}}
 " Plugin: Table-Mode - Markdown table editing {{{
 Plug 'dhruvasagar/vim-table-mode'
-" " Move using Cells left / right / above below: [| ]| {| }|
+" Move using Cells left / right / above below: [| ]| {| }|
 
 " Setup style like Markdown
 let g:table_mode_delimiter = '|'
@@ -1037,9 +1037,9 @@ let g:table_mode_header_fillchar =  '-'
 let g:table_mode_corner_corner = '|'
 
 " Map gtt to toggle table mode
-map gtt :TableModeToggle<CR>
+noremap gtt <ESC>:TableModeToggle<CR>
 " Map ,tt to create a horizontal header line when any text line is highlighted
-map ,tt yypV:s/[^\|]/-/<CR>:nohlsearch<CR>
+nmap ,tt yypV:s/[^\|]/-/<CR>:nohlsearch<CR>
 " }}}
 " Plugin: Treesitter (et al.) - EXPTERIMENTAL Syntax, Indent marking, text navigation {{{
 " Use :TSInstallInfo for a list of languages
