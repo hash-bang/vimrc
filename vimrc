@@ -996,6 +996,9 @@ Plug 'hiberabyss/ProjectConfig'
 " Use :ProjectConfig to edit base file per project
 " e.g. `call Heathen2s()`
 " }}}
+" Plugin: Rename - :rename <file> support {{{
+Plug 'danro/rename.vim'
+" }}}
 " Plugin: Rooter - Set project root directory from known files {{{
 Plug 'airblade/vim-rooter'
 
@@ -1235,7 +1238,6 @@ require("winshift").setup({
 EOF
 endfunction
 " }}}
-
 " Plugins: END {{{
 call plug#end()
 " }}}
