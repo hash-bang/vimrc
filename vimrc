@@ -694,6 +694,11 @@ Plug 'lewis6991/gitsigns.nvim', {'done': 'lua require(''gitsigns'').setup()'}
 map ]h :lua require('gitsigns.actions').next_hunk()<CR>
 map [h :lua require('gitsigns.actions').prev_hunk()<CR>
 " }}}
+" Plugin: GV - Git commit tree view with :GV {{{
+" :GV - Show all commits
+" :GV! - Show commits effecting the current file
+Plug 'junegunn/gv.vim'
+" }}}
 " Plugin: Hop - Quick navigation via `` (Replaces EasyMotion) {{{
 Plug 'phaazon/hop.nvim', {'done': 'call s:ConfigHop()'}
 map `` :HopWord<cr>
