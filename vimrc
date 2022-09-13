@@ -619,6 +619,12 @@ let g:vim_markdown_conceal = 0
 " No idea why is needed but neovim throws if its not present
 Plug 'MunifTanjim/nui.nvim'
 " }}}
+" Plugin: Actually - Correct mistyped file names {{{
+Plug 'mong8se/actually.nvim'
+
+" Fancier windows
+Plug 'stevearc/dressing.nvim'
+" }}}
 " Plugin: Ariel - Sidebar code outline jumping with F1 {{{
 Plug 'stevearc/aerial.nvim', {'done': 'call s:ConfigAerial()' }
 
