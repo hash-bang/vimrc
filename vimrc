@@ -619,6 +619,39 @@ let g:vim_markdown_conceal = 0
 " No idea why is needed but neovim throws if its not present
 Plug 'MunifTanjim/nui.nvim'
 " }}}
+" Plugin: (NOT WORKING - 2022-09-13) Package-info - Display meta information for package.json files {{{
+Plug 'vuki656/package-info.nvim', {'done': 'call s:ConfigPackageInfo()'}
+
+function s:ConfigPackageInfo()
+lua <<EOF
+require('package-info').setup {
+	colors = {
+		up_to_date = "#3C4048", -- Text color for up to date package virtual text
+		outdated = "#D08770", -- Text color for outdated package virtual text
+	},
+
+	icons = {
+		enable = true,
+		style = {
+			up_to_date = "  ", -- Icon for up to date packages
+			outdated = "  ", -- Icon for outdated packages
+		},
+	},
+
+	-- Whether to autostart when `package.json` is opened
+	autostart = true,
+
+	 -- Hide up to date versions when displaying virtual text
+	hide_up_to_date = false,
+
+	-- Hides unstable versions from the version list e.g next-11.1.3-canary3
+	hide_unstable_versions = false,
+
+	package_manager = "npm",
+}
+EOF
+endfunction
+" }}}
 " Plugin: Actually - Correct mistyped file names {{{
 Plug 'mong8se/actually.nvim'
 
@@ -923,37 +956,6 @@ endfunction
 " remap AFTER its done mangling the keymap
 function s:ConfigOldFilesBuffer(timerId)
 	nnoremap <buffer> <CR> <CR>:cclose<CR>
-endfunction
-" }}}
-" Plugin: Package-info - Display meta information for package.json files {{{
-Plug 'vuki656/package-info.nvim', {'done': 'call s:ConfigPackageInfo()'}
-
-function s:ConfigPackageInfo()
-lua <<EOF
-require('package-info').setup {
-	colors = {
-		up_to_date = "#3C4048", -- Text color for up to date package virtual text
-		outdated = "#D08770", -- Text color for outdated package virtual text
-	},
-
-	icons = {
-		enable = true,
-		style = {
-			up_to_date = "  ", -- Icon for up to date packages
-			outdated = "  ", -- Icon for outdated packages
-		},
-	},
-
-	-- Whether to autostart when `package.json` is opened
-	autostart = true,
-
-	 -- Hide up to date versions when displaying virtual text
-	hide_up_to_date = false,
-
-	-- Hides unstable versions from the version list e.g next-11.1.3-canary3
-	hide_unstable_versions = false,
-}
-EOF
 endfunction
 " }}}
 " Plugin: Peekaboo - Display sidebar of buffers when pasting or recording {{{
