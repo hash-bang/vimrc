@@ -714,6 +714,21 @@ require('hop').setup({
 EOF
 endfunction
 " }}}
+" Plugin: Illuminate - Highlight keyword under cursor, move with <a-n> / <a-N> {{{
+Plug 'RRethy/vim-illuminate', {'done': 'call s:ConfigIlluminate()'}
+
+function s:ConfigIlluminate()
+lua <<EOF
+require('illuminate').configure({
+	-- See https://github.com/RRethy/vim-illuminate
+	delay = 300,
+})
+
+vim.keymap.set('n', '<a-n>', require('illuminate').goto_next_reference)
+vim.keymap.set('n', '<a-N>', require('illuminate').goto_prev_reference)
+EOF
+endfunction
+" }}}
 " Plugin: Increment - Improve default incrementing functionality with visual selects {{{
 Plug 'triglav/vim-visual-increment'
 " }}}
