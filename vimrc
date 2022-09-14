@@ -1263,10 +1263,6 @@ function RepairColors()
 	if g:switch_colorscheme_patch_cursor == 1
 		highlight Cursor ctermfg=0 ctermbg=221 guifg=#020221 guibg=#FFC552
 		highlight iCursor ctermfg=0 ctermbg=221 guifg=#020221 guibg=#FFC552
-		set guicursor=n-v-c:block-Cursor
-		set guicursor+=i:ver100-iCursor
-		set guicursor+=n-v-c:blinkon0
-		set guicursor+=i:blinkwait10
 	endif
 
 	if g:switch_colorscheme_patch_conceal == 1
