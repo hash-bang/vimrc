@@ -927,13 +927,13 @@ endfunction
 " Plugin: Miniyank - Yank using ring buffer (replaces Yankring) {{{
 Plug 'bfredl/nvim-miniyank'
 " Remap paste to use miniyank-killring
-map p <Plug>(miniyank-autoput)
-map P <Plug>(miniyank-autoPut)
+map p <Plug>(miniyank-startput)
+map P <Plug>(miniyank-startPut)
 
 " Map Ctrl-P to cycle through puts
 map <C-P> <Plug>(miniyank-cycle)
 
-let g:miniyank_maxitems = 10
+let g:miniyank_maxitems = 30
 let g:miniyank_filename = $HOME . "/.vim/yankrings/" . hostname() . ".mpack"
 
 " Highlight on yank
