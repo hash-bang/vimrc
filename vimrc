@@ -664,7 +664,6 @@ Plug 'stevearc/aerial.nvim', {'done': 'call s:ConfigAerial()' }
 function s:ConfigAerial()
 lua <<EOF
 require("aerial").setup({
-	close_behavior = "persist", -- ENUM: auto, close, persist
 	default_direction = "prefer_right",
 	close_on_select = false, -- When true, aerial will automatically close after jumping to a symbol
 
