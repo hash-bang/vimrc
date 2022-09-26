@@ -940,6 +940,14 @@ function s:ConfigOldFilesBuffer(timerId)
 	nnoremap <buffer> <CR> <CR>:cclose<CR>
 endfunction
 " }}}
+" Plugin: OpenRazer - Fancy keyboard functionality if present {{{
+Plug 'hash-bang/vim-open-razer'
+
+" STFU if an OpenRazer device is not found
+let g:razer_silent = 1
+
+let g:razer_theme = 'mc'
+" }}}
 " Plugin: Peekaboo - Display sidebar of buffers when pasting or recording {{{
 Plug 'junegunn/vim-peekaboo'
 " Press " / @ to access preview of registers
