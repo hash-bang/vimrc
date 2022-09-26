@@ -750,7 +750,13 @@ EOF
 endfunction
 " }}}
 " Plugin: Increment - Improve default incrementing functionality with visual selects {{{
+" Use [inc-type] + <c-a> to increment
 Plug 'triglav/vim-visual-increment'
+
+" Ctrl - A - Increment all Visual area numbers per-line (zero padded)
+vnoremap <c-a> :Inc<CR>
+" Ctrl - S - Increment all Visual area numbers per-line (no padding)
+vnoremap <c-s> :IncN<CR>
 " }}}
 " Plugin: Indent Jump - Jump around with Ctrl+{Up,Dn} {{{
 Plug 'w3bdev1/IndentJump.vim'
