@@ -313,14 +313,17 @@ map z<down> zj
 map ]z zj
 map [z zk
 " }}}
+" File list (really "buffer") naivgaton {{{
+nmap mm :n<CR>
+" }}}
 " File types (gt*) {{{
-map gtb :se ft=sh<CR>
-map gtc :se ft=css<CR>
-map gth :se ft=html<CR>
-map gtj :se ft=javascript<CR>
-map gts :se ft=sql<CR>:se nowrap<CR>
-map gto :se ft=json<CR>
-map gtv :se ft=vue<CR>
+nmap gtb :se ft=sh<CR>
+nmap gtc :se ft=css<CR>
+nmap gth :se ft=html<CR>
+nmap gtj :se ft=javascript<CR>
+nmap gts :se ft=sql<CR>:se nowrap<CR>
+nmap gto :se ft=json<CR>
+nmap gtv :se ft=vue<CR>
 
 " KLUDGE: Disable Treesitter until AOS moves to Doop@3
 map gtx :TSDisable highlight<CR>
@@ -407,8 +410,8 @@ map <C-F2> :call Heathen2s()
 map <F3> :%s///<CR>
 " F5 - Reload the current file
 map <F5> :e! %<CR>
-" F6 - Toggle Spelling
-map <F6> :se spell!<CR>
+" F6 - Reload the current file as a VimScript (e.g. .vimrc)
+map <F6> :source %<CR>:echo "Resourced " . bufname()<CR>
 " F7 - Set JavaScript mode
 map <F7> :se ft=javascript<CR>
 " F8 to give a char count for a selected visual block
@@ -420,10 +423,6 @@ map <A-F10> :%s/\(\/\*\(.\\|\n\)*\*\/\\|\/\/.*\n\)//g<CR>:g/^$/:d
 " F12 - Disable hilighting
 map <F12> :set nohls<CR>
 imap <F12> <ESC>:set nohls<CR>
-" xx to go next (cant use 'nn' as it slows down searching)
-nmap xx <ESC>:next<CR>
-" XX to save (but not quit like ZZ)
-nmap XX <ESC>:write<CR>
 " QQ to just quit
 map QQ <ESC>:qa <CR>
 " GL - Toggle line numbers
@@ -434,11 +433,6 @@ map {{ [{
 " Ctrl + P will paste + auto indent
 map <C-P> p==
 
-" Bind filetype shortcuts
-map gth :set filetype=html<CR>
-map gtj :set filetype=javascript<CR>
-map gtc :set filetype=css<CR>
-
 " Enable Heathen-Tab mode
 map ght :call HeathenTab()<CR>
 " Enable Heathen-2S mode
@@ -446,28 +440,11 @@ map gh2 :call Heathen2s()<CR>
 " Enable Heathen-4S mode
 map gh4 :call Heathen4s()<CR>
 
-function! NumberToggle()
-	if(&relativenumber == 1)
-		set number
-	else
-		set relativenumber
-	endif
-endfunc
-" nnoremap <C-@> :call NumberToggle()<cr>
-
-
 " map Z- to toggle spelling
 map z- :se spell!<CR>
 
-
-
 " Proper casing using the '!' key (not counting words beginning with '.' - so .mp3 is not capitalised to .Mp3)
 vmap ! :s/\([^\.]\)\<\([a-z]\)\([a-z]*\)/\1\U\2\E\3/gi <CR>
-
-" Ctrl - A - Increment all Visual area numbers per-line (zero padded)
-vnoremap <c-a> :Inc<CR>
-" Ctrl - S - Increment all Visual area numbers per-line (no padding)
-vnoremap <c-s> :IncN<CR>
 
 " Ctrl +/- resizes quickly
 map + <C-W>+
@@ -1245,6 +1222,7 @@ for spec in filter(values(g:plugs), 'has_key(v:val, ''done'')')
 	exec spec.done
 endfor
 " }}}
+
 
 " Color scheme {{{
 se bg=dark
