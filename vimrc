@@ -1099,6 +1099,20 @@ noremap gtt <ESC>:TableModeToggle<CR>
 " Map ,tt to create a horizontal header line when any text line is highlighted
 nmap ,tt yypV:s/[^\|]/-/<CR>:nohlsearch<CR>
 " }}}
+" Plugin: Telescope + Plenary {{{
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', {'tag': '0.1.0', 'done': 'call s:ConfigTelescope()'}
+
+" <C-e> to open the old-files list + search
+nmap <C-e> :Telescope oldfiles<CR>
+
+function s:ConfigTelescope()
+lua <<EOF
+require('telescope').setup({
+})
+EOF
+endfunction
+" }}}
 " Plugin: Treesitter (et al.) - EXPTERIMENTAL Syntax, Indent marking, text navigation {{{
 " Use :TSInstallInfo for a list of languages
 " Use :TSInstall <lang> to update a language
