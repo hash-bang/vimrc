@@ -711,14 +711,22 @@ Plug 'junegunn/gv.vim'
 " Plugin: Hop - Quick navigation via `` (Replaces EasyMotion) {{{
 Plug 'phaazon/hop.nvim', {'done': 'call s:ConfigHop()'}
 map `` :HopWord<cr>
-map `v :HopLine<cr>
-map `c :HopChar1<cr>
-map `0 :HopWordCurrentLine<cr>
-map `1 :HopWordCurrentLine<cr>
-map `$ :HopWordCurrentLine<cr>
-map `^ :HopWordCurrentLine<cr>
-map `l :HopWordCurrentLine<cr>
-map `L :HopChar1CurrentLine<cr>
+
+" H in visual mode
+vmap h <CMD>HopWord<CR>
+
+" Various combinations
+map `q :HopAnywhere<CR>
+map `v :HopLine<CR>
+map `c :HopChar1<CR>
+map `0 :HopWordCurrentLine<CR>
+map `1 :HopWordCurrentLine<CR>
+map `$ :HopWordCurrentLine<CR>
+map `^ :HopWordCurrentLine<CR>
+map `l :HopWordCurrentLine<CR>
+map `L :HopChar1CurrentLine<CR>
+
+vmap `` :
 
 function s:ConfigHop()
 lua <<EOF
