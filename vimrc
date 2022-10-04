@@ -228,19 +228,8 @@ endfunction
 set foldtext=FoldText()
 set fillchars=fold:.
 " }}}
-" Abbreviation Map {{{
-" alias :W => :w
-cabbr W w
-" alias :qwa => :wqa
-cabbr qwa wqa
-" alias :Wqa => :wqa
-cabbr Wqa wqa
-" alias :WQA => :wqa
-cabbr Wqa wqa
-" alias :Q => :q
-cabbr Q q
-" command alias f -> function. Useful when locating function names as you can just type 'f ' followed by the name
-cabbr f function
+" Alias map (Common mistypes) {{{
+command -nargs=0 Wqa :wqa!
 " }}}
 " Key Map {{{
 " Key Fixes {{{
