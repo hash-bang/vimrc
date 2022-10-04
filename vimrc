@@ -536,6 +536,14 @@ call plug#begin('~/.vim/plugged')
 set termguicolors
 set t_Co=256
 
+" Color scheme switches {{{
+let g:switch_colorscheme_patch_cursor = 0 " Repair cursor coloring (set automatically by colorscheme preference)
+let g:switch_colorscheme_patch_conceal = 0 " Repair conceal coloring (set automatically by colorscheme preference)
+let g:switch_colorscheme_patch_lightline = 0 " Repair lightline coloring (set automatically by colorscheme preference)
+let g:switch_colorscheme_patch_visual = 0 " Repair visual coloring (set automatically by colorscheme preference)
+let g:switch_colorscheme_patch_contrast_folds = 0 " Repair folds in high-contrast mode
+" }}}
+
 " This entire section is pretty much a multiplexor based on switch_colorscheme
 if switch_colorscheme == 'anotherdark'
 	" Another dark is a built in anyway
