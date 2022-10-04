@@ -179,9 +179,6 @@ se wmh=0
 " Set tab width
 set tabstop=4
 set shiftwidth=4
-
-" Set the command line height to zero to only show when needed
-set cmdheight=0
 " }}}
 " File browser (netrw) Options {{{
 " Set default layout to long mode (name, size, date)
@@ -243,7 +240,7 @@ cabbr Wqa wqa
 " alias :Q => :q
 cabbr Q q
 " command alias f -> function. Useful when locating function names as you can just type 'f ' followed by the name
-ca f function
+cabbr f function
 " }}}
 " Key Map {{{
 " Key Fixes {{{
@@ -924,6 +921,43 @@ augroup highlight_yank
 	au TextYankPost * silent! lua vim.highlight.on_yank{ higroup="IncSearch", timeout=250 }
 augroup END
 " }}}
+" Plugin: Noice - Cmdline popup + notifications {{{
+Plug 'folke/noice.nvim', {'done': 'call s:ConfigNoice()'}
+
+" Dependencies
+Plug 'MunifTanjim/nui.nvim'
+Plug 'rcarriga/nvim-notify'
+Plug 'hrsh7th/nvim-cmp'
+
+function s:ConfigNoice()
+lua <<EOF
+	require('noice').setup({
+		views = {
+			cmdline_popup = {
+				render = "popup",
+				relative = "editor",
+				position = {
+					row = "80%",
+					col = "50%",
+				},
+				size = {
+					min_width = 60,
+					height = "auto",
+					width = "auto",
+				},
+				border = {
+					style = "rounded",
+					padding = {0, 0},
+				},
+				win_options = {
+					winhighlight = "NormalFloat:NormalFloat,FloatBorder:DiagnosticInfo",
+				},
+			},
+		},
+	})
+EOF
+endfunction
+" }}}
 " Plugin: OldFiles - Use :Ol[d] to show a list of previously edited files {{{
 Plug 'gpanders/vim-oldfiles', {'done': 'call s:ConfigOldFiles()'}
 
@@ -1005,7 +1039,7 @@ vmap <A-LEFT>  <Plug>SchleppLeft
 vmap <A-RIGHT> <Plug>SchleppRight
 " }}}
 " Plugin: SmoothCursor - Nicer cursor indicators {{{
-Plug 'gen740/SmoothCursor.nvim', {'done': 'call s:ConfigSmoothCursor()' }
+Plug 'gen740/SmoothCursor.nvim', {'done': 'call s:ConfigSmoothCursor()'}
 
 function s:ConfigSmoothCursor()
 lua <<EOF
