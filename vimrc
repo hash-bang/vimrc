@@ -983,6 +983,13 @@ function s:ConfigOldFilesBuffer(timerId)
 	nnoremap <buffer> <CR> <CR>:cclose<CR>
 endfunction
 " }}}
+" Plugin: OpenInGH - Open a NPM repo in GitHub with `gn` {{{
+Plug 'almo7aya/openingh.nvim', {'done': 'call s:ConfigOpenInGH()'}
+
+function s:ConfigOpenInGH()
+	nmap gn :OpenInGHRepo<CR>
+endfunction
+" }}}
 " Plugin: OpenRazer - Fancy keyboard functionality if present {{{
 Plug 'hash-bang/vim-open-razer'
 
