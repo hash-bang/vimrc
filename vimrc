@@ -144,7 +144,7 @@ set bs=2
 " Hilight the next match as we type
 set is
 " Lazy redraw - prevents flickering during Macros
-set lz
+set nolazyredraw
 " Ignore Python compiled files and backup files
 set wig=*.pyc,*.pyo,*.*~
 " Force all swap files into the tmp directory
@@ -936,6 +936,10 @@ Plug 'hrsh7th/nvim-cmp'
 
 function s:ConfigNoice()
 lua <<EOF
+	require('notify').setup({
+		background_colour = "#000000",
+	})
+
 	require('noice').setup({
 		views = {
 			cmdline_popup = {
