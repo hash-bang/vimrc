@@ -318,6 +318,9 @@ noremap T $F
 " gv / gpp - select previously pasted text (`gp` can't be remapped for some reason)
 nnoremap <expr> gpp '`[' . getregtype()[0] . '`]'
 " }}}
+" Saving {{{
+nmap XX :w!<CR>
+" }}}
 " Searching {{{
 " ,n - search from top
 map ,n ggn
@@ -1143,6 +1146,8 @@ Plug 'nvim-telescope/telescope.nvim', {'tag': '0.1.0', 'done': 'call s:ConfigTel
 
 " <C-e> to open the old-files list + search
 nmap <C-e> :Telescope oldfiles<CR>
+" <C-d> to open within current directory
+nmap <C-d> :Telescope find_files<CR>
 
 function s:ConfigTelescope()
 lua <<EOF
