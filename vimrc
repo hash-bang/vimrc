@@ -9,11 +9,6 @@ let g:switch_wakatime=0 " Enable wakatime Plugin
 
 " Color scheme options
 let g:switch_colorscheme = 'nord' " Selected color scheme, must match an entry within `Plugins: COLOR SCHEMES`
-let g:switch_colorscheme_patch_cursor = 0 " Repair cursor coloring (set automatically by colorscheme preference)
-let g:switch_colorscheme_patch_conceal = 0 " Repair conceal coloring (set automatically by colorscheme preference)
-let g:switch_colorscheme_patch_lightline = 0 " Repair lightline coloring (set automatically by colorscheme preference)
-let g:switch_colorscheme_patch_visual = 0 " Repair visual coloring (set automatically by colorscheme preference)
-let g:switch_colorscheme_patch_contrast_folds = 0 " Repair folds in high-contrast mode
 
 " ---------------------------------
 " Below this line - here be dragons
