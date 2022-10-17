@@ -558,6 +558,8 @@ elseif switch_colorscheme == 'nord'
 	Plug 'shaunsingh/nord.nvim'
 	let g:switch_colorscheme_patch_contrast_folds = 1
 	let g:switch_colorscheme_patch_conceal = 1
+elseif switch_colorscheme == 'tundra'
+	Plug 'sam4llis/nvim-tundra'
 elseif switch_colorscheme == 'tender'
 	Plug 'jacoborus/tender.vim'
 elseif switch_colorscheme == 'tokyonight'
