@@ -635,8 +635,11 @@ Plug 'stevearc/aerial.nvim', {'done': 'call s:ConfigAerial()' }
 function s:ConfigAerial()
 lua <<EOF
 require("aerial").setup({
-	default_direction = "prefer_right",
 	close_on_select = false, -- When true, aerial will automatically close after jumping to a symbol
+
+	layout = {
+		default_direction = 'prefer_right',
+	},
 
 	on_attach = function(bufnr)
 		-- Toggle the aerial window with F1
@@ -937,7 +940,8 @@ Plug 'hrsh7th/nvim-cmp'
 function s:ConfigNoice()
 lua <<EOF
 	require('notify').setup({
-		background_colour = "#000000",
+		render = "minimal",
+		stages = "slide"
 	})
 
 	require('noice').setup({
