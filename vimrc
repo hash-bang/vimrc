@@ -829,6 +829,7 @@ Plug 'kyazdani42/nvim-web-devicons'
 
 function s:ConfigLualine()
 lua <<EOF
+
 require('lualine').setup({
 	options = {
 		icons_enabled = true,
@@ -862,7 +863,24 @@ require('lualine').setup({
 				}
 			},
 		},
-		lualine_x = {},
+		lualine_x = {
+			{'mode', -- Show RECORDING notice optionally
+				cond =
+					function()
+						local recordChar = vim.api.nvim_call_function("reg_recording", {})
+						return recordChar ~= ""
+					end,
+				fmt =
+					function()
+						local recordChar = vim.api.nvim_call_function("reg_recording", {})
+						return "RECORDING @" .. recordChar
+					end,
+				icon = "⏺",
+				color = { fg = "#ff9e64", bg = "#c0392b" },
+				padding = {left = 1, right = 1},
+				separator = {left = ''},
+			},
+		},
 		lualine_y = {
 			{'filetype',
 				icons_enabled = false,
