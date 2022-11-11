@@ -227,7 +227,9 @@ set foldtext=FoldText()
 set fillchars=fold:.
 " }}}
 " Alias map (Common mistypes) {{{
+" Mistakes for :wpa
 command -nargs=0 Wqa :wqa!
+cnoreabbrev qwa :wqa!
 " }}}
 " Key Map {{{
 " Key Fixes {{{
