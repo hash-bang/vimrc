@@ -1321,6 +1321,22 @@ require("winshift").setup({
 EOF
 endfunction
 " }}}
+" Plugin: Which-Key - Replace the spelling prompt with a nicer UI {{{
+Plug 'folke/which-key.nvim', {'done': 'call s:ConfigWhichKey()'}
+
+function s:ConfigWhichKey()
+lua <<EOF
+	require("which-key").setup({
+		plugins = {
+			spelling = {
+				enabled = true,
+				suggestions = 20,
+			},
+		},
+	})
+EOF
+endfunction
+" }}}
 " Plugins: END {{{
 call plug#end()
 " }}}
