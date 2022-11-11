@@ -815,7 +815,7 @@ let g:javascript_plugin_jsdoc = 1
 Plug 'elzr/vim-json'
 let g:vim_json_syntax_conceal = 0
 " }}}
-" Plugin: LastPlace - Return to the last editing position on fread {{{
+" Plugin: LastPlace - Return to the last editing position on open {{{
 Plug 'ethanholz/nvim-lastplace', {'done': 'call s:ConfigLastPlace()'}
 
 function s:ConfigLastPlace()
