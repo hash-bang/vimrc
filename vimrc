@@ -1081,20 +1081,6 @@ vmap <A-DOWN>  <Plug>SchleppDown
 vmap <A-LEFT>  <Plug>SchleppLeft
 vmap <A-RIGHT> <Plug>SchleppRight
 " }}}
-" Plugin: SmoothCursor - Nicer cursor indicators {{{
-Plug 'gen740/SmoothCursor.nvim', {'done': 'call s:ConfigSmoothCursor()'}
-
-function s:ConfigSmoothCursor()
-lua <<EOF
-	require('smoothcursor').setup({
-		speed = 25,               -- max is 100 to stick to your current position
-		intervals = 35,           -- tick interval
-		priority = 10,            -- set marker priority
-		timeout = 3000,           -- timout for animation
-	})
-EOF
-endfunction
-" }}}
 " Plugin: SplitJoin - Smarter Split / Join via gS / gJ {{{
 Plug 'AndrewRadev/splitjoin.vim'
 " }}}
