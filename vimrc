@@ -145,35 +145,38 @@ set wig=*.pyc,*.pyo,*.*~
 " Force all swap files into the tmp directory
 set dir=/tmp
 " Enable mode lines (# vim:ft=blah for example)
-se modeline
+set modeline
 " Make file name completion work just like bash
-se wildmenu
-se wildmode=longest,list
+set wildmenu
+set wildmode=longest,list
 " Make Shift tab complete file names in insert mode
 inoremap <S-Tab> <C-X><C-F>
 " Disable backup files before overwrite (i.e. something.txt~ files)
-se nowb
+set nowb
 " Enable cursor line highlighting
-se cursorline
+set cursorline
 " Keep at least 5 lines above/below
-se scrolloff=5
+set scrolloff=5
 " Keep at least 5 lines left/right
-se sidescrolloff=5
+set sidescrolloff=5
 " Enable undo files
-se undofile
-se undodir=$HOME/.vim/undo
+set undofile
+set undodir=$HOME/.vim/undo
 " Auto save
-se autowrite
+set autowrite
 " Split vertical windows to the right
-se splitright
+set splitright
 " Dont wrap searching
-se nows
+set nows
 " Set minimal window size to 0 (when using Ctrl+W+_ this minimizes all windows to one line)
-se wmh=0
+set wmh=0
 
 " Set tab width
 set tabstop=4
 set shiftwidth=4
+
+" Set the command line height to auto-hide
+set cmdheight=0
 " }}}
 " File browser (netrw) Options {{{
 " Set default layout to long mode (name, size, date)
