@@ -984,7 +984,6 @@ lua <<EOF
 				},
 				border = {
 					style = "rounded",
-					padding = {0, 0},
 				},
 				win_options = {
 					winhighlight = "NormalFloat:NormalFloat,FloatBorder:DiagnosticInfo",
@@ -992,6 +991,7 @@ lua <<EOF
 			},
 		},
 	})
+
 EOF
 endfunction
 " }}}
