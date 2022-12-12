@@ -1185,6 +1185,7 @@ endfunction
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate', 'done': 'call s:ConfigTreeSitter()'}
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+Plug 'kiyoon/treesitter-indent-object.nvim'
 
 function s:ConfigTreeSitter()
 lua <<EOF
@@ -1210,7 +1211,7 @@ require('nvim-treesitter.configs').setup {
 			goto_next_end = {
 				["]F"] = "@function.outer",
 			},
-			goto_previous_start = {
+			goto_previous_star = {
 				["[f"] = "@function.outer",
 			},
 			goto_previous_end = {
@@ -1219,7 +1220,39 @@ require('nvim-treesitter.configs').setup {
 		},
 	},
 }
+
+require("indent_blankline").setup {
+	show_current_context = true,
+	show_current_context_start = true,
+}
+
+require("treesitter_indent_object").setup()
+
+-- select context-aware indent
+vim.keymap.set("x", "ai", "<Cmd>lua require'treesitter_indent_object.textobj'.select_indent_outer()<CR>")
+-- ensure selecting entire line (or just use Vai)
+vim.keymap.set("x", "aI", "<Cmd>lua require'treesitter_indent_object.textobj'.select_indent_outer(true)<CR>")
+-- select inner block (only if block, only else block, etc.)
+vim.keymap.set("x", "ii", "<Cmd>lua require'treesitter_indent_object.textobj'.select_indent_inner()<CR>")
+-- select entire inner range (including if, else, etc.)
+vim.keymap.set("x", "iI", "<Cmd>lua require'treesitter_indent_object.textobj'.select_indent_inner(true)<CR>")
+
 EOF
+endfunction
+" }}}
+" Plugin: TreeSJ - Split / join code with gs/gj {{{
+Plug 'wansmer/treesj', {'done': 'call s:ConfigTreeSJ()'}
+
+function s:ConfigTreeSJ()
+lua <<EOF
+require('treesj').setup({
+	use_default_keymaps = false,
+})
+EOF
+
+nmap gt :TSJToggle <CR>
+nmap gs :TSJSplit <CR>
+nmap gj :TSJJoin <CR>
 endfunction
 " }}}
 " Plugin: Todo-Comments - Highlight various code comments {{{
