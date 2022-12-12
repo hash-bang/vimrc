@@ -662,9 +662,6 @@ require("aerial").setup({
 EOF
 endfunction
 " }}}
-" Plugin: Bling - Blink match when jumping between searches {{{
-Plug 'ivyl/vim-bling'
-" }}}
 " Plugin: Commentry - Use # to toggle line comments {{{
 Plug 'tpope/vim-commentary'
 " map # (visual mode) to comment out selected lines
@@ -935,22 +932,26 @@ EOF
 endfunction
 " }}}
 " Plugin: Miniyank - Yank using ring buffer (replaces Yankring) {{{
-Plug 'bfredl/nvim-miniyank'
-" Remap paste to use miniyank-killring
-map p <Plug>(miniyank-startput)
-map P <Plug>(miniyank-startPut)
+" Plug 'bfredl/nvim-miniyank', {'done': 'call s:ConfigMiniYank()'}
 
-" Map Ctrl-P to cycle through puts
-map <C-P> <Plug>(miniyank-cycle)
+function s:ConfigMiniYank()
+	" Remap paste to use miniyank-killring
+	" map p <Plug>(miniyank-startput)
+	" map P <Plug>(miniyank-startPut)
+	" - DISABLED as it doesn't obey correct register puts - MC 2022-12-07
 
-let g:miniyank_maxitems = 30
-let g:miniyank_filename = $HOME . "/.vim/yankrings/" . hostname() . ".mpack"
+	" Map Ctrl-P to cycle through puts
+	map <C-P> <Plug>(miniyank-cycle)
 
-" Highlight on yank
-augroup highlight_yank
-	autocmd!
-	au TextYankPost * silent! lua vim.highlight.on_yank{ higroup="IncSearch", timeout=250 }
-augroup END
+	let g:miniyank_maxitems = 30
+	let g:miniyank_filename = $HOME . "/.vim/yankrings/" . hostname() . ".mpack"
+
+	" Highlight on yank
+	augroup highlight_yank
+		autocmd!
+		au TextYankPost * silent! lua vim.highlight.on_yank{ higroup="IncSearch", timeout=250 }
+	augroup END
+endfunction
 " }}}
 " Plugin: Noice - Cmdline popup + notifications {{{
 Plug 'folke/noice.nvim', {'done': 'call s:ConfigNoice()'}
