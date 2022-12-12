@@ -1369,6 +1369,62 @@ lua <<EOF
 		},
 	})
 EOF
+
+	" Fix which-key screwing with `cc` for some reason
+	map cc ^C
+endfunction
+" }}}
+" Plugin: Yanky (Yankring functionality) {{{
+Plug 'gbprod/yanky.nvim', {'done': 'call s:ConfigYanky()'}
+
+function s:ConfigYanky()
+lua <<EOF
+require('yanky').setup({
+	ring = {
+		history_length = 100,
+		storage = "shada",
+		sync_with_numbered_registers = true,
+		cancel_event = "update",
+	},
+	picker = {
+		select = {
+			action = nil, -- nil to use default put action
+		},
+		telescope = {
+			mappings = nil, -- nil to use default mappings
+		},
+	},
+	system_clipboard = {
+		sync_with_ring = true,
+	},
+	highlight = {
+		on_put = true,
+		on_yank = true,
+		timer = 500,
+	},
+	preserve_cursor_position = {
+		enabled = true,
+	},
+})
+-- Basic mapping over paste keys
+vim.keymap.set({"n","x"}, "p", "<Plug>(YankyPutAfter)")
+vim.keymap.set({"n","x"}, "P", "<Plug>(YankyPutBefore)")
+
+-- Ring movement
+vim.keymap.set("n", "<c-n>", "<Plug>(YankyCycleForward)")
+vim.keymap.set("n", "<c-p>", "<Plug>(YankyCycleBackward)")
+
+-- Overwrite more complex paste functionality
+vim.keymap.set("n", "]p", "<Plug>(YankyPutIndentAfterLinewise)")
+vim.keymap.set("n", "[p", "<Plug>(YankyPutIndentBeforeLinewise)")
+vim.keymap.set("n", "]P", "<Plug>(YankyPutIndentAfterLinewise)")
+vim.keymap.set("n", "[P", "<Plug>(YankyPutIndentBeforeLinewise)")
+
+vim.keymap.set("n", ">p", "<Plug>(YankyPutIndentAfterShiftRight)")
+vim.keymap.set("n", "<p", "<Plug>(YankyPutIndentAfterShiftLeft)")
+vim.keymap.set("n", ">P", "<Plug>(YankyPutIndentBeforeShiftRight)")
+vim.keymap.set("n", "<P", "<Plug>(YankyPutIndentBeforeShiftLeft)")
+EOF
 endfunction
 " }}}
 " Plugins: END {{{
