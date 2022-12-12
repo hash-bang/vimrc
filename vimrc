@@ -655,8 +655,8 @@ require("aerial").setup({
 		vim.api.nvim_buf_set_keymap(bufnr, 'n', '}', '<cmd>AerialNext<CR>', {})
 
 		-- Jump up the tree with '[[' or ']]'
-		vim.api.nvim_buf_set_keymap(bufnr, 'n', '[[', '<cmd>AerialPrevUp<CR>', {})
-		vim.api.nvim_buf_set_keymap(bufnr, 'n', ']]', '<cmd>AerialNextUp<CR>', {})
+		vim.api.nvim_buf_set_keymap(bufnr, 'n', '[[', '<cmd>aerial.prev_up()<CR>', {})
+		vim.api.nvim_buf_set_keymap(bufnr, 'n', ']]', '<cmd>aerial.next_up()<CR>', {})
 	end
 })
 EOF
