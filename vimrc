@@ -1076,15 +1076,6 @@ Plug 'airblade/vim-rooter'
 " Be Quiet on startup
 let g:rooter_silent_chdir = 1
 " }}}
-" Plugin: Schlep - Move buffers around with ALT + Movement {{{
-Plug 'zirrostig/vim-schlepp'
-
-" Map Alt+Movement to move text in visual mode
-vmap <A-UP>    <Plug>SchleppUp
-vmap <A-DOWN>  <Plug>SchleppDown
-vmap <A-LEFT>  <Plug>SchleppLeft
-vmap <A-RIGHT> <Plug>SchleppRight
-" }}}
 " Plugin: SplitJoin - Smarter Split / Join via gS / gJ {{{
 Plug 'AndrewRadev/splitjoin.vim'
 " }}}
