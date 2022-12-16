@@ -965,10 +965,13 @@ function s:ConfigNoice()
 lua <<EOF
 	require('notify').setup({
 		render = "minimal",
-		stages = "slide"
+		stages = "slide",
 	})
 
 	require('noice').setup({
+		popupmenu = {
+			backend = "cmp", -- For some reason the default ('nui') doesn't allow tabbing to move around selections
+		},
 		views = {
 			cmdline_popup = {
 				render = "popup",
