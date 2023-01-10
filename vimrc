@@ -713,6 +713,21 @@ map [h :lua require('gitsigns.actions').prev_hunk()<CR>
 " :GV! - Show commits effecting the current file
 Plug 'junegunn/gv.vim'
 " }}}
+" Plugin: HL_Match_area - highlight areas within delimeters {{{
+Plug 'rareitems/hl_match_area.nvim', {'done': 'call s:ConfigHLMatchArea()'}
+
+function s:ConfigHLMatchArea()
+lua <<EOF
+require('hl_match_area').setup({
+	n_lines_to_search = 100, -- how many lines should be searched for a matching delimiter
+	highlight_in_insert_mode = true, -- should highlighting also be done in insert mode
+	delay = 100, -- delay before the highglight
+})
+
+vim.api.nvim_set_hl(0, 'MatchArea', {bg="#212e3f"})
+EOF
+endfunction
+" }}}
 " Plugin: Hop - Quick navigation via `` (Replaces EasyMotion) {{{
 Plug 'phaazon/hop.nvim', {'done': 'call s:ConfigHop()'}
 map `` :HopWord<cr>
