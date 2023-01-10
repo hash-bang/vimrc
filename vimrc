@@ -946,6 +946,33 @@ require('lualine').setup({
 EOF
 endfunction
 " }}}
+" Plugin: Mini.Animate {{{
+Plug 'echasnovski/mini.animate', {'done': 'call s:ConfigMiniAnimate()'}
+
+function s:ConfigMiniAnimate()
+lua <<EOF
+require('mini.animate').setup({
+	cursor = { -- Cursor path
+		enable = true,
+	},
+	scroll = { -- Vertical scroll
+		enable = true,
+	},
+	resize = { -- Window resize
+		-- Whether to enable this animation
+		enable = true,
+	},
+	open = { -- Window open
+		-- Whether to enable this animation
+		enable = true,
+	},
+	close = { -- Window close
+		enable = true,
+	},
+})
+EOF
+endfunction
+" }}}
 " Plugin: Noice - Cmdline popup + notifications {{{
 Plug 'folke/noice.nvim', {'done': 'call s:ConfigNoice()'}
 
