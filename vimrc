@@ -931,28 +931,6 @@ require('lualine').setup({
 EOF
 endfunction
 " }}}
-" Plugin: Miniyank - Yank using ring buffer (replaces Yankring) {{{
-" Plug 'bfredl/nvim-miniyank', {'done': 'call s:ConfigMiniYank()'}
-
-function s:ConfigMiniYank()
-	" Remap paste to use miniyank-killring
-	" map p <Plug>(miniyank-startput)
-	" map P <Plug>(miniyank-startPut)
-	" - DISABLED as it doesn't obey correct register puts - MC 2022-12-07
-
-	" Map Ctrl-P to cycle through puts
-	map <C-P> <Plug>(miniyank-cycle)
-
-	let g:miniyank_maxitems = 30
-	let g:miniyank_filename = $HOME . "/.vim/yankrings/" . hostname() . ".mpack"
-
-	" Highlight on yank
-	augroup highlight_yank
-		autocmd!
-		au TextYankPost * silent! lua vim.highlight.on_yank{ higroup="IncSearch", timeout=250 }
-	augroup END
-endfunction
-" }}}
 " Plugin: Noice - Cmdline popup + notifications {{{
 Plug 'folke/noice.nvim', {'done': 'call s:ConfigNoice()'}
 
@@ -1400,13 +1378,14 @@ require('yanky').setup({
 		enabled = true,
 	},
 })
+
 -- Basic mapping over paste keys
 vim.keymap.set({"n","x"}, "p", "<Plug>(YankyPutAfter)")
 vim.keymap.set({"n","x"}, "P", "<Plug>(YankyPutBefore)")
 
 -- Ring movement
-vim.keymap.set("n", "<c-n>", "<Plug>(YankyCycleForward)")
-vim.keymap.set("n", "<c-p>", "<Plug>(YankyCycleBackward)")
+vim.keymap.set("n", "<c-p>", "<Plug>(YankyCycleForward)")
+vim.keymap.set("n", "<c-s-p>", "<Plug>(YankyCycleBackward)")
 
 -- Overwrite more complex paste functionality
 vim.keymap.set("n", "]p", "<Plug>(YankyPutIndentAfterLinewise)")
