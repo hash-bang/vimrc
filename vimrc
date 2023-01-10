@@ -590,44 +590,6 @@ let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_conceal = 0
 " }}}
 
-
-" Plugin: General Pre-requisites {{{
-" No idea why is needed but neovim throws if its not present
-Plug 'MunifTanjim/nui.nvim'
-" }}}
-" Plugin: (NOT WORKING - 2022-09-13) Package-info - Display meta information for package.json files {{{
-Plug 'vuki656/package-info.nvim', {'done': 'call s:ConfigPackageInfo()'}
-
-function s:ConfigPackageInfo()
-lua <<EOF
-require('package-info').setup {
-	colors = {
-		up_to_date = "#3C4048", -- Text color for up to date package virtual text
-		outdated = "#D08770", -- Text color for outdated package virtual text
-	},
-
-	icons = {
-		enable = true,
-		style = {
-			up_to_date = "  ", -- Icon for up to date packages
-			outdated = "  ", -- Icon for outdated packages
-		},
-	},
-
-	-- Whether to autostart when `package.json` is opened
-	autostart = true,
-
-	 -- Hide up to date versions when displaying virtual text
-	hide_up_to_date = false,
-
-	-- Hides unstable versions from the version list e.g next-11.1.3-canary3
-	hide_unstable_versions = false,
-
-	package_manager = "npm",
-}
-EOF
-endfunction
-" }}}
 " Plugin: Actually - Correct mistyped file names {{{
 Plug 'mong8se/actually.nvim'
 
@@ -1049,6 +1011,39 @@ let g:razer_silent = 1
 
 let g:razer_theme = 'mc'
 " }}}
+" Plugin: Package-info - Display meta information for package.json files {{{
+Plug 'vuki656/package-info.nvim', {'done': 'call s:ConfigPackageInfo()'}
+
+function s:ConfigPackageInfo()
+lua <<EOF
+require('package-info').setup {
+	colors = {
+		up_to_date = "#3C4048", -- Text color for up to date package virtual text
+		outdated = "#D08770", -- Text color for outdated package virtual text
+	},
+
+	icons = {
+		enable = true,
+		style = {
+			up_to_date = "  ", -- Icon for up to date packages
+			outdated = "  ", -- Icon for outdated packages
+		},
+	},
+
+	-- Whether to autostart when `package.json` is opened
+	autostart = true,
+
+	 -- Hide up to date versions when displaying virtual text
+	hide_up_to_date = false,
+
+	-- Hides unstable versions from the version list e.g next-11.1.3-canary3
+	hide_unstable_versions = false,
+
+	package_manager = "npm",
+}
+EOF
+endfunction
+" }}}
 " Plugin: Peekaboo - Display sidebar of buffers when pasting or recording {{{
 Plug 'junegunn/vim-peekaboo'
 " Press " / @ to access preview of registers
@@ -1143,7 +1138,9 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_loc_list_height = 3
 
+let g:syntastic_enable_signs = 1
 let g:syntastic_error_symbol = '❌'
 let g:syntastic_style_error_symbol = '⁉️'
 let g:syntastic_warning_symbol = '⚠️'
@@ -1154,6 +1151,7 @@ highlight link SyntasticWarningSign SignColumn
 highlight link SyntasticStyleErrorSign SignColumn
 highlight link SyntasticStyleWarningSign SignColumn
 
+map gx :SyntasticToggleMode<CR>
 map l] :lnext<CR>
 map l[ :lprevious<CR>
 " }}}
