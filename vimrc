@@ -227,6 +227,10 @@ endfunction
 set foldtext=FoldText()
 set fillchars=fold:.
 " }}}
+" Movement {{{
+" Allow cursor to move one more character off the end of the line
+set virtualedit=onemore
+" }}}
 " Alias map (Common mistypes) {{{
 " Mistakes for :wpa
 command -nargs=0 Wqa :wqa!
