@@ -1,0 +1,10 @@
+snippet Plug
+Plug '$1', {'done': 'call s:Config${1/^.*\/(.+)$/$1/}()'}
+
+function s:Config${1/^.*\/(.+)$/$1/}()
+lua <<EOF
+require('${1/^.*\/(.+)$/$1/}').setup({
+})
+EOF
+endfunction
+endsnippet
