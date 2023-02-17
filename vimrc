@@ -891,6 +891,20 @@ require('lualine').setup({
 EOF
 endfunction
 " }}}
+" Plugin: (DISABLED) Kirby - file picker {{{
+" Disabled 2023-02-15 but has potencial
+" Plug 'romgrk/kirby.nvim', {'done': 'call s:ConfigKirby()'}
+" Dependencies:
+" Plug 'romgrk/fzy-lua-native'
+" Plug 'romgrk/kui.nvim'
+
+function s:ConfigKirby()
+lua <<EOF
+require('kirby').setup({
+})
+EOF
+endfunction
+" }}}
 " Plugin: Mini.Animate {{{
 Plug 'echasnovski/mini.animate', {'done': 'call s:ConfigMiniAnimate()'}
 
