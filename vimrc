@@ -481,8 +481,18 @@ map YY :%!xsel -ib<CR>u
 " }}}
 
 " Map [[ and ]] to start-of and end-of file movement
-map ,[ gg
-map ,] G
+nmap [[ gg
+nmap ]] G
+
+" FIX: Remap [[ + ]] even if the syntax file tries to screw with them {{{
+function! s:FixSquareBrackets()
+	silent! unmap <buffer> [[
+	silent! unmap <buffer> ]]
+endfun
+
+" Attach to the "entering the buffer the first time" hook and run the fixer
+autocmd BufEnter * call s:FixSquareBrackets()
+" }}}
 
 " Map g/ to global search (i.e. top-of-doc + search)
 map g/ gg/
