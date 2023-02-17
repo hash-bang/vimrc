@@ -402,6 +402,9 @@ map <S-F2> :set ts=4<CR>:Space2Tab<CR>:set ts=8<CR>
 map <C-F2> :call Heathen2s()
 " F3 - Replace active RegExp with nothing
 map <F3> :%s///<CR>
+" F4 - Replace active RegExp with a prompted replacement
+map <F4> :%s//
+vmap <F4> y/<C-R>"<CR>:%s//
 " F5 - Reload the current file
 map <F5> :e! %<CR>
 " F6 - Reload the current file as a VimScript (e.g. .vimrc)
