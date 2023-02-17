@@ -607,34 +607,6 @@ Plug 'mong8se/actually.nvim'
 " Fancier windows
 Plug 'stevearc/dressing.nvim'
 " }}}
-" Plugin: Ariel - Sidebar code outline jumping with F1 {{{
-Plug 'stevearc/aerial.nvim', {'done': 'call s:ConfigAerial()' }
-
-function s:ConfigAerial()
-lua <<EOF
-require("aerial").setup({
-	close_on_select = false, -- When true, aerial will automatically close after jumping to a symbol
-
-	layout = {
-		default_direction = 'prefer_right',
-	},
-
-	on_attach = function(bufnr)
-		-- Toggle the aerial window with F1
-		vim.api.nvim_buf_set_keymap(bufnr, 'n', '<F1>', '<cmd>AerialToggle right<CR>', {})
-
-		-- Jump forwards/backwards with '{' and '}'
-		vim.api.nvim_buf_set_keymap(bufnr, 'n', '{', '<cmd>AerialPrev<CR>', {})
-		vim.api.nvim_buf_set_keymap(bufnr, 'n', '}', '<cmd>AerialNext<CR>', {})
-
-		-- Jump up the tree with '[[' or ']]'
-		vim.api.nvim_buf_set_keymap(bufnr, 'n', '[[', '<cmd>aerial.prev_up()<CR>', {})
-		vim.api.nvim_buf_set_keymap(bufnr, 'n', ']]', '<cmd>aerial.next_up()<CR>', {})
-	end
-})
-EOF
-endfunction
-" }}}
 " Plugin: Commentry - Use # to toggle line comments {{{
 Plug 'tpope/vim-commentary'
 " map # (visual mode) to comment out selected lines
