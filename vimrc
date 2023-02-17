@@ -646,7 +646,6 @@ map ,r :Rg<cr>
 " }}}
 " Plugin: GitSigns - Screen-side Git Indicators (replaces GitGutter) {{{
 " @url https://github.com/lewis6991/gitsigns.nvim
-Plug 'nvim-lua/plenary.nvim'
 Plug 'lewis6991/gitsigns.nvim', {'done': 'lua require(''gitsigns'').setup()'}
 
 " map ]h / ]h to jump to next / previous hunk
@@ -675,30 +674,31 @@ endfunction
 " }}}
 " Plugin: Hop - Quick navigation via `` (Replaces EasyMotion) {{{
 Plug 'phaazon/hop.nvim', {'done': 'call s:ConfigHop()'}
-map `` :HopWord<cr>
-
-" H in visual mode
-vmap h <CMD>HopWord<CR>
-
-" Various combinations
-map `q :HopAnywhere<CR>
-map `v :HopLine<CR>
-map `c :HopChar1<CR>
-map `0 :HopWordCurrentLine<CR>
-map `1 :HopWordCurrentLine<CR>
-map `$ :HopWordCurrentLine<CR>
-map `^ :HopWordCurrentLine<CR>
-map `l :HopWordCurrentLine<CR>
-map `L :HopChar1CurrentLine<CR>
-
-vmap `` :
-
 function s:ConfigHop()
 lua <<EOF
 require('hop').setup({
 	uppercase_labels = false,
 })
 EOF
+
+	map `` :HopWord<cr>
+
+	" H in visual mode
+	vmap h <CMD>HopWord<CR>
+
+	" Various combinations
+	map `q :HopAnywhere<CR>
+	map `v :HopLine<CR>
+	map `c :HopChar1<CR>
+	map `0 :HopWordCurrentLine<CR>
+	map `1 :HopLine<CR>
+	map `2 :HopWordCurrentLine<CR>
+	map `$ :HopWordCurrentLine<CR>
+	map `^ :HopWordCurrentLine<CR>
+	map `l :HopWordCurrentLine<CR>
+	map `L :HopChar1CurrentLine<CR>
+
+	vmap `` :
 endfunction
 " }}}
 " Plugin: Illuminate - Highlight keyword under cursor, move with <a-n> / <a-N> {{{
@@ -1154,7 +1154,7 @@ let g:table_mode_header_fillchar =  '-'
 let g:table_mode_corner_corner = '|'
 
 " Map gtt to toggle table mode
-noremap gtt <ESC>:TableModeToggle<CR>
+noremap gtt <ESC>:set conceallevel=0<CR>:TableModeToggle<CR>
 " Map ,tt to create a horizontal header line when any text line is highlighted
 nmap ,tt yypV:s/[^\|]/-/<CR>:nohlsearch<CR>
 " }}}
@@ -1174,7 +1174,7 @@ require('telescope').setup({
 EOF
 endfunction
 " }}}
-" Plugin: Treesitter (et al.) - EXPTERIMENTAL Syntax, Indent marking, text navigation {{{
+" Plugin: Treesitter (et al.) - Syntax, Indent marking, text navigation {{{
 " Use :TSInstallInfo for a list of languages
 " Use :TSInstall <lang> to update a language
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate', 'done': 'call s:ConfigTreeSitter()'}
