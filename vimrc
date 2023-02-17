@@ -537,38 +537,34 @@ let g:switch_colorscheme_patch_contrast_folds = 0 " Repair folds in high-contras
 " }}}
 
 " This entire section is pretty much a multiplexor based on switch_colorscheme
+
+" Plug area (so everything keeps updated)
+Plug 'habamax/vim-bronzage'
+Plug 'nightsense/cosmic_latte'
+Plug 'morhetz/gruvbox'
+Plug 'embark-theme/vim'
+Plug 'sainnhe/everforest'
+Plug 'fenetikm/falcon'
+Plug 'savq/melange'
+Plug 'EdenEast/nightfox.nvim'
+Plug 'shaunsingh/nord.nvim'
+Plug 'sam4llis/nvim-tundra'
+Plug 'jacoborus/tender.vim'
+Plug 'folke/tokyonight.nvim'
+
+" Overrides based on colorscheme
 if switch_colorscheme == 'anotherdark'
 	" Another dark is a built in anyway
 	let g:switch_colorscheme_patch_lightline = 1
 	let g:switch_colorscheme_patch_visual = 1
-elseif switch_colorscheme == 'bronzage'
-	Plug 'habamax/vim-bronzage'
-elseif switch_colorscheme == 'cosmic_latte'
-	Plug 'nightsense/cosmic_latte'
-elseif switch_colorscheme == 'gruvbox'
-	Plug 'morhetz/gruvbox'
-elseif switch_colorscheme == 'embark'
-	Plug 'embark-theme/vim'
-elseif switch_colorscheme == 'everforest'
-	Plug 'sainnhe/everforest'
+	colorscheme anotherdark
 elseif switch_colorscheme == 'falcon'
-	Plug 'fenetikm/falcon'
 	let g:switch_colorscheme_patch_cursor = 1
-elseif switch_colorscheme == 'melange'
-	Plug 'savq/melange'
 elseif switch_colorscheme == 'nightfox'
-	Plug 'EdenEast/nightfox.nvim'
 	let g:switch_colorscheme_patch_conceal = 1
 elseif switch_colorscheme == 'nord'
-	Plug 'shaunsingh/nord.nvim'
 	let g:switch_colorscheme_patch_contrast_folds = 1
 	let g:switch_colorscheme_patch_conceal = 1
-elseif switch_colorscheme == 'tundra'
-	Plug 'sam4llis/nvim-tundra'
-elseif switch_colorscheme == 'tender'
-	Plug 'jacoborus/tender.vim'
-elseif switch_colorscheme == 'tokyonight'
-	Plug 'folke/tokyonight.nvim'
 elseif switch_colorscheme == 'zenburn'
 	let g:zenburn_high_Contrast=1
 	let g:zenburn_old_Visual=1
