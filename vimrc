@@ -1138,8 +1138,23 @@ Plug 'airblade/vim-rooter'
 " Be Quiet on startup
 let g:rooter_silent_chdir = 1
 " }}}
-" Plugin: SplitJoin - Smarter Split / Join via gS / gJ {{{
-Plug 'AndrewRadev/splitjoin.vim'
+" Plugin: Splitjoin - Split / join complex code {{{
+Plug 'bennypowers/splitjoin.nvim', {'done': 'call s:ConfigSplitJoin()'}
+
+function s:ConfigSplitJoin()
+lua <<EOF
+require('splitjoin').setup({
+	languages = {
+		lua = require'splitjoin.languages.lua.defaults',
+		ecmascript = require'splitjoin.languages.ecmascript.defaults',
+		javascript = require'splitjoin.languages.javascript.defaults',
+		vue = require'splitjoin.languages.javascript.defaults',
+		typescript = require'splitjoin.languages.typescript.defaults',
+		css = require'splitjoin.languages.css.defaults',
+	},
+})
+EOF
+endfunction
 " }}}
 " Plugin: Startify - Nicer default startup screen {{{
 Plug 'mhinz/vim-startify'
@@ -1299,13 +1314,14 @@ vim.keymap.set("x", "iI", "<Cmd>lua require'treesitter_indent_object.textobj'.se
 EOF
 endfunction
 " }}}
-" Plugin: TreeSJ - Split / join code with gs/gj {{{
-Plug 'wansmer/treesj', {'done': 'call s:ConfigTreeSJ()'}
+" DISABLED Plugin: TreeSJ - Split / join code with gs/gj {{{
+" Plug 'wansmer/treesj', {'done': 'call s:ConfigTreeSJ()'}
 
 function s:ConfigTreeSJ()
 lua <<EOF
 require('treesj').setup({
 	use_default_keymaps = false,
+	dot_repeat = true, -- Use `dot` for repeat action
 })
 EOF
 
