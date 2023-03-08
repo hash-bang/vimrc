@@ -27,6 +27,7 @@ function! GetVisual() range
 	let &clipboard = cb_save
 	return selection
 endfunction
+" }}}
 
 " HeathenTab() - Work where indenting = tab {{{
 function HeathenTab()
@@ -566,7 +567,6 @@ Plug 'fenetikm/falcon'
 Plug 'savq/melange'
 Plug 'EdenEast/nightfox.nvim'
 Plug 'shaunsingh/nord.nvim'
-Plug 'sam4llis/nvim-tundra'
 Plug 'jacoborus/tender.vim'
 Plug 'folke/tokyonight.nvim'
 
@@ -582,6 +582,8 @@ elseif switch_colorscheme == 'nightfox'
 	let g:switch_colorscheme_patch_conceal = 1
 elseif switch_colorscheme == 'nord'
 	let g:switch_colorscheme_patch_contrast_folds = 1
+	let g:switch_colorscheme_patch_conceal = 1
+elseif switch_colorscheme == 'tender'
 	let g:switch_colorscheme_patch_conceal = 1
 elseif switch_colorscheme == 'zenburn'
 	let g:zenburn_high_Contrast=1
@@ -1138,24 +1140,6 @@ Plug 'airblade/vim-rooter'
 " Be Quiet on startup
 let g:rooter_silent_chdir = 1
 " }}}
-" Plugin: Splitjoin - Split / join complex code {{{
-Plug 'bennypowers/splitjoin.nvim', {'done': 'call s:ConfigSplitJoin()'}
-
-function s:ConfigSplitJoin()
-lua <<EOF
-require('splitjoin').setup({
-	languages = {
-		lua = require'splitjoin.languages.lua.defaults',
-		ecmascript = require'splitjoin.languages.ecmascript.defaults',
-		javascript = require'splitjoin.languages.javascript.defaults',
-		vue = require'splitjoin.languages.javascript.defaults',
-		typescript = require'splitjoin.languages.typescript.defaults',
-		css = require'splitjoin.languages.css.defaults',
-	},
-})
-EOF
-endfunction
-" }}}
 " Plugin: Startify - Nicer default startup screen {{{
 Plug 'mhinz/vim-startify'
 
@@ -1186,36 +1170,47 @@ Plug 'rhlobo/vim-super-retab'
 Plug 'tpope/vim-surround'
 " }}}
 " Plugin: Syntastic - ESLint support {{{
-Plug 'vim-syntastic/syntastic'
-Plug 'mtscout6/syntastic-local-eslint.vim'
+Plug 'vim-syntastic/syntastic', {'done': 'call s:ConfigSyntastic()'}
+" Plug 'mtscout6/syntastic-local-eslint.vim'
+" ^^^ Trying the below ESLintArgs override - MC 2023-03-07
 
-" FROM https://zirho.github.io/2016/10/06/vim-syntastic-local/
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+function s:ConfigSyntastic()
+	" FROM https://zirho.github.io/2016/10/06/vim-syntastic-local/
+	set statusline+=%#warningmsg#
+	set statusline+=%{SyntasticStatuslineFlag()}
+	set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_loc_list_height = 5
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_loc_list_height = 3
+	let g:syntastic_always_populate_loc_list = 1
+	let g:syntastic_loc_list_height = 5
+	let g:syntastic_auto_loc_list = 1
+	let g:syntastic_check_on_open = 1
+	let g:syntastic_check_on_wq = 1
+	let g:syntastic_javascript_checkers = ['eslint']
+	let g:syntastic_loc_list_height = 3
 
-let g:syntastic_enable_signs = 1
-let g:syntastic_error_symbol = '❌'
-let g:syntastic_style_error_symbol = '⁉️'
-let g:syntastic_warning_symbol = '⚠️'
-let g:syntastic_style_warning_symbol = '💩'
+	let g:syntastic_enable_signs = 1
+	let g:syntastic_error_symbol = '❌'
+	let g:syntastic_style_error_symbol = '⁉️'
+	let g:syntastic_warning_symbol = '⚠️'
+	let g:syntastic_style_warning_symbol = '💩'
 
-highlight link SyntasticErrorSign SignColumn
-highlight link SyntasticWarningSign SignColumn
-highlight link SyntasticStyleErrorSign SignColumn
-highlight link SyntasticStyleWarningSign SignColumn
+	highlight link SyntasticErrorSign SignColumn
+	highlight link SyntasticWarningSign SignColumn
+	highlight link SyntasticStyleErrorSign SignColumn
+	highlight link SyntasticStyleWarningSign SignColumn
 
-map gx :SyntasticToggleMode<CR>
-map l] :lnext<CR>
-map l[ :lprevious<CR>
+	map gx :SyntasticToggleMode<CR>
+	map l] :lnext<CR>
+	map l[ :lprevious<CR>
+
+	function! ESLintArgs()
+		let rules = findfile('package.json', '.;')
+		return rules != '' ? '--rulesdir ' . shellescape(fnamemodify(rules, ':p:h')) : shellescape(fnamemodify('~', ':p:h'))
+	endfunction
+
+	autocmd FileType javascript let b:syntastic_javascript_eslint_args = ESLintArgs()
+endfunction
+
 " }}}
 " Plugin: Tagalong {{{
 Plug 'AndrewRadev/tagalong.vim'
@@ -1266,7 +1261,7 @@ lua <<EOF
 require('nvim-treesitter.configs').setup {
 	highlight = {
 		enable = true, -- false will disable the whole extension
-		disable = {}, -- list of language that will be disabled e.g. { "c", "rust" }
+		disable = {"vue"}, -- Seems to really screw up with Vue files
 		additional_vim_regex_highlighting = false,
 	},
 	incremental_selection = {
@@ -1314,8 +1309,8 @@ vim.keymap.set("x", "iI", "<Cmd>lua require'treesitter_indent_object.textobj'.se
 EOF
 endfunction
 " }}}
-" DISABLED Plugin: TreeSJ - Split / join code with gs/gj {{{
-" Plug 'wansmer/treesj', {'done': 'call s:ConfigTreeSJ()'}
+" Plugin: TreeSJ - Split / join code with gs/gj {{{
+Plug 'wansmer/treesj', {'done': 'call s:ConfigTreeSJ()'}
 
 function s:ConfigTreeSJ()
 lua <<EOF
