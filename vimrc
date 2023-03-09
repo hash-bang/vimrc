@@ -147,9 +147,6 @@ set wig=*.pyc,*.pyo,*.*~
 set dir=/tmp
 " Enable mode lines (# vim:ft=blah for example)
 set modeline
-" Make file name completion work just like bash
-set wildmenu
-set wildmode=longest,list
 " Make Shift tab complete file names in insert mode
 inoremap <S-Tab> <C-X><C-F>
 " Disable backup files before overwrite (i.e. something.txt~ files)
