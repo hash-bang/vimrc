@@ -1534,6 +1534,28 @@ function RepairColors()
 	highlight HopNextKey ctermfg=242 ctermbg=0 gui=bold guifg=#D8DEE9 guibg=#5E81AC
 	highlight HopNextKey1 ctermfg=242 ctermbg=0 gui=bold guifg=#D8DEE9 guibg=#5E81AC
 	highlight HopNextKey2 ctermfg=242 ctermbg=0 gui=bold guifg=#D8DEE9 guibg=#5E81AC
+
+	" Patch Notify colors
+	highlight NotifyERRORBorder guifg=#8A1F1F guibg=#000000
+	highlight NotifyWARNBorder guifg=#79491D guibg=#000000
+	highlight NotifyINFOBorder guifg=#4F6752 guibg=#000000
+	highlight NotifyDEBUGBorder guifg=#8B8B8B guibg=#000000
+	highlight NotifyTRACEBorder guifg=#4F3552 guibg=#000000
+	highlight NotifyERRORIcon guifg=#F70067 guibg=#000000
+	highlight NotifyWARNIcon guifg=#F79000
+	highlight NotifyINFOIcon guifg=#A9FF68
+	highlight NotifyDEBUGIcon guifg=#8B8B8B
+	highlight NotifyTRACEIcon guifg=#D484FF
+	highlight NotifyERRORTitle  guifg=#F70067
+	highlight NotifyWARNTitle guifg=#F79000
+	highlight NotifyINFOTitle guifg=#A9FF68
+	highlight NotifyDEBUGTitle  guifg=#8B8B8B
+	highlight NotifyTRACETitle  guifg=#D484FF
+	highlight NotifyERRORBody guibg=#000000
+	highlight NotifyWARNBody guibg=#000000
+	highlight NotifyINFOBody guibg=#000000
+	highlight NotifyDEBUGBody guibg=#000000
+	highlight NotifyTRACEBody guibg=#000000
 endfunction
 call RepairColors()
 " }}}
