@@ -336,7 +336,17 @@ map ,n ggn
 " }}}
 " Tabs {{{
 " Pop current window / buffer out into new tab
-map <C-W>/ :tabe %<CR>
+" Ctrl+S&m/"/" - Move this window pane to new tab
+map <C-s>m :tabedit %<CR>
+map <C-s>/ :tabedit %<CR>
+" Ctrl+S&n - Move to next tab
+map <C-s>n :tabnext<CR>
+" CTRL+S&N/P - Move to previous tab
+map <C-s>N :tabprevious<CR>
+map <C-s>p :tabprevious<CR>
+" CTRL+S&c/x - Close tab
+map <C-s>c :tabclose<CR>
+map <C-s>x :tabclose<CR>
 " }}}
 " Visual mode {{{
 " Press @q in visual mode to run that macro on all selected lines
@@ -393,12 +403,6 @@ map <C-H> :%!xxd<CR>
 map <C-K> :read !pwgen 10<CR>
 " ,l Toggle concel
 map <leader>l :exec &conceallevel ? "set conceallevel=0" : "set conceallevel=1"<CR>
-" F2 - Retab 2 spaces -> tab
-map <F2> :set ts=2<CR>:Space2Tab<CR>:set ts=8<CR>
-" Shift-F2 - Retab 4 spaces -> tab
-map <S-F2> :set ts=4<CR>:Space2Tab<CR>:set ts=8<CR>
-" Ctrl + F2 - Work in 2-space indent mode
-map <C-F2> :call Heathen2s()
 " F3 - Replace active RegExp with nothing
 map <F3> :%s///<CR>
 " F4 - Replace active RegExp with a prompted replacement
@@ -412,10 +416,6 @@ map <F6> :source %<CR>:echo "Resourced " . bufname()<CR>
 map <F7> :se ft=javascript<CR>
 " F8 to give a char count for a selected visual block
 map <F8> :echoe "Str Length:" . strlen(GetVisual())<CR>gv
-" F10 - HTML Beautifier
-map <F10> :w<CR>:%!hindent -c -i8<CR>:%s/\r//g<CR>gg
-" Alt-F10 - Stip C-like comments and remove blank lines
-map <A-F10> :%s/\(\/\*\(.\\|\n\)*\*\/\\|\/\/.*\n\)//g<CR>:g/^$/:d
 " F12 - Disable hilighting
 map <F12> :set nohls<CR>
 imap <F12> <ESC>:set nohls<CR>
