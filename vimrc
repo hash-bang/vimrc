@@ -982,43 +982,25 @@ Plug 'folke/noice.nvim', {'done': 'call s:ConfigNoice()'}
 " Dependencies
 Plug 'MunifTanjim/nui.nvim'
 Plug 'rcarriga/nvim-notify'
-Plug 'hrsh7th/nvim-cmp'
 
 function s:ConfigNoice()
+	" F2 to dismiss messages
+	map <F2> :lua require('notify').dismiss()<CR>
+
+	" Ctrl+F2 to show message history
+	map <C-F2> :Noice history<CR>
+
 lua <<EOF
 	require('notify').setup({
-		render = "minimal",
+		background_colour = "#000000",
+		render = "compact",
 		stages = "slide",
 	})
 
 	require('noice').setup({
-		popupmenu = {
-			backend = "cmp", -- For some reason the default ('nui') doesn't allow tabbing to move around selections
-		},
-		views = {
-			cmdline_popup = {
-				render = "popup",
-				relative = "editor",
-				position = {
-					row = "80%",
-					col = "50%",
-				},
-				size = {
-					min_width = 60,
-					height = "auto",
-					width = "auto",
-				},
-				border = {
-					style = "rounded",
-				},
-				win_options = {
-					winhighlight = "NormalFloat:NormalFloat,FloatBorder:DiagnosticInfo",
-				},
-			},
-		},
 	})
-
 EOF
+
 endfunction
 " }}}
 " Plugin: OldFiles - Use :Ol[d] to show a list of previously edited files {{{
