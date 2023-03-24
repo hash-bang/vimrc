@@ -594,6 +594,7 @@ endif
 Plug 'LeonB/vim-nginx'
 Plug 'hash-bang/vim-vue'
 Plug 'hash-bang/vim-todo'
+Plug 'projectfluent/fluent.vim'
 " }}}
 " Plugin: SYNTAX / vim-markdown {{{
 Plug 'plasticboy/vim-markdown'
