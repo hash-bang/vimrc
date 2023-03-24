@@ -187,6 +187,7 @@ autocmd BufRead,BufNewFile *.ng set ft=vue
 autocmd BufRead *.txt set ft=
 autocmd BufRead NOTES set ft=todo
 autocmd BufRead MEETINGS set ft=todo
+autocmd BufRead *.TODO set ft=todo
 autocmd BufRead .env* set ft=dotenv
 
 " Smart indending for Python
