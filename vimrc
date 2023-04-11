@@ -29,6 +29,7 @@ let g:switch_colorscheme = 'everforest' " Selected color scheme, must match an e
 
 
 " Functions {{{
+" Utility: GetVisual() {{{
 function! GetVisual() range
 	let reg_save = getreg('"')
 	let regtype_save = getregtype('"')
@@ -121,6 +122,27 @@ function! CleanTVSeries()
 endfunction
 map <F4> :call CleanTVSeries()<CR>
 " }}}
+
+" ResolvePath(path) + EditResolvePath(path) - Correct a path to something nicer {{{
+function! ResolvePath(path)
+	if matchstr("^\.\/?") " ./PATH - Relative to current file
+		let fileDir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
+		return substitute(a:path, "^\.\/?", l:cwd . "/" , "")
+	elseif matchstr("^[@#]\/?", path) " #/PATH - Rooter relative path
+		let projectDir = FindRootDirectory()
+		return substitute(a:path, "^[@#]\/?", l:projectDir . "/" , "")
+	else " Assume its a regular path
+		return a:path
+	endif
+endfunction
+
+function! EditResolvePath(path)
+	exe "e " . ResolvePath(path)
+endfunction
+
+command -nargs=* E call Editfile(<q-args>)
+" }}}
+
 " }}}
 " General Options {{{
 set encoding=utf-8
