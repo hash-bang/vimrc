@@ -611,6 +611,24 @@ Plug 'mong8se/actually.nvim'
 " Fancier windows
 Plug 'stevearc/dressing.nvim'
 " }}}
+" Plugin: Aerial - F1 to toggle file ToC {{{
+Plug 'stevearc/aerial.nvim', {'done': 'call s:ConfigAerial()'}
+Plug 'onsails/lspkind.nvim'
+
+function s:ConfigAerial()
+lua <<EOF
+require('lspkind').init({
+})
+
+require('aerial').setup({
+	default_direction = 'prefer_right',
+	show_guides = true,
+})
+
+vim.keymap.set({'n', 'i', 'v'}, '<F1>', require('aerial').toggle)
+EOF
+endfunction
+" }}}
 " Plugin: Commentry - Use # to toggle line comments {{{
 Plug 'tpope/vim-commentary'
 " map # (visual mode) to comment out selected lines
