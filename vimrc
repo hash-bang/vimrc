@@ -1342,15 +1342,22 @@ endfunction
 " Plugin: Todo-Comments - Highlight various code comments {{{
 Plug 'folke/todo-comments.nvim', {'done': 'call s:ConfigTodoComments()' }
 
+" @FIXME: Test 0
+" FIXME: Test 1
+" TODO: Test 2
+" WARN: Test 3
+
 function s:ConfigTodoComments()
 lua <<EOF
-require("todo-comments").setup {
+require('todo-comments').setup({
+	signs = true,
+	sign_priority = 7, -- One higher than gitsigns so this plugin overrides
 	keywords = {
-		FIX  = { icon = " ", color = "warning", alt = {"FIXME", "@FIXME", "BUG", "EXPERIMENTAL"} },
-		TODO = { icon = " ", color = "info" },
 		HACK = { icon = " ", color = "warning", alt = { "BUG", "KLUDGE" } },
-		WARN = { icon = " ", color = "error", alt = { "WARNING", "WARN", "XXX", "CRIT", "CRITICAL" } },
+		FIX  = { icon = " ", color = "warning", alt = { "FIXME", "BUG", "EXPERIMENTAL" } },
 		NOTE = { icon = " ", color = "hint", alt = { "INFO", "UX" } },
+		TODO = { icon = " ", color = "info" },
+		WARN = { icon = " ", color = "error", alt = { "WARNING", "WARN", "XXX", "CRIT", "CRITICAL" } },
 	},
 	highlight = {
 		keyword = "bg", -- Only highlight word, not surrounding chars
@@ -1362,7 +1369,7 @@ require("todo-comments").setup {
 		hint = { "DiagnosticHint", "#10B981" },
 		default = { "Identifier", "#7C3AED" },
 	},
-}
+})
 EOF
 endfunction
 " }}}
