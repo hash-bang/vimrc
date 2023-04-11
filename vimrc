@@ -8,7 +8,20 @@
 let g:switch_wakatime=0 " Enable wakatime Plugin
 
 " Color scheme options
-let g:switch_colorscheme = 'nord' " Selected color scheme, must match an entry within `Plugins: COLOR SCHEMES`
+let g:switch_colorscheme = 'everforest' " Selected color scheme, must match an entry within `Plugins: COLOR SCHEMES`
+
+" bronzage     - FIXME
+" cosmic_latte - very muted everything with blue & red highlights
+" embark       - very blue, icy theme
+" gruvbox      - Dark but constrasting bright colors
+" everforest   - "Nord-lite", subtle blend
+" falcon       - Dark background, with orange notes
+" melange      - High-contrast, colorful
+" nightfox     - Dark pale blue folds, muted text
+" nord         - Default, go-to theme with blue-ice overtones
+" tender       - Very muted folds, bright colorful text, FIXME: Conceals screwed up
+" tokyonight   - Primarily purple with neon notes
+" zenburn      - High contrast
 
 " ---------------------------------
 " Below this line - here be dragons
