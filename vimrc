@@ -210,6 +210,10 @@ set shiftwidth=4
 
 " Set the command line height to auto-hide
 set cmdheight=0
+
+" Set timeout for multi-key mappings
+" Default: 1000
+set timeoutlen=500
 " }}}
 " File browser (netrw) Options {{{
 " Set default layout to long mode (name, size, date)
