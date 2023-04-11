@@ -1230,10 +1230,6 @@ function s:ConfigSyntastic()
 endfunction
 
 " }}}
-" Plugin: Tagalong {{{
-Plug 'AndrewRadev/tagalong.vim'
-let g:tagalong_filetypes = ['doop', 'html', 'vue']
-" }}}
 " Plugin: Table-Mode - Markdown table editing {{{
 Plug 'dhruvasagar/vim-table-mode'
 " Move using Cells left / right / above below: [| ]| {| }|
