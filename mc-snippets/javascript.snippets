@@ -389,15 +389,15 @@ endsnippet
 
 # General JSDoc {{{
 snippet @pa
-@param {array} $1
+@param {Array} $1
 endsnippet
 
 snippet @pb
-@param {boolean} $1
+@param {Boolean} $1
 endsnippet
 
 snippet @pf
-@param {function} $1 called as `($2)`
+@param {Function} $1 called as `($2)`
 endsnippet
 
 snippet @po
@@ -405,19 +405,23 @@ snippet @po
 endsnippet
 
 snippet @pn
-@param {number} $1
+@param {Number} $1
 endsnippet
 
 snippet @ps
-@param {string} $1
+@param {String} $1
 endsnippet
 
-snippet @poo
-@param {Object} options Additional options
+snippet "@param {O"
+@param {Object} [options] Additional options to mutate behaviour
 endsnippet
 
 snippet "@returns {P"
 @returns {Promise} A promise which resolves when the operation has completed
+endsnippet
+
+snippet "@returns {O"
+@returns {Object} This chainable instance
 endsnippet
 # }}}
 
