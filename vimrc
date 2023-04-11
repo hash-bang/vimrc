@@ -708,11 +708,21 @@ map ,r :Rg<cr>
 " }}}
 " Plugin: GitSigns - Screen-side Git Indicators (replaces GitGutter) {{{
 " @url https://github.com/lewis6991/gitsigns.nvim
-Plug 'lewis6991/gitsigns.nvim', {'done': 'lua require(''gitsigns'').setup()'}
+Plug 'lewis6991/gitsigns.nvim', {'done': 'call s:ConfigGitSigns()' }
+
+function s:ConfigGitSigns()
+lua <<EOF
+require('gitsigns').setup({
+	sign_priority = 6,
+	signcolumn = true, -- Show sign column line
+	numhl = true, -- Highlight line number in change color
+})
+EOF
 
 " map ]h / ]h to jump to next / previous hunk
 map ]h :lua require('gitsigns.actions').next_hunk()<CR>
 map [h :lua require('gitsigns.actions').prev_hunk()<CR>
+endfunction
 " }}}
 " Plugin: GV - Git commit tree view with :GV {{{
 " :GV - Show all commits
