@@ -1071,29 +1071,6 @@ EOF
 
 endfunction
 " }}}
-" Plugin: OldFiles - Use :Ol[d] to show a list of previously edited files {{{
-Plug 'gpanders/vim-oldfiles', {'done': 'call s:ConfigOldFiles()'}
-
-function s:ConfigOldFiles()
-	" Queue up a call to s:ConfigOldFilesBuffer when the quickfix window opens
-	autocmd FileType qf if get(w:, 'quickfix_title') == ':Oldfiles' | call timer_start(100, function('s:ConfigOldFilesBuffer')) | endif
-endfunction
-
-" Autoclose quickfix window on select
-" NOTE: This function fires after 100ms
-" Wildfire tries to take over the Quickfix window so we need to patch the
-" remap AFTER its done mangling the keymap
-function s:ConfigOldFilesBuffer(timerId)
-	nnoremap <buffer> <CR> <CR>:cclose<CR>
-endfunction
-" }}}
-" Plugin: OpenInGH - Open a NPM repo in GitHub with `gn` {{{
-Plug 'almo7aya/openingh.nvim', {'done': 'call s:ConfigOpenInGH()'}
-
-function s:ConfigOpenInGH()
-	nmap gn :OpenInGHRepo<CR>
-endfunction
-" }}}
 " Plugin: OpenRazer - Fancy keyboard functionality if present {{{
 Plug 'hash-bang/vim-open-razer'
 
