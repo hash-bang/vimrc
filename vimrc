@@ -10,7 +10,7 @@ let g:switch_wakatime=0 " Enable wakatime Plugin
 " Color scheme options
 let g:switch_colorscheme = 'everforest' " Selected color scheme, must match an entry within `Plugins: COLOR SCHEMES`
 
-" bronzage     - FIXME
+" bronzage     - yellow / icy blue based muted text
 " cosmic_latte - very muted everything with blue & red highlights
 " embark       - very blue, icy theme
 " gruvbox      - Dark but constrasting bright colors
@@ -586,6 +586,7 @@ set termguicolors
 set t_Co=256
 
 " Color scheme switches {{{
+let g:switch_colorscheme_patch_background = 0 " Force background to be transparent instead of the default NOTE: This is handled by the transparent plugin for now
 let g:switch_colorscheme_patch_cursor = 0 " Repair cursor coloring (set automatically by colorscheme preference)
 let g:switch_colorscheme_patch_conceal = 0 " Repair conceal coloring (set automatically by colorscheme preference)
 let g:switch_colorscheme_patch_lightline = 0 " Repair lightline coloring (set automatically by colorscheme preference)
@@ -619,6 +620,7 @@ elseif switch_colorscheme == 'falcon'
 elseif switch_colorscheme == 'nightfox'
 	let g:switch_colorscheme_patch_conceal = 1
 elseif switch_colorscheme == 'nord'
+	let g:switch_colorscheme_patch_background = 1
 	let g:switch_colorscheme_patch_contrast_folds = 1
 	let g:switch_colorscheme_patch_conceal = 1
 elseif switch_colorscheme == 'tender'
@@ -1262,6 +1264,25 @@ require('telescope').setup({
 EOF
 endfunction
 " }}}
+" Plugin: Transparent - `:Transparent{Toggle,Enable,Disable}` {{{
+Plug 'xiyaowong/transparent.nvim', {'done': 'call s:ConfigTransparent()'}
+" @url https://neovimcraft.com/plugin/xiyaowong/nvim-transparent/index.html
+
+function s:ConfigTransparent()
+lua <<EOF
+require('transparent').setup({
+	groups = {
+		'Normal', 'NormalNC', 'Comment', 'Constant', 'Special', 'Identifier',
+		'Statement', 'PreProc', 'Type', 'Underlined', 'Todo', 'String', 'Function',
+		'Conditional', 'Repeat', 'Operator', 'Structure', 'LineNr', 'NonText',
+		'SignColumn', 'CursorLineNr', 'EndOfBuffer',
+	},
+	extra_groups = {}, -- table: additional groups that should be cleared
+	exclude_groups = {}, -- table: groups you don't want to clear
+})
+EOF
+endfunction
+" }}}
 " Plugin: Treesitter (et al.) - Syntax, Indent marking, text navigation {{{
 " Use :TSInstallInfo for a list of languages
 " Use :TSInstall <lang> to update a language
@@ -1575,6 +1596,11 @@ function RepairColors()
 
 	if g:switch_colorscheme_patch_contrast_folds == 1
 		highlight Folded guifg=#f0e68c guibg=#434c5e guisp=#6b8e23 gui=none ctermfg=232 ctermbg=67 cterm=none
+	endif
+
+	if g:switch_colorscheme_patch_background == 1
+		hi Normal guibg=NONE ctermbg=NONE
+		hi NonText guibg=NONE ctermbg=NONE
 	endif
 
 	" Patch Hop colors
