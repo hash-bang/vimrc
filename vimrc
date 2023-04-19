@@ -1191,8 +1191,8 @@ Plug 'rhlobo/vim-super-retab'
 Plug 'tpope/vim-surround'
 " }}}
 " Plugin: Syntastic - ESLint support {{{
- Plug 'vim-syntastic/syntastic', {'done': 'call s:ConfigSyntastic()'}
- " @url https://github.com/vim-syntastic/syntastic
+Plug 'vim-syntastic/syntastic', {'done': 'call s:ConfigSyntastic()'}
+" @url https://github.com/vim-syntastic/syntastic
 
 function s:ConfigSyntastic()
 	" FROM https://zirho.github.io/2016/10/06/vim-syntastic-local/
