@@ -1060,6 +1060,19 @@ require('mini.indentscope').setup({
 EOF
 endfunction
 " }}}
+" Plugin: Mini.SplitJoin {{{
+Plug 'echasnovski/mini.splitjoin', {'done': 'call s:ConfigMiniSplitJoin()'}
+
+function s:ConfigMiniSplitJoin()
+lua <<EOF
+require('mini.splitjoin').setup({
+	mappings = {
+		toggle = 'gS',
+	},
+})
+EOF
+endfunction
+" }}}
 " Plugin: Noice - Cmdline popup + notifications {{{
 Plug 'folke/noice.nvim', {'done': 'call s:ConfigNoice()'}
 
