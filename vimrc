@@ -1425,6 +1425,22 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " Load only MC's own snippets - single DIR search greatly reduces load time
 let g:UltiSnipsSnippetDirectories=[$HOME . "/.vim/mc-snippets"]
 " }}}
+" Plugin: Undo-Highlight - Flash undo behaviour {{{
+Plug 'tzachar/highlight-undo.nvim', {'done': 'call s:ConfigHighlightUndo()'}
+
+function s:ConfigHighlightUndo()
+lua <<EOF
+require('highlight-undo').setup({
+	hlgroup = 'HighlightUndo',
+	duration = 300,
+	keymaps = {
+		{'n', 'u', 'undo', {}},
+		{'n', '<C-r>', 'redo', {}},
+	}
+})
+EOF
+endfunction
+" }}}
 " Plugin: WakaTime - WakaTime integration {{{
 if switch_wakatime == 1
 	Plug 'wakatime/vim-wakatime'
