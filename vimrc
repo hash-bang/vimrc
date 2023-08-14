@@ -996,7 +996,7 @@ require('mini.animate').setup({
 		enable = true,
 	},
 	scroll = { -- Vertical scroll
-		enable = true,
+		enable = false,
 	},
 	resize = { -- Window resize
 		-- Whether to enable this animation
