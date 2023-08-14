@@ -1082,6 +1082,7 @@ Plug 'rcarriga/nvim-notify'
 
 function s:ConfigNoice()
 	" F2 to dismiss messages
+	imap <F2> :lua require('notify').dismiss()<CR>
 	map <F2> :lua require('notify').dismiss()<CR>
 
 	" Ctrl+F2 to show message history
