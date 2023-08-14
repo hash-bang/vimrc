@@ -685,6 +685,19 @@ vim.keymap.set({'n', 'i', 'v'}, '<F1>', require('aerial').toggle)
 EOF
 endfunction
 " }}}
+" Plugin: Blame - Show hide blame with :ToggleBlame or gb {{{
+Plug 'FabijanZulj/blame.nvim', {'done': 'call s:ConfigBlame()'}
+
+function s:ConfigBlame()
+lua <<EOF
+require('blame').setup({
+	virtual_style = 'right_align',
+})
+
+vim.keymap.set({"n", "v"}, "gb", ":ToggleBlame<CR>", {silent = true})
+EOF
+endfunction
+" }}}
 " Plugin: Commentry - Use # to toggle line comments {{{
 Plug 'tpope/vim-commentary'
 " map # (visual mode) to comment out selected lines
@@ -708,9 +721,6 @@ let g:eregex_default_enable = 0
 
 " Toggle using ,/
 nnoremap <leader>/ :call eregex#toggle()<CR>
-" }}}
-" Plugin: Fugitive {{{
-Plug 'tpope/vim-fugitive'
 " }}}
 " Plugin: FZF - Bind ,g to FZF finder, ,r to RipGrep {{{
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
