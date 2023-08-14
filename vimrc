@@ -370,7 +370,15 @@ noremap T $F
 nnoremap <expr> gpp '`[' . getregtype()[0] . '`]'
 " }}}
 " Saving {{{
-nmap XX :w!<CR>
+" These commands are wrapped in Lua and use vim.keymap.set to bypass
+" the Noice command line popup
+lua <<EOF
+-- Silent write with "XX"
+vim.keymap.set({"n", "v"}, "XX", ":wa!<CR>", {silent = true})
+
+-- Silent write + quit with "ZZ"
+vim.keymap.set({"n", "v"}, "ZZ", ":wqa!<CR>", {silent = true})
+EOF
 " }}}
 " Searching {{{
 " ,n - search from top
