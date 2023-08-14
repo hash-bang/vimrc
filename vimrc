@@ -10,9 +10,11 @@ let g:switch_wakatime=0 " Enable wakatime Plugin
 " Color scheme options
 let g:switch_colorscheme = 'everforest' " Selected color scheme, must match an entry within `Plugins: COLOR SCHEMES`
 
+" bamboo       - High-contrast, dark with strong foreground
 " bronzage     - yellow / icy blue based muted text
+" brown        - Very amber coloring
 " cosmic_latte - very muted everything with blue & red highlights
-" embark       - very blue, icy theme
+" embark       - very blue, over-saturated, icy theme
 " gruvbox      - Dark but constrasting bright colors
 " everforest   - "Nord-lite", subtle blend
 " falcon       - Dark background, with orange notes
@@ -597,7 +599,9 @@ let g:switch_colorscheme_patch_contrast_folds = 0 " Repair folds in high-contras
 " This entire section is pretty much a multiplexor based on switch_colorscheme
 
 " Plug area (so everything keeps updated)
+Plug 'ribru17/bamboo.nvim'
 Plug 'habamax/vim-bronzage'
+Plug 'bhrown/brown.vim'
 Plug 'nightsense/cosmic_latte'
 Plug 'morhetz/gruvbox'
 Plug 'embark-theme/vim'
@@ -615,6 +619,8 @@ if switch_colorscheme == 'anotherdark'
 	let g:switch_colorscheme_patch_lightline = 1
 	let g:switch_colorscheme_patch_visual = 1
 	colorscheme anotherdark
+elseif switch_colorscheme == 'bamboo'
+	let g:switch_colorscheme_patch_conceal = 1
 elseif switch_colorscheme == 'falcon'
 	let g:switch_colorscheme_patch_cursor = 1
 elseif switch_colorscheme == 'nightfox'
