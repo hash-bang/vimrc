@@ -1250,13 +1250,6 @@ function s:ConfigSyntastic()
 	map gx :SyntasticToggleMode<CR>
 	map l] :lnext<CR>
 	map l[ :lprevious<CR>
-
-	function! ESLintArgs()
-		let rules = findfile('package.json', '.;')
-		return rules != '' ? '--rulesdir ' . shellescape(fnamemodify(rules, ':p:h')) : shellescape(fnamemodify('~', ':p:h'))
-	endfunction
-
-	autocmd FileType javascript let b:syntastic_javascript_eslint_args = ESLintArgs()
 endfunction
 
 " }}}
@@ -1598,11 +1591,11 @@ function RepairColors()
 
 	if g:switch_colorscheme_patch_conceal == 1
 		" Light blue
-		"highlight Conceal ctermfg=81 ctermbg=none
+		" highlight Conceal ctermfg=81 ctermbg=none
 		" Mild purple
 		" highlight Conceal ctermfg=147 ctermbg=none
 		" Mild red
-		highlight Conceal guifg=#bf616a ctermfg=131 ctermbg=none
+		highlight Conceal guifg=#bf616a guibg=none ctermfg=131 ctermbg=none
 
 		syntax match jsArrowFunction /function/ skipwhite skipempty conceal cchar=λ
 		syntax match jsArrowFunction /null/ skipwhite skipempty conceal cchar=ø
