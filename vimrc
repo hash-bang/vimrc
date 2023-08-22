@@ -1194,7 +1194,7 @@ function s:ConfigMiniSplitJoin()
 lua <<EOF
 require('mini.splitjoin').setup({
 	mappings = {
-		toggle = 'gS',
+		toggle = 'gs',
 	},
 })
 EOF
@@ -1366,9 +1366,9 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', {'branch': '0.1.x', 'done': 'call s:ConfigTelescope()'}
 
 " <C-e> to open the old-files list + search
-nmap <C-e> :Telescope oldfiles<CR>
+nmap <silent> <C-e> :Telescope oldfiles<CR>
 " <C-d> to open within current directory
-nmap <C-d> :Telescope find_files<CR>
+nmap <silent> <C-d> :Telescope find_files<CR>
 
 function s:ConfigTelescope()
 lua <<EOF
