@@ -602,6 +602,7 @@ let g:switch_colorscheme_patch_conceal = 0 " Repair conceal coloring (set automa
 let g:switch_colorscheme_patch_lightline = 0 " Repair lightline coloring (set automatically by colorscheme preference)
 let g:switch_colorscheme_patch_visual = 0 " Repair visual coloring (set automatically by colorscheme preference)
 let g:switch_colorscheme_patch_contrast_folds = 0 " Repair folds in high-contrast mode
+let g:switch_colorscheme_patch_ale_virtualtext = 1 " Repair ALE virtual text coloring
 " }}}
 
 " This entire section is pretty much a multiplexor based on switch_colorscheme
@@ -683,6 +684,122 @@ require('aerial').setup({
 
 vim.keymap.set({'n', 'i', 'v'}, '<F1>', require('aerial').toggle)
 EOF
+endfunction
+" }}}
+" Plugin: AI - :AI / :AIEdit {{{
+" Use `:AI <prompt>` to insert text on the current line (downwards) or within visual
+" Use `:AIEdit <instruction>` to re-edit visual selection
+" @url https://github.com/madox2/vim-ai
+Plug 'madox2/vim-ai', {'do': './install.sh'}
+" }}}
+" Plugin: ALE - Syntax checking via eslint {{{
+Plug 'dense-analysis/ale', {'done': 'call s:ConfigALE()' }
+" @url https://github.com/dense-analysis/ale
+"
+" Linter leading key is 'l'
+" - Toggle: lt || l-
+" - Fix this: l=
+" - Clear (show none): lc
+" - Ignore this: li
+" - First item: lg
+" - Next item: ln || l]
+" - Previous item: lp || l[
+
+function s:ConfigALE()
+	" Linter overrides {{{
+	" Only enable eslint for JS
+	let g:ale_linters = {'javascript': ['eslint']}
+
+	" Disable for .min.js files
+	let g:ale_pattern_options = {'\.min.js$': {'ale_enabled': 0}}
+	" }}}
+
+	" Triggering {{{
+	" Delay before sending request to LSP for completions after typing
+	let g:ale_completion_delay = 200
+	let g:ale_lint_on_enter = 1
+	let g:ale_lint_on_filetype_changed = 1
+	let g:ale_lint_on_save = 1
+	let g:ale_lint_on_insert_leave = 1
+	" }}}
+
+	" Display {{{
+	" Disable sending echo for current complaint
+	let g:ale_echo_cursor = 0
+	let g:ale_echo_msg_format = '%%s (%code%)'
+	let g:ale_lsp_show_message_format = '%s (%severity%)'
+	let g:ale_lsp_show_message_severity = 'information' " Min level to show
+
+	" Show ALE complaint in floating preview window
+	let g:ale_hover_to_floating_preview = 1
+	let g:ale_detail_to_floating_preview = 1
+
+	" Show ALE complaint for highlighted line only
+	let g:ale_virtualtext_cursor = 'all' " ENUM: 'all', 'current'
+	let g:ale_virtualtext_prefix = ' '
+
+	" For Ale highlight colors overrides see RepairColors()
+
+	" Show preview window when on active line
+	" let g:ale_cursor_detail = 1
+
+	let g:ale_sign_error = ' '
+	highlight link ALEErrorSign NotifyERRORIcon
+
+	let g:ale_sign_warning = ' '
+	highlight link ALEInfoSign NotifyWARNIcon
+	" }}}
+
+	" Key map {{{
+	" Toggle: lt || l-
+	map <silent> lt :call ALEToggle()<CR>
+	map <silent> l- :call ALEToggle()<CR>
+	function! ALEToggle()
+		exec "ALEToggle"
+		if g:ale_enabled == 1
+			echo "ALE linting enabled"
+		else
+			echo "ALE linting disabled"
+		endif
+	endfunction
+
+	" Fix: l=
+	map l= <Plug>(ale_fix)
+
+	" Clear: lc
+	map lc <Plug>(ale_reset)
+
+	" Ignore this: li
+	map <silent> li :call ALEIgnore()<CR>
+	function! ALEIgnore()
+		" https://stackoverflow.com/questions/54961318/vim-ale-shortcut-to-add-eslint-ignore-hint
+		let l:codes = []
+		if (!exists('b:ale_highlight_items'))
+			echo 'Cannot ignore eslint rule without b:ale_highlight_items'
+			return
+		endif
+		for l:item in b:ale_highlight_items
+			if (l:item['lnum']==line('.') && l:item['linter_name']=='eslint')
+				let l:code = l:item['code']
+				call add(l:codes, l:code)
+			endif
+		endfor
+		if len(l:codes)
+			exec 'normal O/* eslint-disable-next-line ' . join(l:codes, ', ') . ' */'
+		endif
+	endfunction
+
+	" First item: lg
+	map lg <Plug>(ale_first)
+
+	" Next item: ln || l]
+	map ln <Plug>(ale_next_wrap)
+	map l] <Plug>(ale_next_wrap)
+
+	" Previous item: lp || l[
+	map lp <Plug>(ale_previous_wrap)
+	map l[ <Plug>(ale_previous_wrap)
+	" }}}
 endfunction
 " }}}
 " Plugin: Blame - Show hide blame with :ToggleBlame or gb {{{
@@ -1228,41 +1345,6 @@ Plug 'rhlobo/vim-super-retab'
 " Plugin: Surround - Surrounding movement support {{{
 Plug 'tpope/vim-surround'
 " }}}
-" Plugin: Syntastic - ESLint support {{{
-Plug 'vim-syntastic/syntastic', {'done': 'call s:ConfigSyntastic()'}
-" @url https://github.com/vim-syntastic/syntastic
-
-function s:ConfigSyntastic()
-	" FROM https://zirho.github.io/2016/10/06/vim-syntastic-local/
-	set statusline+=%#warningmsg#
-	set statusline+=%{SyntasticStatuslineFlag()}
-	set statusline+=%*
-
-	let g:syntastic_always_populate_loc_list = 1
-	let g:syntastic_loc_list_height = 5
-	let g:syntastic_auto_loc_list = 1
-	let g:syntastic_check_on_open = 1
-	let g:syntastic_check_on_wq = 1
-	let g:syntastic_javascript_checkers = ['eslint']
-	let g:syntastic_loc_list_height = 3
-
-	let g:syntastic_enable_signs = 1
-	let g:syntastic_error_symbol = '❌'
-	let g:syntastic_style_error_symbol = '⁉️'
-	let g:syntastic_warning_symbol = '⚠️'
-	let g:syntastic_style_warning_symbol = '💩'
-
-	highlight link SyntasticErrorSign SignColumn
-	highlight link SyntasticWarningSign SignColumn
-	highlight link SyntasticStyleErrorSign SignColumn
-	highlight link SyntasticStyleWarningSign SignColumn
-
-	map gx :SyntasticToggleMode<CR>
-	map l] :lnext<CR>
-	map l[ :lprevious<CR>
-endfunction
-
-" }}}
 " Plugin: Table-Mode - Markdown table editing {{{
 Plug 'dhruvasagar/vim-table-mode'
 " Move using Cells left / right / above below: [| ]| {| }|
@@ -1646,8 +1728,14 @@ function RepairColors()
 	endif
 
 	if g:switch_colorscheme_patch_background == 1
-		hi Normal guibg=NONE ctermbg=NONE
-		hi NonText guibg=NONE ctermbg=NONE
+		highlight Normal guibg=NONE ctermbg=NONE
+		highlight NonText guibg=NONE ctermbg=NONE
+	endif
+
+	if g:switch_colorscheme_patch_ale_virtualtext == 1
+		highlight link ALEVirtualTextError NotifyWARNTitle
+		highlight link ALEVirtualTextWarning NotifyWARNTitle
+		highlight link ALEVirtualTextInfo NotifyWARNTitle
 	endif
 
 	" Patch Hop colors
