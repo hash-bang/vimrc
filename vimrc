@@ -686,12 +686,6 @@ vim.keymap.set({'n', 'i', 'v'}, '<F1>', require('aerial').toggle)
 EOF
 endfunction
 " }}}
-" Plugin: AI - :AI / :AIEdit {{{
-" Use `:AI <prompt>` to insert text on the current line (downwards) or within visual
-" Use `:AIEdit <instruction>` to re-edit visual selection
-" @url https://github.com/madox2/vim-ai
-Plug 'madox2/vim-ai', {'do': './install.sh'}
-" }}}
 " Plugin: ALE - Syntax checking via eslint {{{
 Plug 'dense-analysis/ale', {'done': 'call s:ConfigALE()' }
 " @url https://github.com/dense-analysis/ale
