@@ -1202,6 +1202,7 @@ endfunction
 " }}}
 " Plugin: Noice - Cmdline popup + notifications {{{
 Plug 'folke/noice.nvim', {'done': 'call s:ConfigNoice()'}
+" @url https://github.com/folke/noice.nvim
 
 " Dependencies
 Plug 'MunifTanjim/nui.nvim'
@@ -1209,11 +1210,11 @@ Plug 'rcarriga/nvim-notify'
 
 function s:ConfigNoice()
 	" F2 to dismiss messages
-	imap <F2> :lua require('notify').dismiss()<CR>
-	map <F2> :lua require('notify').dismiss()<CR>
+	imap <silent> <F2> :lua require('notify').dismiss()<CR>
+	map <silent> <F2> :lua require('notify').dismiss()<CR>
 
 	" Ctrl+F2 to show message history
-	map <C-F2> :Noice history<CR>
+	map <silent> <C-F2> :Noice history<CR>
 
 lua <<EOF
 	require('notify').setup({
