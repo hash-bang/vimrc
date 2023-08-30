@@ -1545,20 +1545,25 @@ if switch_wakatime == 1
 endif
 " }}}
 " Plugin: Wildfire - Inner-to-outer text block selection with <enter> {{{
-Plug 'gcmt/wildfire.vim'
+Plug 'sustech-data/wildfire.nvim', {'done': 'call s:ConfigWildfire()'}
 
-" Enter - select the next closest text object.
-map <CR> <Plug>(wildfire-fuel)
-
-" Backspace - select the previous text object
-map <BS> <Plug>(wildfire-water)
-
-let g:wildfire_objects = {
-	\ "*" : ["i'", 'i"', "i)", "i]", "i}", "i`"],
-	\ "javascript" : ["i'", 'i"', "i`","i)", "i]", "i}"],
-	\ "html,xml" : ["i'", 'i"', "at", "it", "i]", "i}", "i>"],
-	\ "vue" : ["i'", 'i"', "i`", "i)", "at", "it", "i]", "i}", "i>"],
-\ }
+function s:ConfigWildfire()
+lua <<EOF
+require('wildfire').setup({
+	surrounds = {
+		{ "(", ")" },
+		{ "{", "}" },
+		{ "<", ">" },
+		{ "[", "]" },
+	},
+	keymaps = {
+		init_selection = "<C-CR>",
+		node_incremental = "<C-CR>",
+		node_decremental = "<C-S-CR>",
+	},
+})
+EOF
+endfunction
 " }}}
 " Plugin: WinShift - Move windows interactively (Ctrl+W+M) {{{
 Plug 'sindrets/winshift.nvim', {'done': 'call s:ConfigWinShift()' }
