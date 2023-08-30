@@ -1187,19 +1187,6 @@ require('mini.indentscope').setup({
 EOF
 endfunction
 " }}}
-" Plugin: Mini.SplitJoin {{{
-Plug 'echasnovski/mini.splitjoin', {'done': 'call s:ConfigMiniSplitJoin()'}
-
-function s:ConfigMiniSplitJoin()
-lua <<EOF
-require('mini.splitjoin').setup({
-	mappings = {
-		toggle = 'gs',
-	},
-})
-EOF
-endfunction
-" }}}
 " Plugin: Noice - Cmdline popup + notifications {{{
 Plug 'folke/noice.nvim', {'done': 'call s:ConfigNoice()'}
 " @url https://github.com/folke/noice.nvim
@@ -1678,7 +1665,6 @@ for spec in filter(values(g:plugs), 'has_key(v:val, ''done'')')
 	exec spec.done
 endfor
 " }}}
-
 
 " Color scheme {{{
 se bg=dark
