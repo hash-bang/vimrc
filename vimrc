@@ -1513,10 +1513,8 @@ require('nvim-treesitter.configs').setup {
 	},
 }
 
-require("indent_blankline").setup {
-	show_current_context = true,
-	show_current_context_start = true,
-}
+require('ibl').setup({
+})
 
 require("treesitter_indent_object").setup()
 
@@ -1543,9 +1541,9 @@ require('treesj').setup({
 })
 EOF
 
-nmap gt :TSJToggle <CR>
-nmap gs :TSJSplit <CR>
-nmap gj :TSJJoin <CR>
+nmap <silent> gt :TSJToggle <CR>
+nmap <silent> gs :TSJSplit <CR>
+nmap <silent> gj :TSJJoin <CR>
 endfunction
 " }}}
 " Plugin: Todo-Comments - Highlight various code comments {{{
