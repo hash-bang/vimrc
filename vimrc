@@ -1428,9 +1428,13 @@ let g:table_mode_header_fillchar =  '-'
 let g:table_mode_corner_corner = '|'
 
 " Map gtt to toggle table mode
-noremap gtt <ESC>:set conceallevel=0<CR>:TableModeToggle<CR>
+noremap <silent> gtt <ESC>:set conceallevel=0<CR>:TableModeToggle<CR>
+
+" Map gtn to realign tables now
+noremap <silent> gtn <ESC>:TableModeRealign<CR>
+
 " Map ,tt to create a horizontal header line when any text line is highlighted
-nmap ,tt yypV:s/[^\|]/-/<CR>:nohlsearch<CR>
+nmap <silent> ,tt yypV:s/[^\|]/-/<CR>:nohlsearch<CR>
 " }}}
 " Plugin: Telescope + Plenary {{{
 Plug 'nvim-lua/plenary.nvim'
