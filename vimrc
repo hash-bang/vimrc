@@ -735,7 +735,9 @@ Plug 'dense-analysis/ale', {'done': 'call s:ConfigALE()' }
 " @url https://github.com/dense-analysis/ale
 "
 " Linter leading key is 'l'
+" - Lint NOW: ll
 " - Toggle: lt || l-
+" - Toggle battery mode: lb
 " - Fix this: l=
 " - Clear (show none): lc
 " - Ignore this: li
@@ -789,6 +791,9 @@ function s:ConfigALE()
 	" }}}
 
 	" Key map {{{
+	" Lint NOW: ll
+	map ll <Plug>(ale_lint)
+
 	" Toggle: lt || l-
 	map <silent> lt :call ALEToggle()<CR>
 	map <silent> l- :call ALEToggle()<CR>
