@@ -1365,6 +1365,28 @@ Plug 'airblade/vim-rooter'
 " Be Quiet on startup
 let g:rooter_silent_chdir = 1
 " }}}
+" Plugin: Session-Manager {{{
+" @url https://github.com/Shatur/neovim-session-manager
+Plug 'Shatur/neovim-session-manager', {'done': 'call s:ConfignSessionManager()'}
+
+function s:ConfignSessionManager()
+lua <<EOF
+require('session_manager').setup({
+
+})
+
+-- Map sl - Load last session
+vim.keymap.set("n", "sl", ":SessionManager load_last_session<CR>:echo 'Saved active session'<CR>", {silent = true})
+
+-- Map sw - Save current session
+vim.keymap.set("n", "sw", ":SessionManager save_current_session<CR>:echo 'Saved active session'<CR>", {silent = true})
+
+-- Map sd - Drop current session
+vim.keymap.set("n", "sd", ":SessionManager delete_session<CR>:echo 'Deleted session'<CR>", {silent = true})
+EOF
+
+endfunction
+" }}}
 " Plugin: Startify - Nicer default startup screen {{{
 Plug 'mhinz/vim-startify'
 
