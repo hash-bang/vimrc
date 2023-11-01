@@ -1174,7 +1174,8 @@ endfunction
 " Plug 'romgrk/kui.nvim'
 " }}}
 " Plugin: Mini.Animate {{{
-Plug 'echasnovski/mini.animate', {'done': 'call s:ConfigMiniAnimate()'}
+" @url https://github.com/echasnovski/mini.animate
+" Plug 'echasnovski/mini.animate', {'done': 'call s:ConfigMiniAnimate()'}
 
 function s:ConfigMiniAnimate()
 lua <<EOF
