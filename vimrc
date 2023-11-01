@@ -18,6 +18,7 @@ let g:switch_colorscheme = 'everforest' " Selected color scheme, must match an e
 " gruvbox      - Dark but constrasting bright colors
 " everforest   - "Nord-lite", subtle blend
 " falcon       - Dark background, with orange notes
+" kanagawa     - Bold margins + folds, colorful code
 " melange      - High-contrast, colorful
 " nightfox     - Dark pale blue folds, muted text
 " nord         - Default, go-to theme with blue-ice overtones
@@ -663,6 +664,7 @@ Plug 'EdenEast/nightfox.nvim'
 Plug 'shaunsingh/nord.nvim'
 Plug 'jacoborus/tender.vim'
 Plug 'folke/tokyonight.nvim'
+Plug 'rebelot/kanagawa.nvim'
 
 " Overrides based on colorscheme
 if switch_colorscheme == 'anotherdark'
