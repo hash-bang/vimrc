@@ -5,150 +5,131 @@ extends macgyver
 
 # Doop snippets - doop* {{{
 snippet doope
-<script lang="js" backend endpoint>
-app.get('/api/$1', (req, res) => {
-	$2
-});
-</script>
-endsnippet
+	<script lang="js" backend endpoint>
+	app.get('/api/$1', (req, res) => {
+		$2
+	});
+	</script>
 
 snippet doops
-<script lang="js" backend schema>
-app.middleware.db.schema('${1:widgets}', {
-	created: {type: Date, default: Date.now},
-	edited: {type: Date, default: Date.now},
-	status: {type: String, enum: ['active', 'deleted'], default: 'active', index: true},
-});
-</script>
-endsnippet
+	<script lang="js" backend schema>
+	app.middleware.db.schema('${1:widgets}', {
+		created: {type: Date, default: Date.now},
+		edited: {type: Date, default: Date.now},
+		status: {type: String, enum: ['active', 'deleted'], default: 'active', index: true},
+	});
+	</script>
 
 snippet doopm
-<script lang="js" backend endpoint>
-app.use('/api/${1:widgets}/:id?', app.middleware.express.rest('$1', {
-	get: false,
-	query: false,
-	count: false,
-	create: false,
-	save: false,
-	meta: true,
-	delete: false,
-}));
-</script>
-endsnippet
+	<script lang="js" backend endpoint>
+	app.use('/api/${1:widgets}/:id?', app.middleware.express.rest('$1', {
+		get: false,
+		query: false,
+		count: false,
+		create: false,
+		save: false,
+		meta: true,
+		delete: false,
+	}));
+	</script>
 # }}}
 
 # Vue snippets - vue* {{{
 snippet data()
-data() { return {
-	$1
-}},
-endsnippet
+	data() { return {
+		$1
+	}},
 
 snippet vitec
-<script>
-export default {
-	$1
-}
-</script>
+	<script>
+	export default {
+		$1
+	}
+	</script>
 
-<template>
-	<div class="center">
-	</div>
-</template>
-endsnippet
+	<template>
+		<div class="center">
+		</div>
+	</template>
 
 snippet vites
-<style scoped lang="scss">
-$1
-</style>
-endsnippet
+	<style scoped lang="scss">
+	$1
+	</style>
 
 snippet vitet
-<template>
-	<div>
-		$1
-	</div>
-</template>
-endsnippet
+	<template>
+		<div>
+			$1
+		</div>
+	</template>
 
 snippet vuec
-<script lang="js" frontend>
-app.component('$1', {
-	route: '/$1',
-	data() { return {
-	}},
-	methods: {
-	},
-});
-</script>
+	<script lang="js" frontend>
+	app.component('$1', {
+		route: '/$1',
+		data() { return {
+		}},
+		methods: {
+		},
+	});
+	</script>
 
-<template>
-	<div class="card">
-		<div class="card-header">
-			<h2>$1</h2>
+	<template>
+		<div class="card">
+			<div class="card-header">
+				<h2>$1</h2>
+			</div>
+			<div class="card-body">
+				...
+			</div>
 		</div>
-		<div class="card-body">
-			...
-		</div>
-	</div>
-</template>
-endsnippet
+	</template>
 
 snippet vuef
-<script lang="js" frontend>
-app.filter('$1', (value, settings) => {
-	if (!value) return;
+	<script lang="js" frontend>
+	app.filter('$1', (value, settings) => {
+		if (!value) return;
 
-	return value;
-});
-</script>
-endsnippet
+		return value;
+	});
+	</script>
 
 # Vue-Promise-Refresh
 snippet vuepr
-return Promise.resolve()
-	.then(()=> this.$loader.start())
-	.then(()=> this.$http.get(`/api/${1:widget}s/${this.$route.id}`))
-	.then(({data}) => this.$1 = data)
-	.catch(this.$toast.catch)
-	.finally(()=> this.$loader.stop())
-endsnippet
+	return Promise.resolve()
+		.then(()=> this.$loader.start())
+		.then(()=> this.$http.get(`/api/${1:widget}s/${this.$route.id}`))
+		.then(({data}) => this.$1 = data)
+		.catch(this.$toast.catch)
+		.finally(()=> this.$loader.stop())
 
 # Vue-Promise-Save
 snippet vueps
-return Promise.resolve()
-	.then(()=> this.$loader.startBackground())
-	.then(()=> this.$http.post(\`/api/${1:widget}s/${this.$route.id}\`, this.$1))
-	.then(()=> this.$router.go('/$1'))
-	.catch(this.$toast.catch)
-	.finally(()=> this.$loader.stop())
-endsnippet
+	return Promise.resolve()
+		.then(()=> this.$loader.startBackground())
+		.then(()=> this.$http.post(\`/api/${1:widget}s/${this.$route.id}\`, this.$1))
+		.then(()=> this.$router.go('/$1'))
+		.catch(this.$toast.catch)
+		.finally(()=> this.$loader.stop())
 
 snippet vues
-<script lang="js" frontend>
-app.service('${1:$widgets}', function() {
-	var $1 = {};
+	<script lang="js" frontend>
+	app.service('${1:$widgets}', function() {
+		var $1 = {};
 
-	return $1;
-};
-</script>
-endsnippet
+		return $1;
+	};
+	</script>
 
 snippet vuet
-<template>
-	<div class="card">
-		<div class="card-header">
-			<h2>$1</h2>
+	<template>
+		<div class="card">
+			<div class="card-header">
+				<h2>$1</h2>
+			</div>
+			<div class="card-body">
+				...
+			</div>
 		</div>
-		<div class="card-body">
-			...
-		</div>
-	</div>
-</template>
-endsnippet
-
-# Vue-Fluent (L10n) {{{
-snippet $t "L10N Translation" i
-{{$t('$1')}}
-endsnippet
-# }}}
+	</template>

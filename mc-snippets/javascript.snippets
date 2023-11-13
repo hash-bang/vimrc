@@ -1,490 +1,273 @@
 # Angular (`ng-something`) {{{
 snippet ng-component
-angular
-	.module('app')
-	.run($router => $router.when('/${1:foo}').component('$1Ctrl'))
-	.component('$1Ctrl', {
-		templateUrl: '/units/$1/list.tmpl.html',
-		controller: function() {
-			var $ctrl = this;
-		},
-	});
-endsnippet
+	angular
+		.module('app')
+		.run($router => $router.when('/${1:foo}').component('$1Ctrl'))
+		.component('$1Ctrl', {
+			templateUrl: '/units/$1/list.tmpl.html',
+			controller: function() {
+				var $ctrl = this;
+			},
+		});
 
 snippet ng-controller
-angular
-	.module('app')
-	.run($router => $router.when('/${1:foo}').component('$1Ctrl'))
-	.component('$1Ctrl', {
-		templateUrl: '/units/$1/list.tmpl.html',
-		controller: function() {
-			var $ctrl = this;
-		},
-	});
-endsnippet
+	angular
+		.module('app')
+		.run($router => $router.when('/${1:foo}').component('$1Ctrl'))
+		.component('$1Ctrl', {
+			templateUrl: '/units/$1/list.tmpl.html',
+			controller: function() {
+				var $ctrl = this;
+			},
+		});
 
 snippet ng-directive
-angular
-	.module('app')
-	.directive('${1:fooDirective}', function() {
-		return {
-			scope: {
-				title: '='
-			},
-			restrict: 'AE',
-			template: `
-				<h3>
-					{{title}}
-				</h3>
-			`,
-			controller: function($scope) {
+	angular
+		.module('app')
+		.directive('${1:fooDirective}', function() {
+			return {
+				scope: {
+					title: '='
+				},
+				restrict: 'AE',
+				template: `
+					<h3>
+						{{title}}
+					</h3>
+				`,
+				controller: function($scope) {
 
-			},
-			link: function($scope, elem, attr, ctrl) {
-				elem.find('h3').bind('click', function(e) {
-					alert('Hello World!');
-				});
+				},
+				link: function($scope, elem, attr, ctrl) {
+					elem.find('h3').bind('click', function(e) {
+						alert('Hello World!');
+					});
+				}
 			}
-		}
-	})
-endsnippet
+		})
 
 snippet ng-factory
-angular
-	.module('app')
-	.factory('${1:MyFactory}', function() {
-	})
-endsnippet
+	angular
+		.module('app')
+		.factory('${1:MyFactory}', function() {
+		})
 
 snippet ng-filter
-angular
-	.module('app')
-	.filter('${1:fooBarFilter}', function() {
-		return function(value) {
-			if (!value) return;
+	angular
+		.module('app')
+		.filter('${1:fooBarFilter}', function() {
+			return function(value) {
+				if (!value) return;
 
-			${2:return value;}
-		};
-	})
-endsnippet
+				${2:return value;}
+			};
+		})
 
 snippet ng-model
-angular
-	.module('app')
-	.factory('${1:Widget}', function($resource) {
-		return $resource('/api/${2:widget}s/:$2id', {}, {
-		});
-	})
-endsnippet
+	angular
+		.module('app')
+		.factory('${1:Widget}', function($resource) {
+			return $resource('/api/${2:widget}s/:$2id', {}, {
+			});
+		})
 
 snippet ng-select-array
-<select ng-model="${1:user}id" ng-options="$1.$1id as $1.name for $1 in $1s"></select>
-endsnippet
+	<select ng-model="${1:user}id" ng-options="$1.$1id as $1.name for $1 in $1s"></select>
 
 snippet ng-select-hash
-<select ng-model="${1:types}" ng-options="k as v for (k,v) in $1"></select>
-endsnippet
+	<select ng-model="${1:types}" ng-options="k as v for (k,v) in $1"></select>
 # }}}
 
 # Colors {{{
 snippet blue
-app.log.colors.blue($1)
-endsnippet
+	app.log.colors.blue($1)
 
 snippet cyan
-app.log.colors.cyan($1)
-endsnippet
+	app.log.colors.cyan($1)
 
 snippet green
-app.log.colors.green($1)
-endsnippet
+	app.log.colors.green($1)
 
 snippet red
-app.log.colors.red($1)
-endsnippet
+	app.log.colors.red($1)
 
 snippet yellow
-app.log.colors.yellow($1)
-endsnippet
+	app.log.colors.yellow($1)
 # }}}
 
 # Chai {{{
 snippet chai
-var expect = require('chai').expect;
+	import {expect} from 'chai';
 
-describe('$1', ()=> {
-	$2
-});
-endsnippet
+	describe('$1', ()=> {
+		$2
+	});
+
 snippet describe
-describe('$1', ()=> {
-	$2
-});
-endsnippet
+	describe('$1', ()=> {
+		$2
+	});
+
 snippet it
-it('${1:should}', ()=> {
-	$2
-});
-endsnippet
-# }}}
-
-# Gulp {{{
-snippet gulp
-var gulp = require('gulp');
-
-gulp.task('default', ()=> {
-	$1
-});
-endsnippet
-
-snippet gulp.task
-gulp.task('${1:default}', ()=> {
-	$2
-});
-endsnippet
-# }}}
-
-# Monoxide (`o-something`) {{{
-snippet o-model
-var monoxide = require('monoxide');
-
-module.exports = monoxide.schema('${1:widgets}', {
-	created: {type: Date, default: Date.now},
-	owner: {type: 'pointer', ref: 'users'},
-});
-endsnippet
-
-snippet o-controller
-var monoxide = require('monoxide');
-
-app.use('/api/${1:users}/:id?', monoxide.express.middleware('$1', {
-	get: app.middleware.ensure.${2:admin},
-	query: app.middleware.ensure.$2,
-	count: app.middleware.ensure.$2,
-	create: app.middleware.ensure.$2,
-	save: app.middleware.ensure.$2,
-	delete: app.middleware.ensure.$2,
-	meta: app.middleware.ensure.$2,
-}));
-endsnippet
-
-snippet o-oid
-{type: 'pointer', ref: '${1:users}', index: true},
-endsnippet
-
-snippet o-ptr
-{type: 'pointer', ref: '${1:users}', index: true},
-endsnippet
-
-snippet o-pointer
-{type: 'pointer', ref: '${1:users}', index: true},
-endsnippet
-
-snippet o-enum
-{type: 'string', enum: [${1:'active', 'deleted'}], default: '${2:active}', index: true},
-endsnippet
-
-snippet o-date
-{type: 'date', default: Date.now},
-endsnippet
-
-snippet o-obj
-{type: 'object'}
-endsnippet
-
-snippet o-array
-{type: 'array'}
-endsnippet
-
-snippet o-object
-{type: 'object'}
-endsnippet
-
-snippet o-mixed
-{type: 'mixed'}
-endsnippet
-
-snippet o-bool
-{type: 'boolean', default: ${1:false}}
-endsnippet
-
-snippet o-boolean
-{type: 'boolean'}
-endsnippet
-
-snippet o-str
-{type: 'string'}
-endsnippet
-
-snippet o-string
-{type: 'string'}
-endsnippet
-
-snippet o-int
-{type: 'number'}
-endsnippet
-
-snippet o-no
-{type: 'number'}
-endsnippet
-
-snippet o-num
-{type: 'number'}
-endsnippet
-
-snippet o-number
-{type: 'number'}
-endsnippet
-# }}}
-# Node (`no-something`) {{{
-snippet no-emitter
-var events = require('events');
-var util = require('util');
-
-function ${1:Foo}() {
-	$2
-	return this;
-}
-
-util.inherits($1, events.EventEmitter);
-
-module.exports = new $1();
-endsnippet
-
-snippet no-controller
-var ${1:Users} = require('../models/${2:users}');
-
-restify.serve(app, ${3:Users});
-endsnippet
-
-snippet no-ctrl
-app.get('/${1:widgets}', function(req, res) {
-	$2
-});
-endsnippet
-
-snippet no-model
-var name = '${1:thing}';
-var schema = new mongoose.Schema({
-	id: mongoose.Schema.ObjectId,
-	created: {type: Date, default: Date.now},
-	owner: {type: mongoose.Schema.ObjectId, ref: 'users'},
-});
-
-module.exports = mongoose.model(name, schema);
-endsnippet
-
-snippet fs.exists
-fs.access('/etc/passwd', fs.R_OK, function() {
-	$1
-});
-endsnippet
-
-snippet inspect
-require('util').inspect(${1:foo}, {depth: null, colors: true})
-endsnippet
-
-snippet cinspect
-console.log(require('util').inspect(${1:foo}, {depth: null, colors: true}))
-endsnippet
-
-snippet dump
-require('dumper.js').dump(${1:foo})
-endsnippet
+	it('${1:should}', ()=> {
+		$2
+	});
 # }}}
 
 # Express (`app.something`) {{{
 snippet app.get
-app.get('/${1:widgets}', function(req, res) {
-	$2
-});
-endsnippet
+	app.get('/${1:widgets}', function(req, res) {
+		$2
+	});
 
 snippet app.post
-app.post('/${1:widgets}', function(req, res) {
-	$2
-});
-endsnippet
-# }}}
-
-# Node / Async-chainable (`async[-something]`) {{{
-snippet async()
-async()
-	// End {{{
-	.end(function(err) {
-		if (err) return res.sendError(err);
-		res.send({});
+	app.post('/${1:widgets}', function(req, res) {
+		$2
 	});
-	// }}}
-endsnippet
-
-snippet async-sanity
-async()
-	// Sanity checks {{{
-	.then(function(next) {
-		$1
-		next();
-	})
-	// }}}
-	// End {{{
-	.end(function(err) {
-		if (err) return res.sendError(err);
-		res.send({});
-	});
-	// }}}
-endsnippet
 # }}}
 
 # Promises {{{
 snippet Promise.wait
-new Promise(resolve => setTimeout(()=> resolve($1), ${2:1000}))
-endsnippet
+	new Promise(resolve => setTimeout(()=> resolve($1), ${2:1000}))
 
 snippet .then
-.then(()=> $1)
-endsnippet
+	.then(()=> $1)
 
 snippet .then{
-.then(()=> {
-	$1
-})
-endsnippet
+	.then(()=> {
+		$1
+	})
 
 snippet .thenc
-.then(()=> console.log($1))
-endsnippet
+	.then(()=> console.log($1))
 
 snippet .thenf
-// $1 {{{
-.then(()=> $2)
-// }}}
-endsnippet
+	// $1 {{{
+	.then(()=> $2)
+	// }}}
 
 snippet .thens
-// Sanity checks {{{
-.then(()=> {
-	$1
-})
-// }}}
-endsnippet
+	// Sanity checks {{{
+	.then(()=> {
+		$1
+	})
+	// }}}
 # }}}
 
-# Module includes {{{
+# Module import / require {{{
 snippet "var _"
-var _ = require('lodash');
-endsnippet
+	var _ = require('lodash');
 
 snippet import
-import ${1/^.*\/(.+)$/$1/} from '$1';
-endsnippet
+	import ${1/^.*\/(.+)$/$1/} from '$1';
 
 snippet "import _"
-import _ from 'lodash';
-endsnippet
+	import {$1} from 'lodash';
 
-snippet "var"
-var ${1:module} = require("$1");
-endsnippet
+snippet "import @m"
+	import {$1} from '@momsfriendlydevco/${2:1}';
+
+snippet var
+	var ${1:module} = require("$1");
 # }}}
 
 # General JSDoc {{{
+snippet /**
+	/**
+	* $1
+	*/
+
 snippet @pa
-@param {Array} $1
-endsnippet
+	@param {Array} $1
 
 snippet @pb
-@param {Boolean} $1
-endsnippet
+	@param {Boolean} $1
 
 snippet @pf
-@param {Function} $1 called as `($2)`
-endsnippet
+	@param {Function} $1 called as `($2)`
 
 snippet @po
-@param {Object} $1
-endsnippet
+	@param {Object} $1
 
 snippet @pn
-@param {Number} $1
-endsnippet
+	@param {Number} $1
 
 snippet @ps
-@param {String} $1
-endsnippet
+	@param {String} $1
 
 snippet "@param {O"
-@param {Object} [options] Additional options to mutate behaviour
-endsnippet
+	@param {Object} [options] Additional options to mutate behaviour
+
+snippet @poo
+	@param {Object} [options] Additional options to mutate behaviour
+
+snippet @rp
+	@returns {Promise} A promise which resolves when the operation has completed
 
 snippet "@returns {P"
-@returns {Promise} A promise which resolves when the operation has completed
-endsnippet
+	@returns {Promise} A promise which resolves when the operation has completed
 
 snippet "@returns {O"
-@returns {Object} This chainable instance
-endsnippet
+	@returns {Object} This chainable instance
+
+snippet lets
+	let settings = {
+		$1
+		...options,
+	};
+
+snippet "let s"
+	let settings = {
+		$1
+		...options,
+	};
 
 snippet o.
-options.
-endsnippet
+	options.
 # }}}
 
 # General JavaScript {{{
 snippet //{
-	// $1 {{{
-endsnippet
+		// $1 {{{
 
 snippet //}
-	// }}}
-endsnippet
+		// }}}
 
 snippet .map
-.map(${1:item} => {
-	console.log('MAP ${1/^(.*)$/\U$0\E/}:', $1);
-	return $1;
-})
-endsnippet
+	.map(${1:item} => {
+		console.log('MAP ${1/^(.*)$/\U$0\E/}:', $1);
+		return $1;
+	})
 
 snippet .tap
-.then(${1:v} => {
-	console.log('TAP ${1/^(.*)$/\U$0\E/}:', $1);
-	return $1;
-})
-endsnippet
+	.then(${1:v} => {
+		console.log('TAP', {$1: $1});
+		return $1;
+	})
 
 snippet .dtap
-.then(v => {
-	console.debug('$1', v);
-	return v;
-})
-endsnippet
+	.then(v => {
+		console.debug('$1', v);
+		return v;
+	})
 
 snippet .tapd
-.then(v => {
-	debug('$1', v);
-	return v;
-})
-endsnippet
+	.then(v => {
+		debug('$1', v);
+		return v;
+	})
 
 snippet var
-var $1 = require('${1}');
-endsnippet
-
-snippet err
-throw new Error('${1}');
-endsnippet
+	var $1 = require('${1}');
 
 snippet throw
-throw new Error('${1}');
-endsnippet
+	throw new Error(`${1}`);
 # }}}
 
 # General words {{{
 snippet @m
-@momsfriendlydevco
-endsnippet
+	@momsfriendlydevco
 
 snippet @mfdc
-@momsfriendlydevco
-endsnippet
+	@momsfriendlydevco
 # }}}

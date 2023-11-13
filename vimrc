@@ -1168,6 +1168,34 @@ require('lualine').setup({
 EOF
 endfunction
 " }}}
+" Plugin: LuaSnip - Snippet manager {{{
+Plug 'L3MON4D3/LuaSnip', {'do': 'make install_jsregexp', 'done': 'call s:ConfigLuaSnip()'}
+" @url https://github.com/L3MON4D3/LuaSnip
+
+function s:ConfigLuaSnip()
+lua <<EOF
+	local ls = require('luasnip')
+	ls.setup()
+
+	require('luasnip.loaders.from_snipmate').lazy_load({
+		paths = '~/.vim/mc-snippets',
+	})
+
+	-- Keymap example taken from https://github.com/L3MON4D3/LuaSnip/issues/978#issue-1840427692
+    local function interp(k) vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(k, true, false, true), 'n', false) end
+
+    vim.keymap.set({'i', 's'}, '<Tab>', function()
+      if ls.expand_or_jumpable() then ls.expand_or_jump()
+      else interp('<Tab>') end
+    end)
+
+    vim.keymap.set({'i', 's'}, '<S-Tab>', function()
+      if ls.jumpable(-1) then ls.jump(-1)
+      else interp('<S-Tab>') end
+    end)
+EOF
+endfunction
+" }}}
 " Plugin: (DISABLED) Kirby - file picker {{{
 " Disabled 2023-02-15 but has potencial
 " Plug 'romgrk/kirby.nvim'
@@ -1581,16 +1609,6 @@ require('todo-comments').setup({
 })
 EOF
 endfunction
-" }}}
-" Plugin: Ultisnips - Snippet library {{{
-Plug 'SirVer/ultisnips'
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsListSnippets="<s-tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-
-" Load only MC's own snippets - single DIR search greatly reduces load time
-let g:UltiSnipsSnippetDirectories=[$HOME . "/.vim/mc-snippets"]
 " }}}
 " Plugin: Undo-Highlight - Flash undo behaviour {{{
 Plug 'tzachar/highlight-undo.nvim', {'done': 'call s:ConfigHighlightUndo()'}
