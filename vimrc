@@ -47,15 +47,21 @@ endfunction
 " }}}
 " }}}
 
-" BatteryToggle(isBattery?) {{{
+" BatteryToggle(isBattery = 'auto', quiet = 0) {{{
 let g:battery_mode = 0
-function! BatteryToggle(state = 'auto')
+let g:battery_mode_file = '/tmp/power-mode'
+function! BatteryToggle(state = 'auto', quiet = 0)
 	let l:set_state = 1
 	" Argument munging {{{
 	if a:state == 'auto'
-		let l:query = system('cat /tmp/power-mode')
-		" echo "Got current state query: " . l:query
-		let l:set_state = l:query =~# 'Roaming'
+		if filereadable(g:battery_mode_file)
+			let l:query = readfile(g:battery_mode_file)
+			" echo "Got current state query: " . l:query
+			let l:set_state = l:query =~# 'Roaming'
+		else
+			" No battery state so assume non-battery-mode
+			let l:set_state = 0
+		endif
 	elseif a:state == 'toggle'
 		echo "Current battery mode: " . g:battery_mode
 		let l:set_state = g:battery_mode
@@ -67,11 +73,15 @@ function! BatteryToggle(state = 'auto')
 	if l:set_state == 1
 		echo "Battery mode enabled"
 		let g:battery_mode = 1
-		call ALEToggleBattery(1)
+		let g:ale_lint_on_enter = 0
+		let g:ale_lint_on_insert_leave = 0
 	else
-		echo "Battery mode disabled"
+		if !a:quiet
+			echo "Battery mode disabled"
+		endif
 		let g:battery_mode = 0
-		call ALEToggleBattery(0)
+		let g:ale_lint_on_enter = 1
+		let g:ale_lint_on_insert_leave = 1
 	endif
 endfunction
 
@@ -737,7 +747,6 @@ Plug 'dense-analysis/ale', {'done': 'call s:ConfigALE()' }
 " Linter leading key is 'l'
 " - Lint NOW: ll
 " - Toggle: lt || l-
-" - Toggle battery mode: lb
 " - Fix this: l=
 " - Clear (show none): lc
 " - Ignore this: li
@@ -803,23 +812,6 @@ function s:ConfigALE()
 			echo "ALE linting enabled"
 		else
 			echo "ALE linting disabled"
-		endif
-	endfunction
-
-	" Battery mode: lb
-	map <silent> lb :call ALEToggleBattery()<CR>
-
-	function! ALEToggleBattery(state = 'toggle')
-		let l:set_state = a:state == 'toggle' ? g:ale_lint_on_enter == 1 : a:state == 1
-
-		if l:set_state == 1
-			echo "ALE battery mode enabled"
-			let g:ale_lint_on_enter = 0
-			let g:ale_lint_on_insert_leave = 0
-		else
-			echo "ALE battery mode disabled"
-			let g:ale_lint_on_enter = 1
-			let g:ale_lint_on_insert_leave = 1
 		endif
 	endfunction
 
@@ -1135,6 +1127,16 @@ require('lualine').setup({
 				separator = '/',
 			},
 			'location',
+			{'g:battery_mode',
+				fmt =
+					function()
+						return '🔽'
+					end,
+				cond =
+					function()
+						return vim.g.battery_mode == 1
+					end,
+			},
 		}
 	},
 	inactive_sections = {
@@ -1756,7 +1758,7 @@ for spec in filter(values(g:plugs), 'has_key(v:val, ''done'')')
 endfor
 " }}}
 " Plugins: Post load - Init battery mode from auto {{{
-autocmd VimEnter * call BatteryToggle('auto')
+autocmd VimEnter * call BatteryToggle('auto', 1)
 " }}}
 
 " Color scheme {{{
