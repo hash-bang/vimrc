@@ -761,6 +761,9 @@ function s:ConfigALE()
 
 	" Disable for .min.js files
 	let g:ale_pattern_options = {'\.min.js$': {'ale_enabled': 0}}
+
+	" Stop ESLint getting confused by multi-level package.json files
+	let g:ale_javascript_eslint_options = '--resolve-plugins-relative-to=.'
 	" }}}
 
 	" Triggering {{{
