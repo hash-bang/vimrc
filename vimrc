@@ -57,7 +57,7 @@ function! BatteryToggle(state = 'auto', quiet = 0)
 		if filereadable(g:battery_mode_file)
 			let l:query = readfile(g:battery_mode_file)
 			" echo "Got current state query: " . l:query
-			let l:set_state = l:query =~# 'Roaming'
+			let l:set_state = l:query[0] =~# 'Roaming'
 		else
 			" No battery state so assume non-battery-mode
 			let l:set_state = 0
@@ -66,6 +66,7 @@ function! BatteryToggle(state = 'auto', quiet = 0)
 		echo "Current battery mode: " . g:battery_mode
 		let l:set_state = g:battery_mode
 	else
+		echo "DEBUG BATTERY SET:[" . a:state . "]"
 		let l:set_state = a:state
 	endif
 	" }}}
