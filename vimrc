@@ -274,7 +274,7 @@ set timeoutlen=500
 " Set default layout to long mode (name, size, date)
 let g:netrw_liststyle=1
 " }}}
-" File Types {{{
+" File Types / AutoCmd {{{
 autocmd BufRead,BufNewFile *.PAS set ft=pascal
 autocmd BufRead,BufNewFile *.pas set ft=pascal
 autocmd BufRead,BufNewFile *.ng set ft=vue
@@ -293,6 +293,9 @@ autocmd BufWritePre *.css %s/\s\+$//e
 autocmd BufWritePre *.js %s/\s\+$//e
 autocmd BufWritePre *.json %s/\s\+$//e
 autocmd BufWritePre *.html %s/\s\+$//e
+
+" Terminals
+autocmd TermOpen * setlocal nonu
 " }}}
 " File paths {{{
 " Set the PWD to the current buffer when changing
