@@ -241,7 +241,7 @@ snippet .map
 
 snippet .tap
 	.then(${1:v} => {
-		console.log('TAP', {$1: $1});
+		console.log('TAP', {$1});
 		return $1;
 	})
 
@@ -261,7 +261,7 @@ snippet var
 	var $1 = require('${1}');
 
 snippet throw
-	throw new Error(`${1}`);
+	throw new Error('${1}');
 # }}}
 
 # General words {{{
