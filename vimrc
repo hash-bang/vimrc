@@ -524,8 +524,8 @@ map <F7> :se ft=javascript<CR>
 " F8 to give a char count for a selected visual block
 map <F8> :echoe "Str Length:" . strlen(GetVisual())<CR>gv
 " F12 - Disable hilighting
-map <F12> :set nohls<CR>
-imap <F12> <ESC>:set nohls<CR>
+map <silent> <F12> :set nohls<CR>
+imap <silent> <F12> <ESC>:set nohls<CR>
 " QQ to just quit
 map QQ <ESC>:qa <CR>
 " GL - Toggle line numbers
