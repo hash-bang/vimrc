@@ -45,7 +45,6 @@ function! GetVisual() range
 	return selection
 endfunction
 " }}}
-" }}}
 
 " BatteryToggle(isBattery = 'auto', quiet = 0) {{{
 let g:battery_mode = 0
@@ -65,6 +64,10 @@ function! BatteryToggle(state = 'auto', quiet = 0)
 	elseif a:state == 'toggle'
 		echo "Current battery mode: " . g:battery_mode
 		let l:set_state = g:battery_mode
+	elseif a:state == 'off'
+		let l:set_state = 0
+	elseif a:state == 'on'
+		let l:set_state = 1
 	else
 		echo "DEBUG BATTERY SET:[" . a:state . "]"
 		let l:set_state = a:state
@@ -89,14 +92,15 @@ endfunction
 " map ,ba - Battery mode auto
 map <silent> ,ba :call BatteryToggle('auto')<CR>
 
-" map ,bb - Battery mode toggle
+" map ,bb / ,bt - Battery mode toggle
 map <silent> ,bb :call BatteryToggle('toggle')<CR>
+map <silent> ,bt :call BatteryToggle('toggle')<CR>
 
 " map ,b1 - Battery mode enable
-map <silent> ,b1 :call BatteryToggle(1)<CR>
+map <silent> ,b1 :call BatteryToggle('on')<CR>
 
 " map ,b0 - Battery mode disable
-map <silent> ,b0 :call BatteryToggle(0)<CR>
+map <silent> ,b0 :call BatteryToggle('off')<CR>
 " }}}
 
 " HeathenTab() - Work where indenting = tab {{{
