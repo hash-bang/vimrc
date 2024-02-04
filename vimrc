@@ -1220,7 +1220,7 @@ endfunction
 " }}}
 " Plugin: Mini.Animate {{{
 " @url https://github.com/echasnovski/mini.animate
-" Plug 'echasnovski/mini.animate', {'done': 'call s:ConfigMiniAnimate()'}
+Plug 'echasnovski/mini.animate', {'done': 'call s:ConfigMiniAnimate()'}
 
 function s:ConfigMiniAnimate()
 lua <<EOF
