@@ -664,6 +664,7 @@ let g:switch_colorscheme_patch_lightline = 0 " Repair lightline coloring (set au
 let g:switch_colorscheme_patch_visual = 0 " Repair visual coloring (set automatically by colorscheme preference)
 let g:switch_colorscheme_patch_contrast_folds = 0 " Repair folds in high-contrast mode
 let g:switch_colorscheme_patch_ale_virtualtext = 1 " Repair ALE virtual text coloring
+let g:switch_colorscheme_patch_errormsg = 0 " Repair ErrorMsg coloring
 " }}}
 
 " This entire section is pretty much a multiplexor based on switch_colorscheme
@@ -700,6 +701,7 @@ elseif switch_colorscheme == 'nord'
 	let g:switch_colorscheme_patch_background = 1
 	let g:switch_colorscheme_patch_contrast_folds = 1
 	let g:switch_colorscheme_patch_conceal = 1
+	let g:switch_colorscheme_patch_errormsg = 1
 elseif switch_colorscheme == 'tender'
 	let g:switch_colorscheme_patch_conceal = 1
 elseif switch_colorscheme == 'zenburn'
@@ -1847,6 +1849,10 @@ function RepairColors()
 		highlight link ALEVirtualTextError NotifyWARNTitle
 		highlight link ALEVirtualTextWarning NotifyWARNTitle
 		highlight link ALEVirtualTextInfo NotifyWARNTitle
+	endif
+
+	if g:switch_colorscheme_patch_errormsg == 1
+		highlight ErrorMsg ctermfg=124 guifg=#bf616a
 	endif
 
 	" Patch Hop colors
