@@ -1248,12 +1248,10 @@ endfunction
 " }}}
 " Plugin: Mini.IndentScope {{{
 Plug 'echasnovski/mini.indentscope', {'done': 'call s:ConfigMiniIndentScope()'}
-" Select entire indent area with `vii` + with outer as `voi`
 
 function s:ConfigMiniIndentScope()
 lua <<EOF
 require('mini.indentscope').setup({
-{
 	draw = {
 		-- Delay (in ms) between event and start of drawing scope indicator
 		delay = 300,
@@ -1262,10 +1260,12 @@ require('mini.indentscope').setup({
 	-- Module mappings. Use `''` (empty string) to disable one.
 	mappings = {
 		-- Textobjects
+		-- MAP `vii` to select entire indent block
 		object_scope = 'ii',
 		object_scope_with_border = 'oi',
 
 		-- Motions (jump to respective border line; if not present - body line)
+		-- MAP `[i` / `]i` to jump to start / end of indent block
 		goto_top = '[i',
 		goto_bottom = ']i',
 	},
@@ -1288,7 +1288,6 @@ require('mini.indentscope').setup({
 
 	-- Which character to use for drawing scope indicator
 	symbol = '╎',
-}
 })
 EOF
 endfunction
