@@ -1199,7 +1199,7 @@ lua <<EOF
 	-- Keymap example taken from https://github.com/L3MON4D3/LuaSnip/issues/978#issue-1840427692
     local function interp(k) vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(k, true, false, true), 'n', false) end
 
-    vim.keymap.set({'i', 's'}, '<Tab>', function()
+    vim.keymap.set({'i', 's'}, '<C-Tab>', function()
       if ls.expand_or_jumpable() then ls.expand_or_jump()
       else interp('<Tab>') end
     end)
@@ -1663,7 +1663,7 @@ if switch_wakatime == 1
 	:command -nargs=0 WakaTimeAutoOff call WakaTimeAutoOff()
 endif
 " }}}
-" Plugin: Wildfire - Inner-to-outer text block selection with <enter> {{{
+" Plugin: Wildfire - Inner-to-outer text block selection with <C-ENTER> {{{
 Plug 'sustech-data/wildfire.nvim', {'done': 'call s:ConfigWildfire()'}
 
 function s:ConfigWildfire()
