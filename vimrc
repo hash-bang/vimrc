@@ -16,6 +16,7 @@ let g:switch_colorscheme = 'everforest' " Selected color scheme, must match an e
 " cosmic_latte - very muted everything with blue & red highlights
 " embark       - very blue, over-saturated, icy theme
 " gruvbox      - Dark but constrasting bright colors
+" hybrid2      - Muted blue coloring as primary with high contrast notes
 " everforest   - "Nord-lite", subtle blend
 " falcon       - Dark background, with orange notes
 " kanagawa     - Bold margins + folds, colorful code
@@ -684,6 +685,7 @@ Plug 'shaunsingh/nord.nvim'
 Plug 'jacoborus/tender.vim'
 Plug 'folke/tokyonight.nvim'
 Plug 'rebelot/kanagawa.nvim'
+Plug 'ColinKennedy/hybrid2.nvim'
 
 " Overrides based on colorscheme
 if switch_colorscheme == 'anotherdark'
