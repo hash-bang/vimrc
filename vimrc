@@ -718,6 +718,7 @@ let g:switch_colorscheme_patch_visual = 0 " Repair visual coloring (set automati
 let g:switch_colorscheme_patch_contrast_folds = 0 " Repair folds in high-contrast mode
 let g:switch_colorscheme_patch_ale_virtualtext = 1 " Repair ALE virtual text coloring
 let g:switch_colorscheme_patch_errormsg = 0 " Repair ErrorMsg coloring
+let g:switch_colorscheme_patch_todo = 0 " Repair Todo coloring
 " }}}
 
 " This entire section is pretty much a multiplexor based on switch_colorscheme
@@ -752,6 +753,9 @@ elseif switch_colorscheme == 'bamboo'
 	let g:switch_colorscheme_patch_conceal = 1
 elseif switch_colorscheme == 'falcon'
 	let g:switch_colorscheme_patch_cursor = 1
+	let g:switch_colorscheme_patch_todo = 1
+elseif switch_colorscheme == 'hybrid2'
+	let g:switch_colorscheme_patch_conceal = 1
 elseif switch_colorscheme == 'nightfox'
 	let g:switch_colorscheme_patch_conceal = 1
 elseif switch_colorscheme == 'nord'
@@ -761,6 +765,7 @@ elseif switch_colorscheme == 'nord'
 	let g:switch_colorscheme_patch_errormsg = 1
 elseif switch_colorscheme == 'tender'
 	let g:switch_colorscheme_patch_conceal = 1
+	let g:switch_colorscheme_patch_todo = 1
 elseif switch_colorscheme == 'zenburn'
 	let g:zenburn_high_Contrast=1
 	let g:zenburn_old_Visual=1
@@ -1910,6 +1915,10 @@ function RepairColors()
 
 	if g:switch_colorscheme_patch_errormsg == 1
 		highlight ErrorMsg ctermfg=124 guifg=#bf616a
+	endif
+
+	if g:switch_colorscheme_patch_todo == 1
+		highlight Todo ctermfg=142 guifg=#9faa00 gui=italic
 	endif
 
 	" Patch Hop colors
