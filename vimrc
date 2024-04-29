@@ -75,6 +75,8 @@ function! BatteryToggle(state = 'auto', quiet = 0)
 		let g:battery_mode = 1
 		let g:ale_lint_on_enter = 0
 		let g:ale_lint_on_insert_leave = 0
+		let g:ale_lint_on_text_changed = 0
+		let g:ale_lint_on_save = 0
 	else
 		if !a:quiet
 			echo "Battery mode disabled"
@@ -82,7 +84,13 @@ function! BatteryToggle(state = 'auto', quiet = 0)
 		let g:battery_mode = 0
 		let g:ale_lint_on_enter = 1
 		let g:ale_lint_on_insert_leave = 1
+		let g:ale_lint_on_text_changed = 1
+		let g:ale_lint_on_save = 1
 	endif
+
+	" Toggle Ale on/off to reset config
+	call ALEToggle()
+	call ALEToggle()
 endfunction
 
 " map ,ba - Battery mode auto
