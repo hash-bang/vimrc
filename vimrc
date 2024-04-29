@@ -23,14 +23,9 @@ let g:switch_colorscheme = 'everforest' " Selected color scheme, must match an e
 " melange      - High-contrast, colorful
 " nightfox     - Dark pale blue folds, muted text
 " nord         - Default, go-to theme with blue-ice overtones
-" tender       - Very muted folds, bright colorful text, FIXME: Conceals screwed up
+" tender       - Very muted folds, bright colorful text
 " tokyonight   - Primarily purple with neon notes
 " zenburn      - High contrast
-
-" ---------------------------------
-" Below this line - here be dragons
-" ---------------------------------
-
 
 " Functions {{{
 " Utility: GetVisual() {{{
@@ -124,7 +119,7 @@ function Heathen2s()
 endfunction
 " }}}
 
-" Heathen4s - Work where indenting = 4 spaces {{{
+" Heathen4s() - Work where indenting = 4 spaces {{{
 function Heathen4s()
 	set smarttab
 	set shiftwidth=4
@@ -466,13 +461,16 @@ vmap @q :normal @q<CR>
 " }}}
 " Windows {{{
 " <C-W>S (capital S) opens UNDER current window
-map <c-w>S :split<cr><c-w>j
+map <silent> <c-w>S :split<cr><c-w>j
 
 " <C-W>V (capital V) opens TO RIGHT of current window
-map <c-w>V :vsplit<cr><c-w>h
+map <silent> <c-w>V :vsplit<cr><c-w>h
 
 " <C-W>P Closes all preview windows
-map <c-w>p :pclose<cr>
+map <silent> <c-w>p :pclose<cr>
+
+" <C-W>O close all background buffers, releasing all non-active files
+nmap <silent> <c-w>O :Wipeout<cr>
 " }}}
 " Windows > Terminal {{{
 " Spawn split terminal with c-t / c-w-t or with vsplit c-y c-w-y
@@ -652,6 +650,7 @@ vmap <silent> // y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
 " Plugins: START {{{
 call plug#begin('~/.vim/plugged')
 " }}}
+
 " Plugins: COLOR SCHEMES {{{
 " Set 256 Colors (for consoles that can handle it)
 set termguicolors
@@ -1781,6 +1780,7 @@ vim.keymap.set("n", "<P", "<Plug>(YankyPutIndentBeforeShiftLeft)")
 EOF
 endfunction
 " }}}
+
 " Plugins: END {{{
 call plug#end()
 " }}}
@@ -1793,7 +1793,7 @@ endfor
 autocmd VimEnter * call BatteryToggle('auto', 1)
 " }}}
 
-" Color scheme {{{
+" Color scheme (+fixes) {{{
 se bg=dark
 execute 'colors ' . switch_colorscheme
 
@@ -1890,18 +1890,18 @@ call RepairColors()
 " Taken from https://github.com/nvim-treesitter/nvim-treesitter/issues/1167#issuecomment-920824125
 lua <<EOF
 function _G.javascript_indent()
-	local line = vim.fn.getline(vim.v.lnum)
-	local prev_line = vim.fn.getline(vim.v.lnum - 1)
-	if line:match('^%s*[%*/]%s*') then
-		if prev_line:match('^%s*%*%s*') then
-			return vim.fn.indent(vim.v.lnum - 1)
-		end
-		if prev_line:match('^%s*/%*%*%s*$') then
-			return vim.fn.indent(vim.v.lnum - 1) + 1
-		end
-	end
+        local line = vim.fn.getline(vim.v.lnum)
+        local prev_line = vim.fn.getline(vim.v.lnum - 1)
+        if line:match('^%s*[%*/]%s*') then
+                if prev_line:match('^%s*%*%s*') then
+                        return vim.fn.indent(vim.v.lnum - 1)
+                end
+                if prev_line:match('^%s*/%*%*%s*$') then
+                        return vim.fn.indent(vim.v.lnum - 1) + 1
+                end
+        end
 
-	return vim.fn['GetJavascriptIndent']()
+        return vim.fn['GetJavascriptIndent']()
 end
 
 vim.cmd[[autocmd FileType javascript setlocal indentexpr=v:lua.javascript_indent()]]
