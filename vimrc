@@ -945,10 +945,28 @@ vim.keymap.set({"n", "v"}, "gb", ":ToggleBlame<CR>", {silent = true})
 EOF
 endfunction
 " }}}
-" Plugin: Commentry - Use # to toggle line comments {{{
-Plug 'tpope/vim-commentary'
-" map # (visual mode) to comment out selected lines
-vmap # gc
+" Plugin: Comment - Comment line/block toggling {{{
+Plug 'numToStr/Comment.nvim', {'done': 'call s:ConfigComment()'}
+" @url https://github.com/numToStr/Comment.nvim
+
+function s:ConfigComment()
+lua <<EOF
+require('Comment').setup({
+	padding = true, -- Add a space b/w comment and the line
+	sticky = true, -- Whether the cursor should stay at its position
+	mappings = {
+		basic = false,
+		extra = false,
+	},
+})
+
+-- Map # Toggle comment
+vim.keymap.set('n', '#', '<Plug>(comment_toggle_linewise_current)')
+
+-- Map # (visual mode) to toggle comment block
+vim.keymap.set('v', '#', '<Plug>(comment_toggle_blockwise_visual)')
+EOF
+endfunction
 " }}}
 " Plugin: Conoline - CUL line highlight for current window {{{
 Plug 'miyakogi/conoline.vim'
