@@ -787,6 +787,9 @@ let g:vim_markdown_folding_disabled = 1
 " Disable concealing
 let g:vim_markdown_conceal = 0
 " }}}
+" Plugin: SYNTAX / Justfiles {{{
+Plug 'NoahTheDuke/vim-just'
+" }}}
 
 " Plugin: Actually - Correct mistyped file names {{{
 Plug 'mong8se/actually.nvim'
