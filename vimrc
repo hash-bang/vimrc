@@ -188,6 +188,14 @@ endfunction
 map <F4> :call CleanTVSeries()<CR>
 " }}}
 
+" Quiet() - Hide highlights, dismiss notifications + disable spelling {{{
+function! Quiet()
+	lua require('notify').dismiss()
+	set nohlsearch
+	set nospell
+endfunction
+" }}}
+
 " ResolvePath(path) + EditResolvePath(path) - Correct a path to something nicer {{{
 function! ResolvePath(path)
 	if matchstr("^\.\/?") " ./PATH - Relative to current file
@@ -1313,8 +1321,8 @@ Plug 'rcarriga/nvim-notify'
 
 function s:ConfigNoice()
 	" F2 to dismiss messages
-	imap <silent> <F2> :lua require('notify').dismiss()<CR>:set nohls<CR>
-	map <silent> <F2> :lua require('notify').dismiss()<CR>: set nohls<CR>
+	imap <silent> <F2> :call Quiet()<CR>
+	map <silent> <F2> :call Quiet()<CR>
 
 	" Ctrl+F2 to show message history
 	map <silent> <C-F2> :Noice history<CR>
