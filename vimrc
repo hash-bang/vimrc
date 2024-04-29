@@ -14,8 +14,9 @@ let g:switch_colorscheme = 'everforest' " Selected color scheme, must match an e
 " bamboo       - High-contrast, dark with strong foreground
 " bronzage     - yellow / icy blue based muted text
 " brown        - Very amber coloring
-" cosmic_latte - very muted everything with blue & red highlights
-" embark       - very blue, over-saturated, icy theme
+" cosmic_latte - Very muted everything with blue & red highlights
+" darkearth    - Very muted Brown tones with an earthy feel
+" embark       - Very blue, over-saturated, icy theme
 " gruvbox      - Dark but constrasting bright colors
 " hybrid2      - Muted blue coloring as primary with high contrast notes
 " everforest   - "Nord-lite", subtle blend
@@ -740,6 +741,7 @@ Plug 'folke/tokyonight.nvim'
 Plug 'rebelot/kanagawa.nvim'
 Plug 'ColinKennedy/hybrid2.nvim'
 Plug 'jim-at-jibba/ariake.nvim'
+Plug 'ptdewey/darkearth-nvim'
 
 " Overrides based on colorscheme
 if switch_colorscheme == 'anotherdark'
