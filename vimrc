@@ -10,6 +10,7 @@ let g:switch_wakatime=0 " Enable wakatime Plugin
 " Color scheme options
 let g:switch_colorscheme = 'everforest' " Selected color scheme, must match an entry within `Plugins: COLOR SCHEMES`
 
+" ariake       - Very Purple
 " bamboo       - High-contrast, dark with strong foreground
 " bronzage     - yellow / icy blue based muted text
 " brown        - Very amber coloring
@@ -693,6 +694,7 @@ Plug 'jacoborus/tender.vim'
 Plug 'folke/tokyonight.nvim'
 Plug 'rebelot/kanagawa.nvim'
 Plug 'ColinKennedy/hybrid2.nvim'
+Plug 'jim-at-jibba/ariake.nvim'
 
 " Overrides based on colorscheme
 if switch_colorscheme == 'anotherdark'
@@ -700,6 +702,8 @@ if switch_colorscheme == 'anotherdark'
 	let g:switch_colorscheme_patch_lightline = 1
 	let g:switch_colorscheme_patch_visual = 1
 	colorscheme anotherdark
+elseif switch_colorscheme == 'ariake'
+	let g:switch_colorscheme_patch_contrast_folds = 1
 elseif switch_colorscheme == 'bamboo'
 	let g:switch_colorscheme_patch_conceal = 1
 elseif switch_colorscheme == 'falcon'
