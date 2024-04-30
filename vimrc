@@ -1429,8 +1429,9 @@ Plug 'junegunn/vim-peekaboo'
 " Use space to toggle fullscreen
 " e.g. to paste from register 2 - "2p
 " }}}
-" Plugin: Pretty-fold - Nicer folds with stats + previews (`h` key) {{{
-Plug 'anuvyklack/pretty-fold.nvim', {'done': 'call s:ConfigPrettyFold()'}
+" (DISABLED) Plugin: Pretty-fold - Nicer folds with stats + previews (`h` key) {{{
+" DISABLED - Crashing
+Plug 'anuvyklack/pretty-fold.nvim' ", {'done': 'call s:ConfigPrettyFold()'}
 Plug 'anuvyklack/fold-preview.nvim'
 Plug 'anuvyklack/nvim-keymap-amend' " Needed for preview
 
