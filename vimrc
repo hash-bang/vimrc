@@ -484,11 +484,11 @@ nnoremap <expr> gpp '`[' . getregtype()[0] . '`]'
 " These commands are wrapped in Lua and use vim.keymap.set to bypass
 " the Noice command line popup
 lua <<EOF
--- Silent write with "XX"
-vim.keymap.set({"n", "v"}, "XX", ":wa!<CR>", {silent = true})
+	-- Silent write with "XX"
+	vim.keymap.set({"n", "v"}, "XX", ":wa!<CR>", {silent = true})
 
--- Silent write + quit with "ZZ"
-vim.keymap.set({"n", "v"}, "ZZ", ":wqa!<CR>", {silent = true})
+	-- Silent write + quit with "ZZ"
+	vim.keymap.set({"n", "v"}, "ZZ", ":wqa!<CR>", {silent = true})
 EOF
 " }}}
 " Searching {{{
@@ -805,15 +805,15 @@ Plug 'onsails/lspkind.nvim'
 
 function s:ConfigAerial()
 lua <<EOF
-require('lspkind').init({
-})
+	require('lspkind').init({
+	})
 
-require('aerial').setup({
-	default_direction = 'prefer_right',
-	show_guides = true,
-})
+	require('aerial').setup({
+		default_direction = 'prefer_right',
+		show_guides = true,
+	})
 
-vim.keymap.set({'n', 'i', 'v'}, '<F1>', require('aerial').toggle)
+	vim.keymap.set({'n', 'i', 'v'}, '<F1>', require('aerial').toggle)
 EOF
 endfunction
 " }}}
@@ -939,11 +939,11 @@ Plug 'FabijanZulj/blame.nvim', {'done': 'call s:ConfigBlame()'}
 
 function s:ConfigBlame()
 lua <<EOF
-require('blame').setup({
-	virtual_style = 'right_align',
-})
+	require('blame').setup({
+		virtual_style = 'right_align',
+	})
 
-vim.keymap.set({"n", "v"}, "gb", ":ToggleBlame<CR>", {silent = true})
+	vim.keymap.set({"n", "v"}, "gb", ":ToggleBlame<CR>", {silent = true})
 EOF
 endfunction
 " }}}
@@ -953,20 +953,20 @@ Plug 'numToStr/Comment.nvim', {'done': 'call s:ConfigComment()'}
 
 function s:ConfigComment()
 lua <<EOF
-require('Comment').setup({
-	padding = true, -- Add a space b/w comment and the line
-	sticky = true, -- Whether the cursor should stay at its position
-	mappings = {
-		basic = false,
-		extra = false,
-	},
-})
+	require('Comment').setup({
+		padding = true, -- Add a space b/w comment and the line
+		sticky = true, -- Whether the cursor should stay at its position
+		mappings = {
+			basic = false,
+			extra = false,
+		},
+	})
 
--- Map # Toggle comment
-vim.keymap.set('n', '#', '<Plug>(comment_toggle_linewise_current)')
+	-- Map # Toggle comment
+	vim.keymap.set('n', '#', '<Plug>(comment_toggle_linewise_current)')
 
--- Map # (visual mode) to toggle comment block
-vim.keymap.set('v', '#', '<Plug>(comment_toggle_blockwise_visual)')
+	-- Map # (visual mode) to toggle comment block
+	vim.keymap.set('v', '#', '<Plug>(comment_toggle_blockwise_visual)')
 EOF
 endfunction
 " }}}
@@ -1005,11 +1005,11 @@ Plug 'lewis6991/gitsigns.nvim', {'done': 'call s:ConfigGitSigns()' }
 
 function s:ConfigGitSigns()
 lua <<EOF
-require('gitsigns').setup({
-	sign_priority = 6,
-	signcolumn = true, -- Show sign column line
-	numhl = true, -- Highlight line number in change color
-})
+	require('gitsigns').setup({
+		sign_priority = 6,
+		signcolumn = true, -- Show sign column line
+		numhl = true, -- Highlight line number in change color
+	})
 EOF
 
 " map ]h / ]h to jump to next / previous hunk
@@ -1022,28 +1022,13 @@ endfunction
 " :GV! - Show commits effecting the current file
 Plug 'junegunn/gv.vim'
 " }}}
-" Plugin: HL_Match_area - highlight areas within delimeters {{{
-Plug 'rareitems/hl_match_area.nvim', {'done': 'call s:ConfigHLMatchArea()'}
-
-function s:ConfigHLMatchArea()
-lua <<EOF
-require('hl_match_area').setup({
-	n_lines_to_search = 100, -- how many lines should be searched for a matching delimiter
-	highlight_in_insert_mode = true, -- should highlighting also be done in insert mode
-	delay = 100, -- delay before the highglight
-})
-
-vim.api.nvim_set_hl(0, 'MatchArea', {bg="#212e3f"})
-EOF
-endfunction
-" }}}
 " Plugin: Hop - Quick navigation via `` (Replaces EasyMotion) {{{
 Plug 'phaazon/hop.nvim', {'done': 'call s:ConfigHop()'}
 function s:ConfigHop()
 lua <<EOF
-require('hop').setup({
-	uppercase_labels = false,
-})
+	require('hop').setup({
+		uppercase_labels = false,
+	})
 EOF
 
 	map `` :HopWord<cr>
@@ -1071,13 +1056,13 @@ Plug 'RRethy/vim-illuminate', {'done': 'call s:ConfigIlluminate()'}
 
 function s:ConfigIlluminate()
 lua <<EOF
-require('illuminate').configure({
-	-- See https://github.com/RRethy/vim-illuminate
-	delay = 300,
-})
+	require('illuminate').configure({
+		-- See https://github.com/RRethy/vim-illuminate
+		delay = 300,
+	})
 
-vim.keymap.set('n', '<a-n>', require('illuminate').goto_next_reference)
-vim.keymap.set('n', '<a-N>', require('illuminate').goto_prev_reference)
+	vim.keymap.set('n', '<a-n>', require('illuminate').goto_next_reference)
+	vim.keymap.set('n', '<a-N>', require('illuminate').goto_prev_reference)
 EOF
 endfunction
 " }}}
@@ -1142,11 +1127,11 @@ Plug 'ethanholz/nvim-lastplace', {'done': 'call s:ConfigLastPlace()'}
 
 function s:ConfigLastPlace()
 lua <<EOF
-require('nvim-lastplace').setup({
-	lastplace_ignore_buftype = {"quickfix", "nofile", "help"},
-	lastplace_ignore_filetype = {"gitcommit", "gitrebase", "svn", "hgcommit", "todo"},
-	lastplace_open_folds = true,
-})
+	require('nvim-lastplace').setup({
+		lastplace_ignore_buftype = {"quickfix", "nofile", "help"},
+		lastplace_ignore_filetype = {"gitcommit", "gitrebase", "svn", "hgcommit", "todo"},
+		lastplace_open_folds = true,
+	})
 EOF
 endfunction
 " }}}
@@ -1156,113 +1141,112 @@ Plug 'kyazdani42/nvim-web-devicons'
 
 function s:ConfigLualine()
 lua <<EOF
-
-require('lualine').setup({
-	options = {
-		icons_enabled = true,
-		theme = 'auto',
-		component_separators = { left = '', right = ''},
-		section_separators = { left = '', right = ''},
-		always_divide_middle = true,
-	},
-	sections = {
-		lualine_a = {
-			'mode'
+	require('lualine').setup({
+		options = {
+			icons_enabled = true,
+			theme = 'auto',
+			component_separators = { left = '', right = ''},
+			section_separators = { left = '', right = ''},
+			always_divide_middle = true,
 		},
-		lualine_b = {
-			'branch',
-			'diff',
-			'diagnostics',
+		sections = {
+			lualine_a = {
+				'mode'
+			},
+			lualine_b = {
+				'branch',
+				'diff',
+				'diagnostics',
+			},
+			lualine_c = {
+				{'filetype',
+					icon_only = true,
+					separator = '', -- Join with next section
+					padding = {left = 1},
+				},
+				{'filename',
+					padding = {left = 1, right = 0},
+					path = 1, -- 0 = Basename, 1 = Relative path, 2 = Absolute path
+					symbols = {
+						modified = ' [+]',
+						readonly = ' [-]',
+						unnamed = '[No Name]',
+					}
+				},
+			},
+			lualine_x = {
+				{'mode', -- Show RECORDING notice optionally
+					cond =
+						function()
+							local recordChar = vim.api.nvim_call_function("reg_recording", {})
+							return recordChar ~= ""
+						end,
+					fmt =
+						function()
+							local recordChar = vim.api.nvim_call_function("reg_recording", {})
+							return "RECORDING @" .. recordChar
+						end,
+					icon = "⏺",
+					color = { fg = "#ff9e64", bg = "#c0392b" },
+					padding = {left = 1, right = 1},
+					separator = {left = ''},
+				},
+			},
+			lualine_y = {
+				{'filetype',
+					icons_enabled = false,
+					separator = '/',
+				},
+				{'encoding',
+					separator = '/',
+				},
+				{'fileformat',
+					separator = '/',
+				},
+			},
+			lualine_z = {
+				{'progress',
+					separator = '/',
+				},
+				'location',
+				{'g:battery_mode',
+					fmt =
+						function()
+							return '🔽'
+						end,
+					cond =
+						function()
+							return vim.g.battery_mode == 1
+						end,
+				},
+			}
 		},
-		lualine_c = {
-			{'filetype',
-				icon_only = true,
-				separator = '', -- Join with next section
-				padding = {left = 1},
+		inactive_sections = {
+			lualine_a = {},
+			lualine_b = {},
+			lualine_c = {
+				{'filetype',
+					padding = { left = 7, right = 1 },
+					icon_only = true,
+					separator = '', -- Join with next section
+				},
+				{'filename',
+					padding = 0,
+					path = 1, -- 0 = Basename, 1 = Relative path, 2 = Absolute path
+					symbols = {
+						modified = ' [+]',
+						readonly = ' [-]',
+						unnamed = '[No Name]',
+					}
+				},
 			},
-			{'filename',
-				padding = {left = 1, right = 0},
-				path = 1, -- 0 = Basename, 1 = Relative path, 2 = Absolute path
-				symbols = {
-					modified = ' [+]',
-					readonly = ' [-]',
-					unnamed = '[No Name]',
-				}
-			},
+			lualine_x = {'location'},
+			lualine_y = {},
+			lualine_z = {}
 		},
-		lualine_x = {
-			{'mode', -- Show RECORDING notice optionally
-				cond =
-					function()
-						local recordChar = vim.api.nvim_call_function("reg_recording", {})
-						return recordChar ~= ""
-					end,
-				fmt =
-					function()
-						local recordChar = vim.api.nvim_call_function("reg_recording", {})
-						return "RECORDING @" .. recordChar
-					end,
-				icon = "⏺",
-				color = { fg = "#ff9e64", bg = "#c0392b" },
-				padding = {left = 1, right = 1},
-				separator = {left = ''},
-			},
-		},
-		lualine_y = {
-			{'filetype',
-				icons_enabled = false,
-				separator = '/',
-			},
-			{'encoding',
-				separator = '/',
-			},
-			{'fileformat',
-				separator = '/',
-			},
-		},
-		lualine_z = {
-			{'progress',
-				separator = '/',
-			},
-			'location',
-			{'g:battery_mode',
-				fmt =
-					function()
-						return '🔽'
-					end,
-				cond =
-					function()
-						return vim.g.battery_mode == 1
-					end,
-			},
-		}
-	},
-	inactive_sections = {
-		lualine_a = {},
-		lualine_b = {},
-		lualine_c = {
-			{'filetype',
-				padding = { left = 7, right = 1 },
-				icon_only = true,
-				separator = '', -- Join with next section
-			},
-			{'filename',
-				padding = 0,
-				path = 1, -- 0 = Basename, 1 = Relative path, 2 = Absolute path
-				symbols = {
-					modified = ' [+]',
-					readonly = ' [-]',
-					unnamed = '[No Name]',
-				}
-			},
-		},
-		lualine_x = {'location'},
-		lualine_y = {},
-		lualine_z = {}
-	},
-	tabline = {},
-	extensions = {}
-})
+		tabline = {},
+		extensions = {}
+	})
 EOF
 endfunction
 " }}}
@@ -1294,84 +1278,78 @@ lua <<EOF
 EOF
 endfunction
 " }}}
-" Plugin: (DISABLED) Kirby - file picker {{{
-" Disabled 2023-02-15 but has potencial
-" Plug 'romgrk/kirby.nvim'
-" Dependencies:
-" Plug 'romgrk/fzy-lua-native', {'do': 'make'}
-" Plug 'romgrk/kui.nvim'
-" }}}
 " Plugin: Mini.Animate {{{
 " @url https://github.com/echasnovski/mini.animate
 Plug 'echasnovski/mini.animate', {'done': 'call s:ConfigMiniAnimate()'}
 
 function s:ConfigMiniAnimate()
 lua <<EOF
-require('mini.animate').setup({
-	cursor = { -- Cursor path
-		enable = true,
-	},
-	scroll = { -- Vertical scroll
-		enable = false,
-	},
-	resize = { -- Window resize
-		-- Whether to enable this animation
-		enable = true,
-	},
-	open = { -- Window open
-		-- Whether to enable this animation
-		enable = true,
-	},
-	close = { -- Window close
-		enable = true,
-	},
-})
+	require('mini.animate').setup({
+		cursor = { -- Cursor path
+			enable = true,
+		},
+		scroll = { -- Vertical scroll
+			enable = false,
+		},
+		resize = { -- Window resize
+			-- Whether to enable this animation
+			enable = true,
+		},
+		open = { -- Window open
+			-- Whether to enable this animation
+			enable = true,
+		},
+		close = { -- Window close
+			enable = true,
+		},
+	})
 EOF
 endfunction
 " }}}
-" Plugin: Mini.IndentScope {{{
-Plug 'echasnovski/mini.indentscope', {'done': 'call s:ConfigMiniIndentScope()'}
+" (DISABLED) Plugin: Mini.IndentScope {{{
+" DISABLED - Slows down UI
+Plug 'echasnovski/mini.indentscope' ", {'done': 'call s:ConfigMiniIndentScope()'}
 
 function s:ConfigMiniIndentScope()
 lua <<EOF
-require('mini.indentscope').setup({
-	draw = {
-		-- Delay (in ms) between event and start of drawing scope indicator
-		delay = 300,
-	},
+	require('mini.indentscope').setup({
+		draw = {
+			-- Delay (in ms) between event and start of drawing scope indicator
+			delay = 300,
+		},
 
-	-- Module mappings. Use `''` (empty string) to disable one.
-	mappings = {
-		-- Textobjects
-		-- MAP `vii` to select entire indent block
-		object_scope = 'ii',
-		object_scope_with_border = 'oi',
+		-- Module mappings. Use `''` (empty string) to disable one.
+		mappings = {
+			-- Textobjects
+			-- MAP `vii` to select entire indent block
+			object_scope = 'ii',
+			object_scope_with_border = 'oi',
 
-		-- Motions (jump to respective border line; if not present - body line)
-		-- MAP `[i` / `]i` to jump to start / end of indent block
-		goto_top = '[i',
-		goto_bottom = ']i',
-	},
+			-- Motions (jump to respective border line; if not present - body line)
+			-- MAP `[i` / `]i` to jump to start / end of indent block
+			goto_top = '[i',
+			goto_bottom = ']i',
+		},
 
-	-- Options which control scope computation
-	options = {
-		-- Type of scope's border: which line(s) with smaller indent to
-		-- categorize as border. Can be one of: 'both', 'top', 'bottom', 'none'.
-		border = 'both',
+		-- Options which control scope computation
+		options = {
+			-- Type of scope's border: which line(s) with smaller indent to
+			-- categorize as border. Can be one of: 'both', 'top', 'bottom', 'none'.
+			border = 'both',
 
-		-- Whether to use cursor column when computing reference indent.
-		-- Useful to see incremental scopes with horizontal cursor movements.
-		indent_at_cursor = true,
+			-- Whether to use cursor column when computing reference indent.
+			-- Useful to see incremental scopes with horizontal cursor movements.
+			indent_at_cursor = true,
 
-		-- Whether to first check input line to be a border of adjacent scope.
-		-- Use it if you want to place cursor on function header to get scope of
-		-- its body.
-		try_as_border = false,
-	},
+			-- Whether to first check input line to be a border of adjacent scope.
+			-- Use it if you want to place cursor on function header to get scope of
+			-- its body.
+			try_as_border = false,
+		},
 
-	-- Which character to use for drawing scope indicator
-	symbol = '╎',
-})
+		-- Which character to use for drawing scope indicator
+		symbol = '╎',
+	})
 EOF
 endfunction
 " }}}
@@ -1404,8 +1382,8 @@ EOF
 
 endfunction
 " }}}
-" Plugin: OpenRazer - Fancy keyboard functionality if present {{{
-Plug 'hash-bang/vim-open-razer'
+" Plugin: OpenRazer (DISABLED) - Fancy keyboard functionality if present {{{
+" Plug 'hash-bang/vim-open-razer'
 
 " STFU if an OpenRazer device is not found
 let g:razer_silent = 1
@@ -1417,31 +1395,31 @@ Plug 'vuki656/package-info.nvim', {'done': 'call s:ConfigPackageInfo()'}
 
 function s:ConfigPackageInfo()
 lua <<EOF
-require('package-info').setup {
-	colors = {
-		up_to_date = "#3C4048", -- Text color for up to date package virtual text
-		outdated = "#D08770", -- Text color for outdated package virtual text
-	},
-
-	icons = {
-		enable = true,
-		style = {
-			up_to_date = "  ", -- Icon for up to date packages
-			outdated = "  ", -- Icon for outdated packages
+	require('package-info').setup({
+		colors = {
+			up_to_date = "#3C4048", -- Text color for up to date package virtual text
+			outdated = "#D08770", -- Text color for outdated package virtual text
 		},
-	},
 
-	-- Whether to autostart when `package.json` is opened
-	autostart = true,
+		icons = {
+			enable = true,
+			style = {
+				up_to_date = "  ", -- Icon for up to date packages
+				outdated = "  ", -- Icon for outdated packages
+			},
+		},
 
-	 -- Hide up to date versions when displaying virtual text
-	hide_up_to_date = false,
+		-- Whether to autostart when `package.json` is opened
+		autostart = true,
 
-	-- Hides unstable versions from the version list e.g next-11.1.3-canary3
-	hide_unstable_versions = false,
+		 -- Hide up to date versions when displaying virtual text
+		hide_up_to_date = false,
 
-	package_manager = "npm",
-}
+		-- Hides unstable versions from the version list e.g next-11.1.3-canary3
+		hide_unstable_versions = false,
+
+		package_manager = "npm",
+	})
 EOF
 endfunction
 " }}}
@@ -1575,8 +1553,8 @@ nmap <silent> <C-d> :Telescope find_files<CR>
 
 function s:ConfigTelescope()
 lua <<EOF
-require('telescope').setup({
-})
+	require('telescope').setup({
+	})
 EOF
 endfunction
 " }}}
@@ -1586,16 +1564,16 @@ Plug 'xiyaowong/transparent.nvim', {'done': 'call s:ConfigTransparent()'}
 
 function s:ConfigTransparent()
 lua <<EOF
-require('transparent').setup({
-	groups = {
-		'Normal', 'NormalNC', 'Comment', 'Constant', 'Special', 'Identifier',
-		'Statement', 'PreProc', 'Type', 'Underlined', 'Todo', 'String', 'Function',
-		'Conditional', 'Repeat', 'Operator', 'Structure', 'LineNr', 'NonText',
-		'SignColumn', 'CursorLineNr', 'EndOfBuffer',
-	},
-	extra_groups = {}, -- table: additional groups that should be cleared
-	exclude_groups = {}, -- table: groups you don't want to clear
-})
+	require('transparent').setup({
+		groups = {
+			'Normal', 'NormalNC', 'Comment', 'Constant', 'Special', 'Identifier',
+			'Statement', 'PreProc', 'Type', 'Underlined', 'Todo', 'String', 'Function',
+			'Conditional', 'Repeat', 'Operator', 'Structure', 'LineNr', 'NonText',
+			'SignColumn', 'CursorLineNr', 'EndOfBuffer',
+		},
+		extra_groups = {}, -- table: additional groups that should be cleared
+		exclude_groups = {}, -- table: groups you don't want to clear
+	})
 EOF
 endfunction
 " }}}
@@ -1609,52 +1587,51 @@ Plug 'kiyoon/treesitter-indent-object.nvim'
 
 function s:ConfigTreeSitter()
 lua <<EOF
-require('nvim-treesitter.configs').setup {
-	highlight = {
-		enable = true, -- false will disable the whole extension
-		disable = {"vue"}, -- Seems to really screw up with Vue files
-		additional_vim_regex_highlighting = false,
-	},
-	incremental_selection = {
-		enable = true,
-	},
-	indent = {
-		enable = false,
-	},
-	textobjects = {
-		move = {
+	require('nvim-treesitter.configs').setup({
+		highlight = {
+			enable = true, -- false will disable the whole extension
+			disable = {"vue"}, -- Seems to really screw up with Vue files
+			additional_vim_regex_highlighting = false,
+		},
+		incremental_selection = {
 			enable = true,
-			set_jumps = true,
-			goto_next_start = {
-				["]f"] = "@function.outer",
-			},
-			goto_next_end = {
-				["]F"] = "@function.outer",
-			},
-			goto_previous_star = {
-				["[f"] = "@function.outer",
-			},
-			goto_previous_end = {
-				["[F"] = "@function.outer",
+		},
+		indent = {
+			enable = false,
+		},
+		textobjects = {
+			move = {
+				enable = true,
+				set_jumps = true,
+				goto_next_start = {
+					["]f"] = "@function.outer",
+				},
+				goto_next_end = {
+					["]F"] = "@function.outer",
+				},
+				goto_previous_star = {
+					["[f"] = "@function.outer",
+				},
+				goto_previous_end = {
+					["[F"] = "@function.outer",
+				},
 			},
 		},
-	},
-}
+	})
 
-require('ibl').setup({
-})
+	require('ibl').setup({
+	})
 
-require("treesitter_indent_object").setup()
+	require("treesitter_indent_object").setup()
 
--- select context-aware indent
-vim.keymap.set("x", "ai", "<Cmd>lua require'treesitter_indent_object.textobj'.select_indent_outer()<CR>")
--- ensure selecting entire line (or just use Vai)
-vim.keymap.set("x", "aI", "<Cmd>lua require'treesitter_indent_object.textobj'.select_indent_outer(true)<CR>")
--- select inner block (only if block, only else block, etc.)
-vim.keymap.set("x", "ii", "<Cmd>lua require'treesitter_indent_object.textobj'.select_indent_inner()<CR>")
--- select entire inner range (including if, else, etc.)
-vim.keymap.set("x", "iI", "<Cmd>lua require'treesitter_indent_object.textobj'.select_indent_inner(true)<CR>")
-
+	-- select context-aware indent
+	vim.keymap.set("x", "ai", "<Cmd>lua require'treesitter_indent_object.textobj'.select_indent_outer()<CR>")
+	-- ensure selecting entire line (or just use Vai)
+	vim.keymap.set("x", "aI", "<Cmd>lua require'treesitter_indent_object.textobj'.select_indent_outer(true)<CR>")
+	-- select inner block (only if block, only else block, etc.)
+	vim.keymap.set("x", "ii", "<Cmd>lua require'treesitter_indent_object.textobj'.select_indent_inner()<CR>")
+	-- select entire inner range (including if, else, etc.)
+	vim.keymap.set("x", "iI", "<Cmd>lua require'treesitter_indent_object.textobj'.select_indent_inner(true)<CR>")
 EOF
 endfunction
 " }}}
@@ -1663,10 +1640,10 @@ Plug 'wansmer/treesj', {'done': 'call s:ConfigTreeSJ()'}
 
 function s:ConfigTreeSJ()
 lua <<EOF
-require('treesj').setup({
-	use_default_keymaps = false,
-	dot_repeat = true, -- Use `dot` for repeat action
-})
+	require('treesj').setup({
+		use_default_keymaps = false,
+		dot_repeat = true, -- Use `dot` for repeat action
+	})
 EOF
 
 nmap <silent> gt :TSJToggle <CR>
@@ -1684,27 +1661,27 @@ Plug 'folke/todo-comments.nvim', {'done': 'call s:ConfigTodoComments()' }
 
 function s:ConfigTodoComments()
 lua <<EOF
-require('todo-comments').setup({
-	signs = true,
-	sign_priority = 7, -- One higher than gitsigns so this plugin overrides
-	keywords = {
-		HACK = { icon = " ", color = "warning", alt = { "BUG", "KLUDGE" } },
-		FIX  = { icon = " ", color = "warning", alt = { "FIXME", "BUG", "EXPERIMENTAL" } },
-		NOTE = { icon = " ", color = "hint", alt = { "INFO", "UX" } },
-		TODO = { icon = " ", color = "info" },
-		WARN = { icon = " ", color = "error", alt = { "WARNING", "WARN", "XXX", "CRIT", "CRITICAL" } },
-	},
-	highlight = {
-		keyword = "bg", -- Only highlight word, not surrounding chars
-	},
-	colors = {
-		error = { "DiagnosticError", "ErrorMsg", "#DC2626" },
-		warning = { "#ecbe7b" },
-		info = { "DiagnosticInfo", "#2563EB" },
-		hint = { "DiagnosticHint", "#10B981" },
-		default = { "Identifier", "#7C3AED" },
-	},
-})
+	require('todo-comments').setup({
+		signs = true,
+		sign_priority = 7, -- One higher than gitsigns so this plugin overrides
+		keywords = {
+			HACK = { icon = " ", color = "warning", alt = { "BUG", "KLUDGE" } },
+			FIX  = { icon = " ", color = "warning", alt = { "FIXME", "BUG", "EXPERIMENTAL" } },
+			NOTE = { icon = " ", color = "hint", alt = { "INFO", "UX" } },
+			TODO = { icon = " ", color = "info" },
+			WARN = { icon = " ", color = "error", alt = { "WARNING", "WARN", "XXX", "CRIT", "CRITICAL" } },
+		},
+		highlight = {
+			keyword = "bg", -- Only highlight word, not surrounding chars
+		},
+		colors = {
+			error = { "DiagnosticError", "ErrorMsg", "#DC2626" },
+			warning = { "#ecbe7b" },
+			info = { "DiagnosticInfo", "#2563EB" },
+			hint = { "DiagnosticHint", "#10B981" },
+			default = { "Identifier", "#7C3AED" },
+		},
+	})
 EOF
 endfunction
 " }}}
@@ -1713,14 +1690,14 @@ Plug 'tzachar/highlight-undo.nvim', {'done': 'call s:ConfigHighlightUndo()'}
 
 function s:ConfigHighlightUndo()
 lua <<EOF
-require('highlight-undo').setup({
-	hlgroup = 'HighlightUndo',
-	duration = 300,
-	keymaps = {
-		{'n', 'u', 'undo', {}},
-		{'n', '<C-r>', 'redo', {}},
-	}
-})
+	require('highlight-undo').setup({
+		hlgroup = 'HighlightUndo',
+		duration = 300,
+		keymaps = {
+			{'n', 'u', 'undo', {}},
+			{'n', '<C-r>', 'redo', {}},
+		}
+	})
 EOF
 endfunction
 " }}}
@@ -1752,19 +1729,19 @@ Plug 'sustech-data/wildfire.nvim', {'done': 'call s:ConfigWildfire()'}
 
 function s:ConfigWildfire()
 lua <<EOF
-require('wildfire').setup({
-	surrounds = {
-		{ "(", ")" },
-		{ "{", "}" },
-		{ "<", ">" },
-		{ "[", "]" },
-	},
-	keymaps = {
-		init_selection = "<C-CR>",
-		node_incremental = "<C-CR>",
-		node_decremental = "<C-S-CR>",
-	},
-})
+	require('wildfire').setup({
+		surrounds = {
+			{ "(", ")" },
+			{ "{", "}" },
+			{ "<", ">" },
+			{ "[", "]" },
+		},
+		keymaps = {
+			init_selection = "<C-CR>",
+			node_incremental = "<C-CR>",
+			node_decremental = "<C-S-CR>",
+		},
+	})
 EOF
 endfunction
 " }}}
@@ -1777,18 +1754,18 @@ nnoremap <C-W>m <Cmd>WinShift<CR>
 
 function s:ConfigWinShift()
 lua <<EOF
-require("winshift").setup({
-	highlight_moving_win = true,  -- Highlight the window being moved
-	focused_hl_group = "Visual",  -- The highlight group used for the moving window
-	moving_win_options = {
-		-- These are local options applied to the moving window while it's
-		-- being moved. They are unset when you leave Win-Move mode.
-		wrap = false,
-		cursorline = false,
-		cursorcolumn = false,
-		colorcolumn = "",
-	},
-})
+	require("winshift").setup({
+		highlight_moving_win = true,  -- Highlight the window being moved
+		focused_hl_group = "Visual",  -- The highlight group used for the moving window
+		moving_win_options = {
+			-- These are local options applied to the moving window while it's
+			-- being moved. They are unset when you leave Win-Move mode.
+			wrap = false,
+			cursorline = false,
+			cursorcolumn = false,
+			colorcolumn = "",
+		},
+	})
 EOF
 endfunction
 " }}}
@@ -1811,57 +1788,78 @@ EOF
 	map cc ^C
 endfunction
 " }}}
-" Plugin: Yanky (Yankring functionality) {{{
+" (DISABLED) Plugin: YankBank - Show recent yanks in a popup {{{
+" DISABLED - Has potencial but displays bugs when trying to open the access window
+Plug 'ptdewey/yankbank-nvim' ", {'done': 'call s:ConfigYankBank()'}
+
+function s:ConfigYankBank()
+lua <<EOF
+	require('yankbank').setup({
+		max_entries = 10,
+		sep = '----------',
+		keymaps = {
+			navigation_next = { 'n' },
+			navigation_prev = { 'N', 'p' },
+			paste = { '<CR>' },
+			close = { "<Esc>", "<C-c>", "q" }
+		},
+	})
+
+	vim.keymap.set({"n","v"}, "<leader>y", "<cmd>YankBank<CR>", {noremap = true})
+EOF
+endfunction
+" }}}
+" Plugin: Yanky - Yankring functionality {{{
 Plug 'gbprod/yanky.nvim', {'done': 'call s:ConfigYanky()'}
 
 function s:ConfigYanky()
 lua <<EOF
-require('yanky').setup({
-	ring = {
-		history_length = 100,
-		storage = "shada",
-		sync_with_numbered_registers = true,
-		cancel_event = "update",
-	},
-	picker = {
-		select = {
-			action = nil, -- nil to use default put action
+	require('yanky').setup({
+		ring = {
+			history_length = 100,
+			storage = "shada",
+			sync_with_numbered_registers = true,
+			cancel_event = "update",
 		},
-		telescope = {
-			mappings = nil, -- nil to use default mappings
+		picker = {
+			select = {
+				action = nil, -- nil to use default put action
+			},
+			telescope = {
+				mappings = nil, -- nil to use default mappings
+			},
 		},
-	},
-	system_clipboard = {
-		sync_with_ring = true,
-	},
-	highlight = {
-		on_put = true,
-		on_yank = true,
-		timer = 500,
-	},
-	preserve_cursor_position = {
-		enabled = true,
-	},
-})
+		system_clipboard = {
+			sync_with_ring = true,
+		},
+		highlight = {
+			on_put = true,
+			on_yank = true,
+			timer = 500,
+		},
+		preserve_cursor_position = {
+			enabled = true,
+		},
+	})
 
--- Basic mapping over paste keys
-vim.keymap.set({"n","x"}, "p", "<Plug>(YankyPutAfter)")
-vim.keymap.set({"n","x"}, "P", "<Plug>(YankyPutBefore)")
+	-- Basic mapping over paste keys
+	vim.keymap.set({"n","x"}, "p", "<Plug>(YankyPutAfter)")
+	vim.keymap.set({"n","x"}, "P", "<Plug>(YankyPutBefore)")
 
--- Ring movement
-vim.keymap.set("n", "<c-p>", "<Plug>(YankyCycleForward)")
-vim.keymap.set("n", "<c-s-p>", "<Plug>(YankyCycleBackward)")
+	-- Ring movement
+	vim.keymap.set("n", "<c-p>", "<Plug>(YankyCycleForward)")
+	vim.keymap.set("n", "<c-s-p>", "<Plug>(YankyCycleBackward)")
 
--- Overwrite more complex paste functionality
-vim.keymap.set("n", "]p", "<Plug>(YankyPutIndentAfterLinewise)")
-vim.keymap.set("n", "[p", "<Plug>(YankyPutIndentBeforeLinewise)")
-vim.keymap.set("n", "]P", "<Plug>(YankyPutIndentAfterLinewise)")
-vim.keymap.set("n", "[P", "<Plug>(YankyPutIndentBeforeLinewise)")
+	-- Overwrite more complex paste functionality
+	vim.keymap.set("n", "]p", "<Plug>(YankyPutIndentAfterLinewise)")
+	vim.keymap.set("n", "[p", "<Plug>(YankyPutIndentBeforeLinewise)")
+	vim.keymap.set("n", "]P", "<Plug>(YankyPutIndentAfterLinewise)")
+	vim.keymap.set("n", "[P", "<Plug>(YankyPutIndentBeforeLinewise)")
 
-vim.keymap.set("n", ">p", "<Plug>(YankyPutIndentAfterShiftRight)")
-vim.keymap.set("n", "<p", "<Plug>(YankyPutIndentAfterShiftLeft)")
-vim.keymap.set("n", ">P", "<Plug>(YankyPutIndentBeforeShiftRight)")
-vim.keymap.set("n", "<P", "<Plug>(YankyPutIndentBeforeShiftLeft)")
+	vim.keymap.set("n", ">p", "<Plug>(YankyPutIndentAfterShiftRight)")
+	vim.keymap.set("n", "<p", "<Plug>(YankyPutIndentAfterShiftLeft)")
+	vim.keymap.set("n", ">P", "<Plug>(YankyPutIndentBeforeShiftRight)")
+	vim.keymap.set("n", "<P", "<Plug>(YankyPutIndentBeforeShiftLeft)")
 EOF
 endfunction
 " }}}
@@ -1978,21 +1976,21 @@ call RepairColors()
 " FIX: Treesitter weird indents for JavaScript + JSDoc {{{
 " Taken from https://github.com/nvim-treesitter/nvim-treesitter/issues/1167#issuecomment-920824125
 lua <<EOF
-function _G.javascript_indent()
-        local line = vim.fn.getline(vim.v.lnum)
-        local prev_line = vim.fn.getline(vim.v.lnum - 1)
-        if line:match('^%s*[%*/]%s*') then
-                if prev_line:match('^%s*%*%s*') then
-                        return vim.fn.indent(vim.v.lnum - 1)
-                end
-                if prev_line:match('^%s*/%*%*%s*$') then
-                        return vim.fn.indent(vim.v.lnum - 1) + 1
-                end
-        end
+	function _G.javascript_indent()
+			local line = vim.fn.getline(vim.v.lnum)
+			local prev_line = vim.fn.getline(vim.v.lnum - 1)
+			if line:match('^%s*[%*/]%s*') then
+					if prev_line:match('^%s*%*%s*') then
+							return vim.fn.indent(vim.v.lnum - 1)
+					end
+					if prev_line:match('^%s*/%*%*%s*$') then
+							return vim.fn.indent(vim.v.lnum - 1) + 1
+					end
+			end
 
-        return vim.fn['GetJavascriptIndent']()
-end
+			return vim.fn['GetJavascriptIndent']()
+	end
 
-vim.cmd[[autocmd FileType javascript setlocal indentexpr=v:lua.javascript_indent()]]
+	vim.cmd[[autocmd FileType javascript setlocal indentexpr=v:lua.javascript_indent()]]
 EOF
 " }}}
