@@ -1498,18 +1498,19 @@ Plug 'Shatur/neovim-session-manager', {'done': 'call s:ConfignSessionManager()'}
 
 function s:ConfignSessionManager()
 lua <<EOF
-require('session_manager').setup({
+	local config = require('session_manager.config')
+	require('session_manager').setup({
+		autoload_mode = config.AutoloadMode.Disabled, -- How to handle vim starting without args
+	})
 
-})
+	-- Map sl - Load last session
+	vim.keymap.set("n", "sl", ":SessionManager load_last_session<CR>:echo 'Saved active session'<CR>", {silent = true})
 
--- Map sl - Load last session
-vim.keymap.set("n", "sl", ":SessionManager load_last_session<CR>:echo 'Saved active session'<CR>", {silent = true})
+	-- Map sw - Save current session
+	vim.keymap.set("n", "sw", ":SessionManager save_current_session<CR>:echo 'Saved active session'<CR>", {silent = true})
 
--- Map sw - Save current session
-vim.keymap.set("n", "sw", ":SessionManager save_current_session<CR>:echo 'Saved active session'<CR>", {silent = true})
-
--- Map sd - Drop current session
-vim.keymap.set("n", "sd", ":SessionManager delete_session<CR>:echo 'Deleted session'<CR>", {silent = true})
+	-- Map sd - Drop current session
+	vim.keymap.set("n", "sd", ":SessionManager delete_session<CR>:echo 'Deleted session'<CR>", {silent = true})
 EOF
 
 endfunction
