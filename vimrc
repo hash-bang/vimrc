@@ -476,6 +476,14 @@ nmap gtv :se ft=vue<CR>
 map gtx :TSDisable highlight<CR>
 " }}}
 " Movement {{{
+" Alt+A - move to start of line (same as "^")
+nmap <M-a> ^
+imap <M-a> <esc>^i
+
+" Alt+Z - move to end of line (same as "$")
+nmap <M-z> $
+imap <M-z> <esc>$i
+
 " `T` - move to last character within line
 noremap T $F
 " }}}
