@@ -754,6 +754,7 @@ Plug 'rebelot/kanagawa.nvim'
 Plug 'ColinKennedy/hybrid2.nvim'
 Plug 'jim-at-jibba/ariake.nvim'
 Plug 'ptdewey/darkearth-nvim'
+Plug 'blazkowolf/gruber-darker.nvim'
 
 " Overrides based on colorscheme
 if switch_colorscheme == 'anotherdark'
@@ -765,6 +766,8 @@ elseif switch_colorscheme == 'ariake'
 	let g:switch_colorscheme_patch_contrast_folds = 1
 elseif switch_colorscheme == 'bamboo'
 	let g:switch_colorscheme_patch_conceal = 1
+elseif switch_colorscheme == 'everforest'
+	let g:switch_colorscheme_patch_todo = 1
 elseif switch_colorscheme == 'falcon'
 	let g:switch_colorscheme_patch_cursor = 1
 	let g:switch_colorscheme_patch_todo = 1
