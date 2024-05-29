@@ -313,6 +313,9 @@ set splitright
 set nows
 " Set minimal window size to 0 (when using Ctrl+W+_ this minimizes all windows to one line)
 set wmh=0
+" Disable annoying "Hit enter to continue" messages in some circumstances
+" Default is `ltToOCFI`
+set shortmess=aCFImOt
 
 " Set tab width
 set tabstop=4
