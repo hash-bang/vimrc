@@ -322,7 +322,8 @@ set tabstop=4
 set shiftwidth=4
 
 " Set the command line height to auto-hide
-set cmdheight=0
+" NOTE: This behaviour is applied by Noice anyway so is not explicitly needed any more
+" set cmdheight=0
 
 " Set timeout for multi-key mappings
 " Default: 1000
