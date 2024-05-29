@@ -461,7 +461,7 @@ map ]z zj
 map [z zk
 " }}}
 " File list (really "buffer") naivgaton {{{
-nmap mm :n<CR>
+nmap <silent> mm :n<CR>
 " }}}
 " File types (gt*) {{{
 nmap gtb :se ft=sh<CR>
