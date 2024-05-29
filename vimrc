@@ -1032,11 +1032,6 @@ map ]h :lua require('gitsigns.actions').next_hunk()<CR>
 map [h :lua require('gitsigns.actions').prev_hunk()<CR>
 endfunction
 " }}}
-" Plugin: GV - Git commit tree view with :GV {{{
-" :GV - Show all commits
-" :GV! - Show commits effecting the current file
-Plug 'junegunn/gv.vim'
-" }}}
 " Plugin: Hop - Quick navigation via `` (Replaces EasyMotion) {{{
 Plug 'phaazon/hop.nvim', {'done': 'call s:ConfigHop()'}
 function s:ConfigHop()
@@ -1956,7 +1951,7 @@ function RepairColors()
 	endif
 
 	if g:switch_colorscheme_patch_todo == 1
-		highlight Todo ctermfg=142 guifg=#9faa00 gui=italic
+		highlight Todo ctermfg=142 guifg=#9faa00 guibg=none gui=italic
 	endif
 
 	" Patch Hop colors
