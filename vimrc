@@ -91,8 +91,8 @@ function! BatteryToggle(state = 'auto', quiet = 0)
 	endif
 
 	" Toggle Ale on/off to reset config
-	call ALEToggle()
-	call ALEToggle()
+	exec "ALEToggle"
+	exec "ALEToggle"
 endfunction
 
 " map ,ba - Battery mode auto
@@ -833,7 +833,7 @@ EOF
 endfunction
 " }}}
 " Plugin: ALE - Syntax checking via eslint {{{
-Plug 'dense-analysis/ale', {'done': 'call s:ConfigALE()' }
+Plug 'dense-analysis/ale', {'done': 'call s:ConfigALE()'}
 " @url https://github.com/dense-analysis/ale
 "
 " Linter leading key is 'l'
@@ -853,9 +853,6 @@ function s:ConfigALE()
 
 	" Disable for .min.js files
 	let g:ale_pattern_options = {'\.min.js$': {'ale_enabled': 0}}
-
-	" Stop ESLint getting confused by multi-level package.json files
-	let g:ale_javascript_eslint_options = '--resolve-plugins-relative-to=.'
 	" }}}
 
 	" Triggering {{{
@@ -885,7 +882,7 @@ function s:ConfigALE()
 	" For Ale highlight colors overrides see RepairColors()
 
 	" Show preview window when on active line
-	" let g:ale_cursor_detail = 1
+	let g:ale_cursor_detail = 1
 
 	let g:ale_sign_error = ' '
 	highlight link ALEErrorSign NotifyERRORIcon
@@ -899,8 +896,8 @@ function s:ConfigALE()
 	map ll <Plug>(ale_lint)
 
 	" Toggle: lt || l-
-	map <silent> lt :call ALEToggle()<CR>
-	map <silent> l- :call ALEToggle()<CR>
+	map <silent> lt :ALEToggle<CR>
+	map <silent> l- :ALEToggle<CR>
 	function! ALEToggle()
 		exec "ALEToggle"
 		if g:ale_enabled == 1
@@ -943,8 +940,9 @@ function s:ConfigALE()
 	map ln <Plug>(ale_next_wrap)
 	map l] <Plug>(ale_next_wrap)
 
-	" Previous item: lp || l[
+	" Previous item: lp || lN || l[
 	map lp <Plug>(ale_previous_wrap)
+	map lN <Plug>(ale_previous_wrap)
 	map l[ <Plug>(ale_previous_wrap)
 	" }}}
 endfunction
