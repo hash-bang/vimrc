@@ -1371,7 +1371,7 @@ Plug 'rcarriga/nvim-notify'
 
 function s:ConfigNoice()
 	" F2 to dismiss messages
-	imap <silent> <F2> :call Quiet()<CR>
+	imap <silent> <F2> <esc>:call Quiet()<CR>
 	map <silent> <F2> :call Quiet()<CR>
 
 	" Ctrl+F2 to show message history
