@@ -127,7 +127,11 @@ snippet app.post
 # }}}
 
 # Promises {{{
-snippet Promise.wait
+snippet Promise.t
+	import {setTimeout: promiseTimeout} from 'node:timers/promises';
+	promiseTimeout($1)
+
+snippet Promise.timeout
 	new Promise(resolve => setTimeout(()=> resolve($1), ${2:1000}))
 
 snippet .then
@@ -169,6 +173,21 @@ snippet "import @m"
 
 snippet var
 	var ${1:module} = require("$1");
+# }}}
+
+# Eslint {{{
+snippet de
+	debugger;
+
+snippet def
+	debugger; // FIXME: ${1:Check this}
+
+snippet dei
+	/* eslint-disable no-debugger */
+	debugger;
+
+snippet esi
+	// eslint-ignore-line
 # }}}
 
 # General JSDoc {{{
