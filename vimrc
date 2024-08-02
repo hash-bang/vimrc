@@ -1514,10 +1514,16 @@ let g:startify_custom_header = ''
 " Increase number of files
 let g:startify_files_number = 20
 
+" Add global bookmarks
+let g:startify_bookmarks = [
+	\ '~/Notes/Notes.txt',
+	\ '~/.vimrc',
+	\ '~/.zshrc'
+\ ]
+
 " Skip certain patterns
 let g:startify_skiplist = [
 	\ '^/tmp',
-	\ '^/home/mc/Dropbox',
 	\ '^/home/mc/Papers/Notes/Humour',
 	\ '.git/'
 \ ]
