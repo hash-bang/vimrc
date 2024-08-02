@@ -1638,8 +1638,12 @@ lua <<EOF
 	})
 
 	require('ibl').setup({
+		indent = {
+			char = "│",
+		},
 	})
 
+	-- `vai` to select within context, `vaI` to select + outer surround
 	require("treesitter_indent_object").setup()
 
 	-- select context-aware indent
