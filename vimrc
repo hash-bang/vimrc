@@ -1441,8 +1441,8 @@ Plug 'junegunn/vim-peekaboo'
 " e.g. to paste from register 2 - "2p
 " }}}
 " (DISABLED) Plugin: Pretty-fold - Nicer folds with stats + previews (`h` key) {{{
-" DISABLED - Crashing
-Plug 'anuvyklack/pretty-fold.nvim' ", {'done': 'call s:ConfigPrettyFold()'}
+" DISABLED - Errors out on load - MC 2024-07-22
+Plug 'anuvyklack/pretty-fold.nvim' " , {'done': 'call s:ConfigPrettyFold()'}
 Plug 'anuvyklack/fold-preview.nvim'
 Plug 'anuvyklack/nvim-keymap-amend' " Needed for preview
 
