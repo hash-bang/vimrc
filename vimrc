@@ -1289,7 +1289,7 @@ lua <<EOF
 EOF
 endfunction
 " }}}
-" Plugin: Mini.Animate {{{
+" Plugin: Mini.Animate  - Animation effects {{{
 " @url https://github.com/echasnovski/mini.animate
 Plug 'echasnovski/mini.animate', {'done': 'call s:ConfigMiniAnimate()'}
 
@@ -1393,7 +1393,7 @@ EOF
 
 endfunction
 " }}}
-" Plugin: OpenRazer (DISABLED) - Fancy keyboard functionality if present {{{
+" (DISABLED) Plugin: OpenRazer - Fancy keyboard functionality if present {{{
 " Plug 'hash-bang/vim-open-razer'
 
 " STFU if an OpenRazer device is not found
@@ -1482,7 +1482,7 @@ Plug 'airblade/vim-rooter'
 " Be Quiet on startup
 let g:rooter_silent_chdir = 1
 " }}}
-" Plugin: Session-Manager {{{
+" Plugin: Session-Manager - Read/Write sessions {{{
 " @url https://github.com/Shatur/neovim-session-manager
 Plug 'Shatur/neovim-session-manager', {'done': 'call s:ConfignSessionManager()'}
 
@@ -1781,8 +1781,10 @@ lua <<EOF
 EOF
 endfunction
 " }}}
-" Plugin: Which-Key - Replace the spelling prompt with a nicer UI {{{
-Plug 'folke/which-key.nvim', {'done': 'call s:ConfigWhichKey()'}
+" (DISABLED) Plugin: Which-Key - Replace the spelling prompt with a nicer UI {{{
+" Disabled - is this even being used? - MC 2024-07-24
+" Plug 'folke/which-key.nvim', {'done': 'call s:ConfigWhichKey()'}
+" @url https://github.com/folke/which-key.nvim
 
 function s:ConfigWhichKey()
 lua <<EOF
