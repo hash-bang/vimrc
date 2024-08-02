@@ -865,25 +865,28 @@ function s:ConfigALE()
 	" }}}
 
 	" Display {{{
+	" Disable Handing off errors to NeoVIM, let ALE handle the display
+	let g:ale_use_neovim_diagnostics_api = 0
+
 	" Disable sending echo for current complaint
 	let g:ale_echo_cursor = 0
-	let g:ale_echo_msg_format = '%%s (%code%)'
-	let g:ale_lsp_show_message_format = '%s (%severity%)'
-	let g:ale_lsp_show_message_severity = 'information' " Min level to show
+
+	" Display errors at end of line as virtualtext
+	let g:ale_virtualtext_cursor = 'all'
+	let g:ale_virtualtext_prefix = ' %severity%% # code% - '
+	let g:ale_virtualtext_cursor = 'all' " ENUM: 'all', 'current'
+
+	" LSP list options
+	let g:ale_lsp_show_message_format = '%s (%severity%%/code%)'
+	let g:ale_lsp_show_message_severity = 'warning' " Min level to show
 
 	" Show ALE complaint in floating preview window
+	let g:ale_cursor_detail = 1 " Open when on same line
 	let g:ale_hover_to_floating_preview = 1
 	let g:ale_detail_to_floating_preview = 1
 
-	" Show ALE complaint for highlighted line only
-	let g:ale_virtualtext_cursor = 'all' " ENUM: 'all', 'current'
-	let g:ale_virtualtext_prefix = ' '
-
+	" Gutter themes
 	" For Ale highlight colors overrides see RepairColors()
-
-	" Show preview window when on active line
-	let g:ale_cursor_detail = 1
-
 	let g:ale_sign_error = ' '
 	highlight link ALEErrorSign NotifyERRORIcon
 
