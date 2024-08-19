@@ -1790,14 +1790,17 @@ lua <<EOF
 EOF
 endfunction
 " }}}
-" (DISABLED) Plugin: Which-Key - Replace the spelling prompt with a nicer UI {{{
-" Disabled - is this even being used? - MC 2024-07-24
-" Plug 'folke/which-key.nvim', {'done': 'call s:ConfigWhichKey()'}
+" Plugin: Which-Key - Replace the spelling prompt with a nicer UI {{{
+" This is also needed to provide a nicer spelling corrections UI when combined with Noice
+Plug 'folke/which-key.nvim', {'done': 'call s:ConfigWhichKey()'}
 " @url https://github.com/folke/which-key.nvim
 
 function s:ConfigWhichKey()
 lua <<EOF
 	require("which-key").setup({
+		delay = function(ctx)
+			return ctx.plugin and 0 or 1200
+		end,
 		plugins = {
 			spelling = {
 				enabled = true,
