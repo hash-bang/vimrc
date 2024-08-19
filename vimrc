@@ -791,8 +791,6 @@ elseif switch_colorscheme == 'zenburn'
 endif
 " }}}
 " Plugins: GENERAL SYNTAX {{{
-Plug 'LeonB/vim-nginx'
-Plug 'hash-bang/vim-vue'
 Plug 'hash-bang/vim-todo'
 Plug 'projectfluent/fluent.vim'
 " }}}
@@ -803,9 +801,6 @@ let g:vim_markdown_folding_disabled = 1
 
 " Disable concealing
 let g:vim_markdown_conceal = 0
-" }}}
-" Plugin: SYNTAX / Justfiles {{{
-Plug 'NoahTheDuke/vim-just'
 " }}}
 
 " Plugin: Actually - Correct mistyped file names {{{
@@ -1608,7 +1603,6 @@ lua <<EOF
 	require('nvim-treesitter.configs').setup({
 		highlight = {
 			enable = true, -- false will disable the whole extension
-			disable = {"vue"}, -- Seems to really screw up with Vue files
 			additional_vim_regex_highlighting = false,
 		},
 		incremental_selection = {
@@ -1644,6 +1638,7 @@ lua <<EOF
 	})
 
 	-- `vai` to select within context, `vaI` to select + outer surround
+	-- `vii` to seletc everything within the current indent
 	require("treesitter_indent_object").setup()
 
 	-- select context-aware indent
