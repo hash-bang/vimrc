@@ -524,6 +524,10 @@ map <C-s>x :tabclose<CR>
 " Visual mode {{{
 " Press @q in visual mode to run that macro on all selected lines
 vmap @q :normal @q<CR>
+
+" Ctrl+A to select all in visual mode
+map <C-A> ggVG
+nmap <C-A> <esc>ggVG
 " }}}
 " Windows {{{
 " <C-W>S (capital S) opens UNDER current window
