@@ -8,27 +8,28 @@
 let g:switch_wakatime=0 " Enable wakatime Plugin
 
 " Color scheme options
-let g:switch_colorscheme = 'everforest' " Selected color scheme, must match an entry within `Plugins: COLOR SCHEMES`
+let g:switch_colorscheme = 'gruvbox-material' " Selected color scheme, must match an entry within `Plugins: COLOR SCHEMES`
 
-" ariake        - Purple primary
-" bamboo        - High-contrast, dark with strong foreground
-" bronzage      - yellow / icy blue based muted text
-" brown         - Very amber coloring
-" cosmic_latte  - Very muted everything with blue & red highlights
-" darkearth     - Very muted Brown tones with an earthy feel
-" embark        - Very blue, over-saturated, icy theme
-" gruber-darker - Very high-contrast theme
-" gruvbox       - Dark but constrasting bright colors
-" hybrid2       - Muted blue coloring as primary with high contrast notes
-" everforest    - "Nord-lite", subtle blend
-" falcon        - Dark background, with orange notes
-" kanagawa      - Bold margins + folds, colorful code
-" melange       - High-contrast, colorful
-" nightfox      - Dark pale blue folds, muted text
-" nord          - Default, go-to theme with blue-ice overtones
-" tender        - Very muted folds, bright colorful text
-" tokyonight    - Primarily purple with neon notes
-" zenburn       - High contrast
+" ariake           - Purple primary
+" bamboo           - High-contrast, dark with strong foreground
+" bronzage         - yellow / icy blue based muted text
+" brown            - Very amber coloring
+" cosmic_latte     - Very muted everything with blue & red highlights
+" darkearth        - Very muted Brown tones with an earthy feel
+" embark           - Very blue, over-saturated, icy theme
+" gruber-darker    - Very high-contrast theme
+" gruvbox          - Dark but constrasting bright colors
+" gruvbox-material - Gruvbox but more metalic
+" hybrid2          - Muted blue coloring as primary with high contrast notes
+" everforest       - "Nord-lite", subtle blend
+" falcon           - Dark background, with orange notes
+" kanagawa         - Bold margins + folds, colorful code
+" melange          - High-contrast, colorful
+" nightfox         - Dark pale blue folds, muted text
+" nord             - Default, go-to theme with blue-ice overtones
+" tender           - Very muted folds, bright colorful text
+" tokyonight       - Primarily purple with neon notes
+" zenburn          - High contrast
 
 " Functions {{{
 " Utility: GetVisual() {{{
@@ -759,6 +760,7 @@ Plug 'ColinKennedy/hybrid2.nvim'
 Plug 'jim-at-jibba/ariake.nvim'
 Plug 'ptdewey/darkearth-nvim'
 Plug 'blazkowolf/gruber-darker.nvim'
+Plug 'sainnhe/gruvbox-material'
 
 " Overrides based on colorscheme
 if switch_colorscheme == 'anotherdark'
