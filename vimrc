@@ -27,6 +27,7 @@ let g:switch_colorscheme = 'gruvbox-material' " Selected color scheme, must matc
 " melange          - High-contrast, colorful
 " nightfox         - Dark pale blue folds, muted text
 " nord             - Default, go-to theme with blue-ice overtones
+" serene           - Dark color scheme with dark-blue background
 " tender           - Very muted folds, bright colorful text
 " tokyonight       - Primarily purple with neon notes
 " zenburn          - High contrast
@@ -761,6 +762,7 @@ Plug 'jim-at-jibba/ariake.nvim'
 Plug 'ptdewey/darkearth-nvim'
 Plug 'blazkowolf/gruber-darker.nvim'
 Plug 'sainnhe/gruvbox-material'
+Plug 'samharju/serene.nvim'
 
 " Overrides based on colorscheme
 if switch_colorscheme == 'anotherdark'
