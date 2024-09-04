@@ -183,8 +183,7 @@ snippet def
 	debugger; // FIXME: ${1:Check this}
 
 snippet dei
-	/* eslint-disable no-debugger */
-	debugger;
+	debugger; // eslint-disable-line no-debugger
 
 snippet esi
 	// eslint-ignore-line
@@ -210,6 +209,24 @@ snippet @po
 
 snippet @pn
 	@param {Number} $1
+
+snippet @ps
+	@param {String} $1
+
+snippet @ta
+	@type {Array}
+
+snippet @tb
+	@type {Boolean}
+
+snippet @tf
+	@type {Function}
+
+snippet @to
+	@type {Object}
+
+snippet @tn
+	@type {Number}
 
 snippet @ps
 	@param {String} $1
