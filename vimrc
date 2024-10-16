@@ -1574,7 +1574,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', {'branch': '0.1.x', 'done': 'call s:ConfigTelescope()'}
 
 " <C-e> to open the old-files list + search
-nmap <silent> <C-e> :Telescope oldfiles<CR>
+nmap <silent> <C-s-e> :Telescope oldfiles<CR>
 " <C-d> to open within current directory
 nmap <silent> <C-d> :Telescope find_files<CR>
 
@@ -1582,6 +1582,22 @@ function s:ConfigTelescope()
 lua <<EOF
 	require('telescope').setup({
 	})
+EOF
+endfunction
+" }}}
+" Plugin: Telescope + Smart Open - Guess the file to edit via Telescope (Ctrl+E) {{{
+Plug 'danielfalk/smart-open.nvim', {'done': 'call s:ConfigSmartOpen()'}
+Plug 'kkharji/sqlite.lua'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
+" @url https://github.com/danielfalk/smart-open.nvim
+
+function s:ConfigSmartOpen()
+lua <<EOF
+	require('smart-open').setup({
+	})
+
+	-- Map Ctrl+E to open the smart open dialog
+	vim.keymap.set('n', '<c-e>', require('telescope').extensions.smart_open.smart_open, { noremap = true, silent = true })
 EOF
 endfunction
 " }}}
