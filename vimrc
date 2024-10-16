@@ -783,6 +783,8 @@ elseif switch_colorscheme == 'everforest'
 elseif switch_colorscheme == 'falcon'
 	let g:switch_colorscheme_patch_cursor = 1
 	let g:switch_colorscheme_patch_todo = 1
+elseif switch_colorscheme == 'gruvbox-material'
+	let g:switch_colorscheme_patch_todo = 1
 elseif switch_colorscheme == 'hybrid2'
 	let g:switch_colorscheme_patch_conceal = 1
 elseif switch_colorscheme == 'nightfox'
