@@ -28,6 +28,7 @@ let g:switch_colorscheme = 'nordern' " Selected color scheme, must match an entr
 " nightfox         - Dark pale blue folds, muted text
 " nord             - Default, go-to theme with blue-ice overtones
 " nordern          - Icy color scheme with blue + white emphasis
+" posterpole       - Muted colors with grey + blue contrast
 " serene           - Dark color scheme with dark-blue background
 " tender           - Very muted folds, bright colorful text
 " tokyonight       - Primarily purple with neon notes
@@ -765,6 +766,7 @@ Plug 'blazkowolf/gruber-darker.nvim'
 Plug 'sainnhe/gruvbox-material'
 Plug 'samharju/serene.nvim'
 Plug 'fcancelinha/nordern.nvim'
+Plug 'ilof2/posterpole.nvim'
 
 " Overrides based on colorscheme
 if switch_colorscheme == 'anotherdark'
