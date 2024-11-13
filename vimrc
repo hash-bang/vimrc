@@ -447,9 +447,6 @@ vmap <m-d> "+c<ESC>
 vmap <m-p> "+p<ESC>
 map <m-p> "+p<ESC>
 imap <m-p> <ESC>"+pa
-
-" F9 toggles paste friendly (VIM only, NVIM has this automatic)
-se pt=<F9>
 " }}}
 " Change {{{
 " `` - change previous ' on line to ` - used to correct the current single speachmark to a backtick when realizing you need ${} halfway though a JS string
