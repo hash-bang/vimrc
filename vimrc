@@ -1394,6 +1394,14 @@ lua <<EOF
 	})
 
 	require('noice').setup({
+		routes = {
+			{ -- Redirect input prompts (e.g. spelling) to wait for user responses
+				filter = {
+					kind = 'number_prompt',
+				},
+				view = 'mini',
+			},
+		}
 	})
 EOF
 
@@ -1795,30 +1803,6 @@ lua <<EOF
 		},
 	})
 EOF
-endfunction
-" }}}
-" Plugin: Which-Key - Replace the spelling prompt with a nicer UI {{{
-" This is also needed to provide a nicer spelling corrections UI when combined with Noice
-Plug 'folke/which-key.nvim', {'done': 'call s:ConfigWhichKey()'}
-" @url https://github.com/folke/which-key.nvim
-
-function s:ConfigWhichKey()
-lua <<EOF
-	require("which-key").setup({
-		delay = function(ctx)
-			return ctx.plugin and 0 or 1200
-		end,
-		plugins = {
-			spelling = {
-				enabled = true,
-				suggestions = 20,
-			},
-		},
-	})
-EOF
-
-	" Fix which-key screwing with `cc` for some reason
-	map cc ^C
 endfunction
 " }}}
 " (DISABLED) Plugin: YankBank - Show recent yanks in a popup {{{
