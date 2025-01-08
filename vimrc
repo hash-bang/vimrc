@@ -1519,6 +1519,23 @@ EOF
 
 endfunction
 " }}}
+" Plugin: Silicon - Code shots into .png files {{{
+Plug 'michaelrommel/nvim-silicon', {'done': 'call s:ConfigSilicon()'}
+" @url https://github.com/michaelrommel/nvim-silicon
+
+function s:ConfigSilicon()
+lua <<EOF
+	require('nvim-silicon').setup({
+		output = function() -- Timestamp code output
+			return "~/Burnbag/" .. os.date("!%Y-%m-%dT%H-%M-%S") .. ".png"
+		end,
+	})
+
+	-- Visual yank to silicon - <leader>sy
+	vim.keymap.set('v', '<leader>sy', function() require('nvim-silicon').file() end, {silent = true})
+EOF
+endfunction
+" }}}
 " Plugin: Startify - Nicer default startup screen {{{
 Plug 'mhinz/vim-startify'
 
