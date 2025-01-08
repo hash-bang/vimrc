@@ -1864,7 +1864,7 @@ lua <<EOF
 			},
 		},
 		system_clipboard = {
-			sync_with_ring = true,
+			sync_with_ring = false,
 		},
 		highlight = {
 			on_put = true,
