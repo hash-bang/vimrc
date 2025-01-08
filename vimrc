@@ -887,7 +887,7 @@ function s:ConfigALE()
 	let g:ale_lsp_show_message_severity = 'warning' " Min level to show
 
 	" Show ALE complaint in floating preview window
-	let g:ale_cursor_detail = 1 " Open when on same line
+	let g:ale_cursor_detail = 0 " Open when on same line
 	let g:ale_hover_to_floating_preview = 1
 	let g:ale_detail_to_floating_preview = 1
 
