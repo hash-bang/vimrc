@@ -193,11 +193,15 @@ endfunction
 map <F4> :call CleanTVSeries()<CR>
 " }}}
 
-" Quiet() - Hide highlights, dismiss notifications + disable spelling {{{
+" Quiet() + Loud() - Hide highlights, dismiss notifications + disable spelling {{{
 function! Quiet()
 	lua require('notify').dismiss()
 	set nohlsearch
 	set nospell
+endfunction
+
+function! Loud()
+	set hlsearch
 endfunction
 " }}}
 
@@ -1386,8 +1390,9 @@ function s:ConfigNoice()
 	imap <silent> <F2> <esc>:call Quiet()<CR>
 	map <silent> <F2> :call Quiet()<CR>
 
-	" Ctrl+F2 to show message history
-	map <silent> <C-F2> :Noice history<CR>
+	" (Ctrl|Shift)+F2 to bring back highlighting
+	map <silent> <C-F2> :call Load()<CR>
+	map <silent> <S-F2> :call Load()<CR>
 
 lua <<EOF
 	require('notify').setup({
