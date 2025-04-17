@@ -1004,6 +1004,16 @@ Plug 'miyakogi/conoline.vim'
 
 let g:conoline_auto_enable = 1
 " }}}
+" Plugin: DiffView - Git history views for files via :DiffView* {{{
+Plug 'sindrets/diffview.nvim', {'done': 'call s:ConfigDiffView()'}
+
+function s:ConfigDiffView()
+lua <<EOF
+require('diffview').setup({
+})
+EOF
+endfunction
+" }}}
 " Plugin: Emmet - Use <C-Y> to transform CSS under cursor to HTML via Emmet {{{
 " Ctrl+Y , is default binding
 Plug 'mattn/emmet-vim'
