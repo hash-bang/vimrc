@@ -1822,24 +1822,19 @@ lua <<EOF
 EOF
 endfunction
 " }}}
-" (DISABLED) Plugin: YankBank - Show recent yanks in a popup {{{
-" DISABLED - Has potencial but displays bugs when trying to open the access window
-Plug 'ptdewey/yankbank-nvim' ", {'done': 'call s:ConfigYankBank()'}
+" Plugin: Whitespace - Show whitespace characters in visual mode {{{
+Plug 'mcauley-penney/visual-whitespace.nvim', {'done': 'call s:ConfigWhitespace()'}
 
-function s:ConfigYankBank()
+function s:ConfigWhitespace()
 lua <<EOF
-	require('yankbank').setup({
-		max_entries = 10,
-		sep = '----------',
-		keymaps = {
-			navigation_next = { 'n' },
-			navigation_prev = { 'N', 'p' },
-			paste = { '<CR>' },
-			close = { "<Esc>", "<C-c>", "q" }
-		},
+	require('visual-whitespace').setup({
+		enabled = true,
+		space_char = '·',
+		tab_char = '→',
+		unix_char = '↲',
+		mac_char = '←',
+		dos_char = '↙',
 	})
-
-	vim.keymap.set({"n","v"}, "<leader>y", "<cmd>YankBank<CR>", {noremap = true})
 EOF
 endfunction
 " }}}
