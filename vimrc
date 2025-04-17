@@ -21,7 +21,7 @@ let g:switch_colorscheme = 'nordern' " Selected color scheme, must match an entr
 " gruvbox          - Dark but constrasting bright colors
 " gruvbox-material - Gruvbox but more metalic
 " hybrid2          - Muted blue coloring as primary with high contrast notes
-" everforest       - "Nord-lite", subtle blend
+" everforest       - Nord-lite, subtle color blend
 " falcon           - Dark background, with orange notes
 " kanagawa         - Bold margins + folds, colorful code
 " melange          - High-contrast, colorful
@@ -460,6 +460,9 @@ map z<down> zj
 " ]z [z - navigate folds like spell
 map ]z zj
 map [z zk
+
+" Switch to fold method by indent
+map <silent> gfi :se foldmethod=indent<CR>
 " }}}
 " File list (really "buffer") naivgaton {{{
 nmap <silent> mm :n<CR>
@@ -1724,9 +1727,10 @@ endfunction
 Plug 'folke/todo-comments.nvim', {'done': 'call s:ConfigTodoComments()' }
 
 " @FIXME: Test 0
-" FIXME: Test 1
-" TODO: Test 2
-" WARN: Test 3
+" DEBUG: Test 1
+" FIXME: Test 2
+" TODO: Test 3
+" WARN: Test 4
 
 function s:ConfigTodoComments()
 lua <<EOF
@@ -1738,7 +1742,7 @@ lua <<EOF
 			FIX  = { icon = " ", color = "warning", alt = { "FIXME", "BUG", "EXPERIMENTAL" } },
 			NOTE = { icon = " ", color = "hint", alt = { "INFO", "UX" } },
 			TODO = { icon = " ", color = "info" },
-			WARN = { icon = " ", color = "error", alt = { "WARNING", "WARN", "XXX", "CRIT", "CRITICAL" } },
+			WARN = { icon = " ", color = "error", alt = { "WARNING", "WARN", "XXX", "CRIT", "CRITICAL", "DEBUG" } },
 		},
 		highlight = {
 			keyword = "bg", -- Only highlight word, not surrounding chars
