@@ -1199,16 +1199,20 @@ lua <<EOF
 		options = {
 			icons_enabled = true,
 			theme = 'auto',
-			component_separators = { left = '', right = ''},
-			section_separators = { left = '', right = ''},
+			component_separators = '|',
+			section_separators = { left = '', right = '' },
 			always_divide_middle = true,
 		},
 		sections = {
 			lualine_a = {
-				'mode'
+				{'mode',
+					padding = {left = 1, right = 1},
+				},
 			},
 			lualine_b = {
-				'branch',
+				{'branch',
+					padding = {left = 1, right = 1},
+				},
 				'diff',
 				'diagnostics',
 			},
@@ -1243,27 +1247,28 @@ lua <<EOF
 					icon = "⏺",
 					color = { fg = "#ff9e64", bg = "#c0392b" },
 					padding = {left = 1, right = 1},
-					separator = {left = ''},
+					separator = {left = ''},
 				},
 			},
 			lualine_y = {
 				{'filetype',
 					icons_enabled = false,
-					separator = '/',
+					separator = '|',
 				},
 				{'encoding',
-					separator = '/',
+					separator = '|',
 				},
 				{'fileformat',
-					separator = '/',
+					separator = '|',
 				},
 			},
 			lualine_z = {
 				{'progress',
-					separator = '/',
+					separator = '|',
+					padding = {left = 1, right = 1},
 				},
 				'location',
-				{'g:battery_mode',
+				{'g:battery_mode', -- Battery display, shows only if in detected battery mode
 					fmt =
 						function()
 							return '🔽'
@@ -1294,7 +1299,11 @@ lua <<EOF
 					}
 				},
 			},
-			lualine_x = {'location'},
+			lualine_x = {
+				{'location',
+					padding = {left = 1, right = 0},
+				},
+			},
 			lualine_y = {},
 			lualine_z = {}
 		},
