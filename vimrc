@@ -723,6 +723,10 @@ vmap <silent> // y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
 "	cmap \ [6~
 "endif
 " }}}
+" VimRC management {{{
+" <leader>v to reload vimrc + run PlugInstall
+nnoremap <silent><leader>v :source ~/.vim/vimrc \| :PlugInstall<CR>
+" }}}
 " }}}
 
 " Plugins: START {{{
