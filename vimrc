@@ -996,6 +996,9 @@ lua <<EOF
 EOF
 endfunction
 " }}}
+" Plugin: Bullets - Auto continue bullets / numered lists {{{
+Plug 'bullets-vim/bullets.vim'
+" }}}
 " Plugin: Comment - Comment line/block toggling {{{
 Plug 'numToStr/Comment.nvim', {'done': 'call s:ConfigComment()'}
 " @url https://github.com/numToStr/Comment.nvim
@@ -1105,18 +1108,15 @@ EOF
 	vmap `` :
 endfunction
 " }}}
-" Plugin: Illuminate - Highlight keyword under cursor, move with <a-n> / <a-N> {{{
-Plug 'RRethy/vim-illuminate', {'done': 'call s:ConfigIlluminate()'}
+" Plugin: Incr - Select inner / outer selection areas using TreeSitter + <tab>/ <s-tab> {{{
+Plug 'daliusd/incr.nvim', {'done': 'call s:ConfigIncr()'}
 
-function s:ConfigIlluminate()
+function s:ConfigIncr()
 lua <<EOF
-	require('illuminate').configure({
-		-- See https://github.com/RRethy/vim-illuminate
-		delay = 300,
+	require('incr').setup({
+		incr_key = '<tab>', -- increment selection key
+		decr_key = '<s-tab>', -- decrement selection key
 	})
-
-	vim.keymap.set('n', '<a-n>', require('illuminate').goto_next_reference)
-	vim.keymap.set('n', '<a-N>', require('illuminate').goto_prev_reference)
 EOF
 endfunction
 " }}}
@@ -1815,27 +1815,6 @@ if switch_wakatime == 1
 	endfunction
 	:command -nargs=0 WakaTimeAutoOff call WakaTimeAutoOff()
 endif
-" }}}
-" Plugin: Wildfire - Inner-to-outer text block selection with <C-ENTER> {{{
-Plug 'sustech-data/wildfire.nvim', {'done': 'call s:ConfigWildfire()'}
-
-function s:ConfigWildfire()
-lua <<EOF
-	require('wildfire').setup({
-		surrounds = {
-			{ "(", ")" },
-			{ "{", "}" },
-			{ "<", ">" },
-			{ "[", "]" },
-		},
-		keymaps = {
-			init_selection = "<C-CR>",
-			node_incremental = "<C-CR>",
-			node_decremental = "<C-S-CR>",
-		},
-	})
-EOF
-endfunction
 " }}}
 " Plugin: WinShift - Move windows interactively (Ctrl+W+M) {{{
 Plug 'sindrets/winshift.nvim', {'done': 'call s:ConfigWinShift()' }
