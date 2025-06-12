@@ -1612,8 +1612,13 @@ Plug 'axelf4/vim-strip-trailing-whitespace'
 " Plugin: Suda - Sudo read / write access {{{
 Plug 'lambdalisue/suda.vim'
 " }}}
-" Plugin: Super-retab - Fix indenting via :Space2Tab / :Tab2Space {{{
+" Plugin: Super-retab - Fix indenting via :Space2Tab / :Tab2Space OR ,2 || ,4 {{{
 Plug 'rhlobo/vim-super-retab'
+
+nmap <silent> ,2 <ESC>:Space2Tab 2<CR>
+vmap <silent> ,2 :Space2Tab 2<CR>gv
+nmap <silent> ,4 <ESC>:Space2Tab 4<CR>
+vmap <silent> ,2 :Space2Tab 4<CR>gv
 " }}}
 " Plugin: Surround - Surrounding movement support {{{
 Plug 'tpope/vim-surround'
