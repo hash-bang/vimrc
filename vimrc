@@ -471,6 +471,7 @@ map [z zk
 map <silent> gfi :se foldmethod=indent<CR>
 " }}}
 " File list (really "buffer") naivgaton {{{
+" Move to next file with `mm`
 nmap <silent> mm :n<CR>
 " }}}
 " File types (gt*) {{{
@@ -481,9 +482,6 @@ nmap gtj :se ft=javascript<CR>
 nmap gts :se ft=sql<CR>:se nowrap<CR>
 nmap gto :se ft=json<CR>
 nmap gtv :se ft=vue<CR>
-
-" KLUDGE: Disable Treesitter until AOS moves to Doop@3
-map gtx :TSDisable highlight<CR>
 " }}}
 " Movement {{{
 " Alt+A - move to start of line (same as "^")
@@ -823,12 +821,6 @@ let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_conceal = 0
 " }}}
 
-" Plugin: Actually - Correct mistyped file names {{{
-Plug 'mong8se/actually.nvim'
-
-" Fancier windows
-Plug 'stevearc/dressing.nvim'
-" }}}
 " Plugin: Aerial - F1 to toggle file ToC {{{
 Plug 'stevearc/aerial.nvim', {'done': 'call s:ConfigAerial()'}
 Plug 'onsails/lspkind.nvim'
@@ -1568,7 +1560,7 @@ let g:startify_files_number = 20
 " Add global bookmarks
 let g:startify_bookmarks = [
 	\ '~/Notes/Notes.txt',
-	\ '~/.vimrc',
+	\ '~/.vim/vimrc',
 	\ '~/.zshrc'
 \ ]
 
