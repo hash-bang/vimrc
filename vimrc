@@ -843,6 +843,28 @@ lua <<EOF
 EOF
 endfunction
 " }}}
+" Plugin: AutoCmdHeight - Resize AutoCmd for output messages {{{
+Plug 'jake-stewart/auto-cmdheight.nvim', {'done': 'call s:ConfigAutoCmdHeight()'}
+
+function s:ConfigAutoCmdHeight()
+lua <<EOF
+	require('auto-cmdheight').setup({
+		-- max cmdheight before displaying hit enter prompt.
+		max_lines = 5,
+
+		-- number of seconds until the cmdheight can restore.
+		duration = 2,
+
+		-- whether key press is required to restore cmdheight.
+		remove_on_key = true,
+
+		-- always clear the cmdline after duration and key press.
+		-- by default it will only happen when cmdheight changed.
+		clear_always = false,
+	})
+EOF
+endfunction
+" }}}
 " Plugin: ALE - Syntax checking via eslint {{{
 Plug 'dense-analysis/ale', {'done': 'call s:ConfigALE()'}
 " @url https://github.com/dense-analysis/ale
