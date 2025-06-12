@@ -345,11 +345,13 @@ let g:netrw_liststyle=1
 autocmd BufRead,BufNewFile *.PAS set ft=pascal
 autocmd BufRead,BufNewFile *.pas set ft=pascal
 autocmd BufRead,BufNewFile *.ng set ft=vue
-autocmd BufRead *.txt set ft=
-autocmd BufRead NOTES set ft=todo
-autocmd BufRead MEETINGS set ft=todo
-autocmd BufRead *.TODO set ft=todo
-autocmd BufRead .env* set ft=dotenv
+autocmd BufRead,BufNewFile *.txt set ft=
+autocmd BufRead,BufNewFile NOTES set ft=todo
+autocmd BufRead,BufNewFile MEETINGS set ft=todo
+autocmd BufRead,BufNewFile MEETINGS set ft=todo
+autocmd BufRead,BufNewFile *.TODO set ft=todo
+autocmd BufRead,BufNewFile *.doop set ft=javascript
+autocmd BufRead,BufNewFile .env* set ft=dotenv
 
 " Smart indending for Python
 autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
