@@ -1510,6 +1510,31 @@ lua <<EOF
 EOF
 endfunction
 " }}}
+" Plugin: Oil {{{
+" @url https://github.com/stevearc/oil.nvim
+Plug 'stevearc/oil.nvim', {'done': 'call s:ConfigOil()'}
+Plug 'refractalize/oil-git-status.nvim'
+
+function s:ConfigOil()
+lua <<EOF
+	require('oil').setup({
+		-- Oil will take over directory buffers (e.g. `vim .` or `:e src/`)
+		default_file_explorer = true,
+
+		-- Id is automatically added at the beginning, and name at the end
+		-- See :help oil-columns
+		columns = {
+			"icon",
+			-- "permissions",
+			"size",
+			"mtime",
+		},
+	})
+
+	require('oil-git-status').setup()
+EOF
+endfunction
+" }}}
 " Plugin: Noice - Cmdline popup + notifications {{{
 Plug 'folke/noice.nvim', {'done': 'call s:ConfigNoice()'}
 " @url https://github.com/folke/noice.nvim
