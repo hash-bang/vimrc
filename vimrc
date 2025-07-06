@@ -1040,7 +1040,7 @@ require('diffview').setup({
 EOF
 endfunction
 " }}}
-" Plugin: Emmet - Use <C-Y> to transform CSS under cursor to HTML via Emmet {{{
+" Plugin: Emmet - Use <C-Y>, to transform CSS under cursor to HTML via Emmet {{{
 " Ctrl+Y , is default binding
 Plug 'mattn/emmet-vim'
 " }}}
