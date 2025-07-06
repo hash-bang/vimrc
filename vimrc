@@ -996,7 +996,7 @@ lua <<EOF
 		virtual_style = 'right_align',
 	})
 
-	vim.keymap.set({"n", "v"}, "gb", ":ToggleBlame<CR>", {silent = true})
+	vim.keymap.set({"n", "v"}, "gb", ":BlameToggle<CR>", {silent = true})
 EOF
 endfunction
 " }}}
