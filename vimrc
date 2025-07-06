@@ -844,6 +844,7 @@ EOF
 endfunction
 " }}}
 " Plugin: Actually - correct mis-typed filenames on open {{{
+" @url https://github.com/mong8se/actually.nvim
 Plug 'mong8se/actually.nvim'
 " }}}
 " Plugin: AutoCmdHeight - Resize AutoCmd for output messages {{{
@@ -1510,7 +1511,7 @@ lua <<EOF
 EOF
 endfunction
 " }}}
-" Plugin: Oil {{{
+" Plugin: Oil - Replacement for built-in file explorer {{{
 " @url https://github.com/stevearc/oil.nvim
 Plug 'stevearc/oil.nvim', {'done': 'call s:ConfigOil()'}
 Plug 'refractalize/oil-git-status.nvim'
