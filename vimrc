@@ -386,7 +386,7 @@ function! FoldText()
 	let line_text = substitute(line_text, '\(-->\)\+\s*$', '', 'g') " closing comments - comment (HTML)
 	let line_text = substitute(line_text, '\s*{\+\s*$', '', 'g') " General fold markers (tripple open braces)
 
-	let fillcharcount = winwidth('%') - len(line_text) - len(folded_line_num) - 12
+	let fillcharcount = winwidth('%') - len(line_text) - len(folded_line_num) - 13
 	return '  '. line_text . repeat(' ', fillcharcount) . ' (' . folded_line_num . ')'
 endfunction
 set foldtext=FoldText()
