@@ -1195,7 +1195,95 @@ lua <<EOF
 EOF
 endfunction
 " }}}
-" Plugin: Lualine - Statusline display {{{
+" Plugin: LSPConfig / TypeScript {{{
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'neovim/nvim-lspconfig', {'done': 'call s:ConfigLSP()'}
+Plug 'Jezda1337/nvim-html-css'
+Plug 'SergioRibera/cmp-dotenv'
+
+function s:ConfigLSP()
+lua <<EOF
+	-- LSP setup
+	local lspconfig = require('lspconfig')
+	local cmp = require('cmp')
+
+	-- Enable lspconfig Packages {{{
+	-- This should correspond to the cms.setup() # sources list below
+
+	-- nvim_lsp is a builtin
+	-- luasnip is not managed by lspconfig
+	-- vim.lsp.enable('vue_ls') -- Throws errors
+	vim.lsp.enable('ts_ls')
+	vim.lsp.enable('eslint')
+	vim.lsp.enable('just')
+	-- dotenv is not managed by lspconfig
+	-- html-css is not managed by lspconfig
+	-- }}}
+
+	-- Key mappings
+	vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, {noremap=true, silent=true})
+	vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {noremap=true, silent=true})
+	vim.keymap.set('n', 'K', vim.lsp.buf.hover, {noremap=true, silent=true})
+	vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, {noremap=true, silent=true})
+	vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {noremap=true, silent=true})
+	vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, {noremap=true, silent=true})
+	vim.keymap.set('n', 'gr', vim.lsp.buf.references, {noremap=true, silent=true})
+	vim.keymap.set('n', '<leader>f', vim.lsp.buf.format, {noremap=true, silent=true})
+
+	-- Completion setup
+	cmp.setup({
+		snippet = {
+			expand = function(args)
+				require('luasnip').lsp_expand(args.body)
+			end,
+		},
+		mapping = cmp.mapping.preset.insert({
+			['<C-b>'] = cmp.mapping.scroll_docs(-4),
+			['<C-f>'] = cmp.mapping.scroll_docs(4),
+			['<C-e>'] = cmp.mapping.abort(),
+			['<Tab>'] = cmp.mapping.confirm({ select = true }),
+			['<C-Enter>'] = cmp.mapping.confirm({ select = true }),
+			['<C-Space>'] = cmp.mapping.confirm({ select = true }),
+		}),
+		sources = cmp.config.sources({
+			{ name = 'nvim_lsp' },
+			{ name = 'luasnip' },
+			{ name = 'vue_ls' },
+			{ name = 'ts_ls' },
+			{ name = 'eslint' },
+			{ name = 'just' },
+			{ name = 'dotenv' },
+			{ name = 'html-css' },
+		}),
+
+		-- Window / dropdown style {{{
+		-- Based on https://github.com/hrsh7th/nvim-cmp/wiki/Menu-Appearance#how-to-get-types-on-the-left-and-offset-the-menu
+		window = {
+			completion = {
+				winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+				col_offset = -3,
+				side_padding = 0,
+			},
+		},
+		formatting = {
+			fields = { "kind", "abbr", "menu" },
+			format = function(entry, vim_item)
+				local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
+				local strings = vim.split(kind.kind, "%s", { trimempty = true })
+				kind.kind = " " .. (strings[1] or "") .. " "
+				kind.menu = "    (" .. (strings[2] or "") .. ")"
+
+				return kind
+			end,
+		},
+		-- }}}
+	})
+EOF
+endfunction
+" }}}
+ " Plugin: Lualine - Statusline display {{{
 Plug 'nvim-lualine/lualine.nvim', {'done': 'call s:ConfigLualine()'}
 Plug 'kyazdani42/nvim-web-devicons'
 
