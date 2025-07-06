@@ -53,7 +53,7 @@ snippet vitec
 	</template>
 
 snippet vites
-	<style scoped lang="scss">
+	<style lang="scss">
 	$1
 	</style>
 
@@ -63,37 +63,6 @@ snippet vitet
 			$1
 		</div>
 	</template>
-
-snippet vuec
-	<script lang="js" frontend>
-	app.component('$1', {
-		route: '/$1',
-		data() { return {
-		}},
-		methods: {
-		},
-	});
-	</script>
-
-	<template>
-		<div class="card">
-			<div class="card-header">
-				<h2>$1</h2>
-			</div>
-			<div class="card-body">
-				...
-			</div>
-		</div>
-	</template>
-
-snippet vuef
-	<script lang="js" frontend>
-	app.filter('$1', (value, settings) => {
-		if (!value) return;
-
-		return value;
-	});
-	</script>
 
 # Vue-Promise-Refresh
 snippet vuepr

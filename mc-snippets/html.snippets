@@ -21,6 +21,22 @@ snippet /*}
 	/* }}} */
 
 
+snippet accordion
+	<div class="accordion" id="${1:accordionId}">
+		<div class="accordion-item">
+			<h2 class="accordion-header">
+				<a class="accordion-button" data-bs-toggle="collapse" data-bs-target="#$1-${2:subId}">
+					...Title...
+				</a>
+			</h2>
+			<div id="$1-$2" class="accordion-collapse collapse show" data-bs-parent="#$1">
+				<div class="accordion-body">
+					...Body...
+				</div>
+			</div>
+		</div>
+	</div>
+
 snippet alert
 	<div class="alert alert-warning">
 		${1:Alert Message}
@@ -86,12 +102,15 @@ snippet css
 	<link href="${1:/css/style.css}" rel="stylesheet"/>
 
 snippet dropdown
-	<div class="btn-group">
-		<a class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown"> ${1:Button Text}</a>
+	<div class="dropdown">
+		<a class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown">
+			${1:Button Text}
+		</button>
 		<ul class="dropdown-menu">
-			<a class="dropdown-item">${2:Edit}</a>
-			<div class="dropdown-divider"/>
-			<a class="dropdown-item">${3:Delete}</a>
+			<a class="dropdown-item">Action</a>
+			<a class="dropdown-item">Another action</a>
+			<div classs="dropdown-divider"/>
+			<a class="dropdown-item">Something else here</a>
 		</ul>
 	</div>
 
@@ -181,3 +200,9 @@ snippet table
 	<table class="table table-striped table-bordered">
 		${1:...}
 	</table>
+
+snippet toggle
+	<div class="form-check form-switch">
+		<input class="form-check-input" type="checkbox" id="${1:toggleButton}">
+		<label class="form-check-label" for="$1">${2:Toggle label}</label>
+	</div>

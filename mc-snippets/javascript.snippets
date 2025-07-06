@@ -1,3 +1,26 @@
+# General shorthand {{{
+snippet @mfdc
+	@momsfriendlydevco
+
+snippet class
+	export default class $1 {
+
+		constructor(options) {
+			Object.assign(this, options);
+		}
+
+	}
+
+snippet throwiif
+	(()=> { throw new Error('$1') })()
+
+snippet undef
+	undefined
+
+snippet un
+	undefined
+# }}}
+
 # Angular (`ng-something`) {{{
 snippet ng-component
 	angular
@@ -185,8 +208,8 @@ snippet def
 snippet dei
 	debugger; // eslint-disable-line no-debugger
 
-snippet esi
-	// eslint-ignore-line
+snippet esd
+	// eslint-disable-line $1
 # }}}
 
 # General JSDoc {{{
