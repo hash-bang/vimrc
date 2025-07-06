@@ -843,6 +843,9 @@ lua <<EOF
 EOF
 endfunction
 " }}}
+" Plugin: Actually - correct mis-typed filenames on open {{{
+Plug 'mong8se/actually.nvim'
+" }}}
 " Plugin: AutoCmdHeight - Resize AutoCmd for output messages {{{
 Plug 'jake-stewart/auto-cmdheight.nvim', {'done': 'call s:ConfigAutoCmdHeight()'}
 
