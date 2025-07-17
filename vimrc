@@ -1621,34 +1621,6 @@ Plug 'junegunn/vim-peekaboo'
 " Use space to toggle fullscreen
 " e.g. to paste from register 2 - "2p
 " }}}
-" (DISABLED) Plugin: Pretty-fold - Nicer folds with stats + previews (`h` key) {{{
-" DISABLED - Errors out on load - MC 2024-07-22
-Plug 'anuvyklack/pretty-fold.nvim' " , {'done': 'call s:ConfigPrettyFold()'}
-Plug 'anuvyklack/fold-preview.nvim'
-Plug 'anuvyklack/nvim-keymap-amend' " Needed for preview
-
-function s:ConfigPrettyFold()
-lua <<EOF
-	require('pretty-fold').setup({
-		default_keybindings = false, -- See custom mappings below
-		keep_indentation = true,
-		remove_fold_markers = true,
-		process_comment_signs = 'delete',
-		fill_char = '·',
-		sections = {
-			left = {
-				'  ', 'content'
-			},
-			right = {
-				' ', 'number_of_folded_lines', ' / ', 'percentage', ' ',
-			}
-		}
-	})
-
-	require('fold-preview').setup()
-EOF
-endfunction
-" }}}
 " Plugin: ProjectConfig - per project .git/project_conf.vim file {{{
 Plug 'hiberabyss/ProjectConfig'
 " Use :ProjectConfig to edit base file per project
