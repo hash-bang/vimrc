@@ -1223,6 +1223,25 @@ map ,g :Files<cr>
 " Map ,r to RipGrep via FZF
 map ,r :Rg<cr>
 " }}}
+" Plugin: FZE-Enchanted - Smarter file open dialog {{{
+Plug 'otavioschwanck/fzf-lua-enchanted-files', {'done': 'call s:ConfigFzfEnchanted()'}
+Plug 'ibhagwan/fzf-lua' " Dependency
+" @url https://github.com/otavioschwanck/fzf-lua-enchanted-files
+
+function s:ConfigFzfEnchanted()
+lua <<EOF
+	require('fzf-lua-enchanted-files').setup({
+		history_file = vim.fn.expand('$HOME/.vim/fzf-enchanted.json')
+	})
+
+	-- Move Telescope history files to Ctrl+Shift+E (normally <C-E>)
+	vim.keymap.set('n', '<c-s-e>', require('telescope').extensions.smart_open.smart_open, {noremap=true, silent=true})
+
+	-- Remap Ctrl+E (normally Telescope history files) to open Enchanted files
+	vim.keymap.set('n', '<c-e>', require('fzf-lua-enchanted-files').files, {noremap=true, silent=true})
+EOF
+endfunction
+" }}}
 " Plugin: GitSigns - Screen-side Git Indicators (replaces GitGutter) {{{
 " @url https://github.com/lewis6991/gitsigns.nvim
 Plug 'lewis6991/gitsigns.nvim', {'done': 'call s:ConfigGitSigns()' }
