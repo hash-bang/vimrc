@@ -1354,7 +1354,20 @@ let g:javascript_conceal_noarg_arrow_function = "🞅"
 let g:javascript_conceal_underscore_arrow_function = "🞅"
 set conceallevel=1
 
-let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_jsdoc = 0
+" }}}
+" Plugin: JSDoc - Generate JSDoc for current function using <leader>j {{{
+Plug 'heavenshell/vim-jsdoc', {'done': 'call s:ConfigJSDoc()'}
+
+function s:ConfigJSDoc()
+	let g:jsdoc_lehre_path = "$HOME/.npm-global/bin/lehre"
+	let g:jsdoc_enable_es6 = 1
+	let g:jsdoc_allow_input_prompt = 1
+	let g:jsdoc_input_description = 1
+
+	" Generate function JSDoc signature using `<leader>j`
+	nmap <silent> <leader>j <Plug>(jsdoc)
+endfunction
 " }}}
 " Plugin: JSON - Nicer JSON syntax {{{
 Plug 'elzr/vim-json'
