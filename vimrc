@@ -516,6 +516,38 @@ EOF
 " ,n - search from top
 map ,n ggn
 " }}}
+" Shell Execution {{{
+" <gw> to open word/file under cursor in web browser or default app
+function! OpenURL()
+	let line = getline('.')
+	let col = col('.')
+
+	" Match common URL patterns
+	let url_pattern = 'https\?://[[:alnum:]._~:/?#[\]@!$&''()*+,;=%%-]\+'
+	let url = matchstr(line, url_pattern, 0)
+
+	" If no http(s), try other patterns
+	if empty(url)
+		let url = matchstr(line, 'www\.[[:alnum:]._~:/?#[\]@!$&''()*+,;=%%-]\+')
+		if !empty(url)
+			let url = 'http://' . url
+		endif
+	endif
+
+	if !empty(url)
+		if has('mac')
+			call system('open ' . shellescape(url))
+		elseif has('unix')
+			call system('xdg-open ' . shellescape(url))
+		elseif has('win32')
+			call system('start ' . shellescape(url))
+		endif
+	else
+		echo "No URL found on this line"
+	endif
+endfunction
+nnoremap gw :call OpenURL()<CR>
+" }}}
 " Tabs {{{
 " Pop current window / buffer out into new tab
 " Ctrl+S&m/"/" - Move this window pane to new tab
