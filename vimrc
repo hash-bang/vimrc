@@ -399,6 +399,7 @@ set virtualedit=onemore
 " Alias map (Common mistypes) {{{
 " Mistakes for :wpa
 command -nargs=0 Wqa :wqa!
+command -nargs=0 Qw :wq
 cnoreabbrev qwa :wqa!
 " }}}
 " Key Map {{{
@@ -1998,6 +1999,7 @@ endfunction
 " }}}
 " Plugin: Yanky - Yankring functionality {{{
 Plug 'gbprod/yanky.nvim', {'done': 'call s:ConfigYanky()'}
+" @url https://github.com/gbprod/yanky.nvim
 
 function s:ConfigYanky()
 lua <<EOF
@@ -2006,7 +2008,7 @@ lua <<EOF
 			history_length = 100,
 			storage = "shada",
 			sync_with_numbered_registers = true,
-			cancel_event = "update",
+			cancel_event = "move", -- Moving away from paste area cancels yanky ring selection mode
 		},
 		picker = {
 			select = {
