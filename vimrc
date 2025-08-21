@@ -1898,9 +1898,13 @@ Plug 'lambdalisue/suda.vim'
 Plug 'rhlobo/vim-super-retab'
 
 nmap <silent> ,2 <ESC>:Space2Tab 2<CR>
-vmap <silent> ,2 :Space2Tab 2<CR>gv
+
+" 2025-07-06 - Try this better reaplcement
+vmap <silent> ,2 :Space2Tab 2
+" vmap <silent> ,2 :Space2Tab 2<CR>gv
+
 nmap <silent> ,4 <ESC>:Space2Tab 4<CR>
-vmap <silent> ,2 :Space2Tab 4<CR>gv
+vmap <silent> ,4 :Space2Tab 4<CR>gv
 " }}}
 " Plugin: Surround - Surrounding movement support {{{
 Plug 'tpope/vim-surround'
