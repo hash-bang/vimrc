@@ -1033,6 +1033,26 @@ lua <<EOF
 EOF
 endfunction
 " }}}
+" Plugin: Bigfile - Better behaviour when opening large files {{{
+Plug 'ouuan/nvim-bigfile', {'done': 'call s:ConfigBigfile()'}
+" @url https://github.com/ouuan/nvim-bigfile
+
+function s:ConfigBigfile()
+lua <<EOF
+	require('bigfile').setup({
+		-- Default size limit in bytes
+		size_limit = 10 * 1024 * 1024, -- =~ 10MB
+
+		-- Show notifications when big files are detected
+		notification = true,
+
+		-- Enable basic syntax highlighting (not TreeSitter) for big files
+		-- (tips: it will be automatically disabled if too slow)
+		syntax = true,
+	})
+EOF
+endfunction
+" }}}
 " Plugin: Bullets - Auto continue bullets / numered lists {{{
 Plug 'bullets-vim/bullets.vim'
 " }}}
