@@ -477,7 +477,7 @@ nmap <silent> mm :n<CR>
 " }}}
 " File types (gt*) {{{
 nmap gtb :se ft=sh<CR>
-nmap gtc :se ft=css<CR>
+nmap gtc :se ft=csv<CR>:CsvViewEnable<CR>
 nmap gth :se ft=html<CR>
 nmap gtj :se ft=javascript<CR>
 nmap gts :se ft=sql<CR>:se nowrap<CR>
@@ -1031,6 +1031,111 @@ endfunction
 Plug 'miyakogi/conoline.vim'
 
 let g:conoline_auto_enable = 1
+" }}}
+" Plugin: Edit CSV files with `:CsvViewToggle` {{{
+Plug 'hat0uma/csvview.nvim', {'done': 'call s:ConfigCSVView()'}
+" @url https://github.com/hat0uma/csvview.nvim
+
+function s:ConfigCSVView()
+lua <<EOF
+	require('csvview').setup({
+		parser = {
+			--- The number of lines that the asynchronous parser processes per cycle.
+			--- This setting is used to prevent monopolization of the main thread when displaying large files.
+			--- If the UI freezes, try reducing this value.
+			--- @type integer
+			async_chunksize = 50,
+
+			--- The delimiter character
+			--- You can specify a string, a table of delimiter characters for each file type, or a function that returns a delimiter character.
+			--- Currently, only fixed-length strings are supported. Regular expressions such as \s+ are not supported.
+			--- e.g:
+			---  delimiter = ","
+			---  delimiter = function(bufnr) return "," end
+			---  delimiter = {
+			---    default = ",",
+			---    ft = {
+			---      tsv = "\t",
+			---    },
+			---  }
+			--- @type CsvView.Options.Parser.Delimiter
+			delimiter = {
+				default = ",",
+				ft = {
+					tsv = "\t",
+				},
+			},
+
+			--- The quote character
+			--- If a field is enclosed in this character, it is treated as a single field and the delimiter in it will be ignored.
+			--- e.g:
+			---  quote_char= "'"
+			--- You can also specify it on the command line.
+			--- e.g:
+			--- :CsvViewEnable quote_char='
+			--- @type string
+			quote_char = '"',
+
+			--- The comment prefix characters
+			--- If the line starts with one of these characters, it is treated as a comment.
+			--- Comment lines are not displayed in tabular format.
+			--- You can also specify it on the command line.
+			--- e.g:
+			--- :CsvViewEnable comment=#
+			--- @type string[]
+			comments = {
+				-- "#",
+				-- "--",
+				-- "//",
+			},
+
+			--- Maximum lookahead for multi-line fields
+			--- This limits how many lines ahead the parser will look when trying to find
+			--- the closing quote of a multi-line field. Setting this too high may cause
+			--- performance issues when editing files with unmatched quotes.
+			--- @type integer
+			max_lookahead = 50,
+		},
+		view = {
+			--- minimum width of a column
+			--- @type integer
+			min_column_width = 5,
+
+			--- spacing between columns
+			--- @type integer
+			spacing = 2,
+
+			--- The display method of the delimiter
+			--- "highlight" highlights the delimiter
+			--- "border" displays the delimiter with `│`
+			--- You can also specify it on the command line.
+			--- e.g:
+			--- :CsvViewEnable display_mode=border
+			---@type CsvView.Options.View.DisplayMode
+			display_mode = "border",
+
+			--- The line number of the header
+			--- If this is set, the line is treated as a header. and used for sticky header feature.
+			--- see also: `view.sticky_header`
+			--- @type integer|false
+			header_lnum = false,
+
+			--- The sticky header feature settings
+			--- If `view.header_lnum` is set, the header line is displayed at the top of the window.
+			sticky_header = {
+				--- Whether to enable the sticky header feature
+				--- @type boolean
+				enabled = true,
+
+				--- The separator character for the sticky header window
+				--- set `false` to disable the separator
+				--- @type string|false
+				separator = "─",
+			},
+		},
+	})
+EOF
+endfunction
 " }}}
 " Plugin: DiffView - Git history views for files via :DiffView* {{{
 Plug 'sindrets/diffview.nvim', {'done': 'call s:ConfigDiffView()'}
