@@ -1349,6 +1349,17 @@ lua <<EOF
 	vim.keymap.set('n', 'gr', vim.lsp.buf.references, {noremap=true, silent=true})
 	vim.keymap.set('n', '<leader>f', vim.lsp.buf.format, {noremap=true, silent=true})
 
+	-- Overrides to LSP settings
+	vim.api.nvim_create_autocmd('LspAttach', {
+		callback = function(args)
+			-- Override indent settings
+			vim.bo[args.buf].tabstop = 4
+			vim.bo[args.buf].shiftwidth = 4
+			vim.bo[args.buf].expandtab = false
+			vim.bo[args.buf].autoindent = false
+		end,
+	})
+
 	-- Completion setup
 	cmp.setup({
 		snippet = {
