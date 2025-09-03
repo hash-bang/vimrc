@@ -1657,6 +1657,16 @@ lua <<EOF
 			"size",
 			"mtime",
 		},
+
+		view_options = {
+			show_hidden = true,
+			natural_order = "fast", -- Try to human sort files but disable for large lists
+		},
+
+		win_options = {
+			-- Require for oil-git-status to work
+			signcolumn = 'yes:2',
+		},
 	})
 
 	require('oil-git-status').setup()
