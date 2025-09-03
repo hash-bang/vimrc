@@ -4,35 +4,11 @@
 " @author Matt Carter <m@ttcarter.com>
 " @url https://github.com/hash-bang/vimrc
 
-" Shorthand global config switches
-let g:switch_wakatime=0 " Enable wakatime Plugin
+" Global config switches
+let g:switch_wakatime=1 " Enable wakatime Plugin
 
 " Color scheme options
-let g:switch_colorscheme = 'nordern' " Selected color scheme, must match an entry within `Plugins: COLOR SCHEMES`
-
-" ariake           - Purple primary
-" bamboo           - High-contrast, dark with strong foreground
-" bronzage         - yellow / icy blue based muted text
-" brown            - Very amber coloring
-" cosmic_latte     - Very muted everything with blue & red highlights
-" darkearth        - Very muted Brown tones with an earthy feel
-" embark           - Very blue, over-saturated, icy theme
-" gruber-darker    - Very high-contrast theme
-" gruvbox          - Dark but constrasting bright colors
-" gruvbox-material - Gruvbox but more metalic
-" hybrid2          - Muted blue coloring as primary with high contrast notes
-" everforest       - Nord-lite, subtle color blend
-" falcon           - Dark background, with orange notes
-" kanagawa         - Bold margins + folds, colorful code
-" melange          - High-contrast, colorful
-" nightfox         - Dark pale blue folds, muted text
-" nord             - Default, go-to theme with blue-ice overtones
-" nordern          - Icy color scheme with blue + white emphasis
-" posterpole       - Muted colors with grey + blue contrast
-" serene           - Dark color scheme with dark-blue background
-" tender           - Very muted folds, bright colorful text
-" tokyonight       - Primarily purple with neon notes
-" zenburn          - High contrast
+let g:switch_colorscheme = 'everforest' " Selected color scheme, must match an entry within `Plugins: COLOR SCHEMES`
 
 " Functions {{{
 " Utility: GetVisual() {{{
@@ -317,8 +293,8 @@ set undodir=$HOME/.vim/undo
 set autowrite
 " Split vertical windows to the right
 set splitright
-" Dont wrap searching
-set nows
+" Wrap searching
+set ws
 " Set minimal window size to 0 (when using Ctrl+W+_ this minimizes all windows to one line)
 set wmh=0
 " Disable annoying "Hit enter to continue" messages in some circumstances
@@ -771,20 +747,6 @@ call plug#begin('~/.vim/plugged')
 set termguicolors
 set t_Co=256
 
-" Color scheme switches {{{
-let g:switch_colorscheme_patch_background = 0 " Force background to be transparent instead of the default NOTE: This is handled by the transparent plugin for now
-let g:switch_colorscheme_patch_cursor = 0 " Repair cursor coloring (set automatically by colorscheme preference)
-let g:switch_colorscheme_patch_conceal = 0 " Repair conceal coloring (set automatically by colorscheme preference)
-let g:switch_colorscheme_patch_lightline = 0 " Repair lightline coloring (set automatically by colorscheme preference)
-let g:switch_colorscheme_patch_visual = 0 " Repair visual coloring (set automatically by colorscheme preference)
-let g:switch_colorscheme_patch_contrast_folds = 0 " Repair folds in high-contrast mode
-let g:switch_colorscheme_patch_ale_virtualtext = 1 " Repair ALE virtual text coloring
-let g:switch_colorscheme_patch_errormsg = 0 " Repair ErrorMsg coloring
-let g:switch_colorscheme_patch_todo = 0 " Repair Todo coloring
-" }}}
-
-" This entire section is pretty much a multiplexor based on switch_colorscheme
-
 " Plug area (so everything keeps updated)
 Plug 'ribru17/bamboo.nvim'
 Plug 'habamax/vim-bronzage'
@@ -808,42 +770,6 @@ Plug 'sainnhe/gruvbox-material'
 Plug 'samharju/serene.nvim'
 Plug 'fcancelinha/nordern.nvim'
 Plug 'ilof2/posterpole.nvim'
-
-" Overrides based on colorscheme
-if switch_colorscheme == 'anotherdark'
-	" Another dark is a built in anyway
-	let g:switch_colorscheme_patch_lightline = 1
-	let g:switch_colorscheme_patch_visual = 1
-	colorscheme anotherdark
-elseif switch_colorscheme == 'ariake'
-	let g:switch_colorscheme_patch_contrast_folds = 1
-elseif switch_colorscheme == 'bamboo'
-	let g:switch_colorscheme_patch_conceal = 1
-elseif switch_colorscheme == 'everforest'
-	let g:switch_colorscheme_patch_todo = 1
-elseif switch_colorscheme == 'falcon'
-	let g:switch_colorscheme_patch_cursor = 1
-	let g:switch_colorscheme_patch_todo = 1
-elseif switch_colorscheme == 'gruvbox-material'
-	let g:switch_colorscheme_patch_todo = 1
-elseif switch_colorscheme == 'hybrid2'
-	let g:switch_colorscheme_patch_conceal = 1
-elseif switch_colorscheme == 'nightfox'
-	let g:switch_colorscheme_patch_conceal = 1
-elseif switch_colorscheme == 'nord'
-	let g:switch_colorscheme_patch_background = 1
-	let g:switch_colorscheme_patch_contrast_folds = 1
-	let g:switch_colorscheme_patch_conceal = 1
-	let g:switch_colorscheme_patch_errormsg = 1
-elseif switch_colorscheme == 'tender'
-	let g:switch_colorscheme_patch_conceal = 1
-	let g:switch_colorscheme_patch_todo = 1
-elseif switch_colorscheme == 'zenburn'
-	let g:zenburn_high_Contrast=1
-	let g:zenburn_old_Visual=1
-	let g:zenburn_alternate_Visual=1
-	colorscheme zenburn
-endif
 " }}}
 " Plugins: GENERAL SYNTAX {{{
 Plug 'hash-bang/vim-todo'
@@ -956,7 +882,7 @@ function s:ConfigALE()
 	let g:ale_detail_to_floating_preview = 1
 
 	" Gutter themes
-	" For Ale highlight colors overrides see RepairColors()
+	" For Ale highlight colors overrides see FixColors()
 	let g:ale_sign_error = ' '
 	highlight link ALEErrorSign NotifyERRORIcon
 
@@ -1961,6 +1887,46 @@ lua <<EOF
 EOF
 endfunction
 " }}}
+" Plugin: Themery & Color schemes {{{
+Plug 'zaldih/themery.nvim', {'done': 'call s:ConfigThemery()'}
+
+function s:ConfigThemery()
+lua <<EOF
+	local themery = require('themery');
+	themery.setup({
+		livePreview = true,
+		globalAfter = 'call FixColors()',
+		themes = {
+			-- See https://base46.vercel.app for previews
+			'ariake',           -- Purple primary
+			'bamboo',           -- High-contrast, dark with strong foreground
+			'bronzage',         -- yellow / icy blue based muted text
+			'brown',            -- Very amber coloring
+			'cosmic_latte',     -- Very muted everything with blue & red highlights
+			'darkearth',        -- Very muted Brown tones with an earthy feel
+			'embark',           -- Very blue, over-saturated, icy theme
+			'gruber-darker',    -- Very high-contrast theme
+			'gruvbox',          -- Dark but constrasting bright colors
+			'gruvbox-material', -- Gruvbox but more metalic
+			'hybrid2',          -- Muted blue coloring as primary with high contrast notes
+			'everforest',       -- Nord-lite, subtle color blend
+			'falcon',           -- Dark background, with orange notes
+			'kanagawa',         -- Bold margins + folds, colorful code
+			'melange',          -- High-contrast, colorful
+			'nightfox',         -- Dark pale blue folds, muted text
+			'nord',             -- Default, go-to theme with blue-ice overtones
+			'nordern',          -- Icy color scheme with blue + white emphasis
+			'posterpole',       -- Muted colors with grey + blue contrast
+			'serene',           -- Dark color scheme with dark-blue background
+			'tender',           -- Very muted folds, bright colorful text
+			'tokyonight',       -- Primarily purple with neon notes
+			'zenburn',          -- High contrast
+		},
+	});
+	themery.setThemeByName(vim.g.switch_colorscheme, false);
+EOF
+endfunction
+" }}}
 " Plugin: Transparent - `:Transparent{Toggle,Enable,Disable}` {{{
 Plug 'xiyaowong/transparent.nvim', {'done': 'call s:ConfigTransparent()'}
 " @url https://neovimcraft.com/plugin/xiyaowong/nvim-transparent/index.html
@@ -2262,11 +2228,59 @@ autocmd VimEnter * call BatteryToggle('auto', 1)
 " }}}
 
 " Color scheme (+fixes) {{{
-se bg=dark
-execute 'colors ' . switch_colorscheme
-
 " Override the color or conceals
-function RepairColors()
+function FixColors()
+	set bg=dark
+
+	" Color scheme switches
+	" This entire section is pretty much a multiplexor based on switch_colorscheme
+	let g:switch_colorscheme_patch_background = 0 " Force background to be transparent instead of the default NOTE: This is handled by the transparent plugin for now
+	let g:switch_colorscheme_patch_cursor = 0 " Repair cursor coloring (set automatically by colorscheme preference)
+	let g:switch_colorscheme_patch_conceal = 0 " Repair conceal coloring (set automatically by colorscheme preference)
+	let g:switch_colorscheme_patch_lightline = 0 " Repair lightline coloring (set automatically by colorscheme preference)
+	let g:switch_colorscheme_patch_visual = 0 " Repair visual coloring (set automatically by colorscheme preference)
+	let g:switch_colorscheme_patch_contrast_folds = 0 " Repair folds in high-contrast mode
+	let g:switch_colorscheme_patch_ale_virtualtext = 1 " Repair ALE virtual text coloring
+	let g:switch_colorscheme_patch_errormsg = 0 " Repair ErrorMsg coloring
+	let g:switch_colorscheme_patch_todo = 0 " Repair Todo coloring
+
+	" Overrides based on colorscheme
+	if g:switch_colorscheme == 'anotherdark'
+		" Another dark is a built in anyway
+		let g:switch_colorscheme_patch_lightline = 1
+		let g:switch_colorscheme_patch_visual = 1
+		colorscheme anotherdark
+	elseif g:switch_colorscheme == 'ariake'
+		let g:switch_colorscheme_patch_contrast_folds = 1
+	elseif g:switch_colorscheme == 'bamboo'
+		let g:switch_colorscheme_patch_conceal = 1
+	elseif g:switch_colorscheme == 'everforest'
+		let g:switch_colorscheme_patch_todo = 1
+	elseif g:switch_colorscheme == 'falcon'
+		let g:switch_colorscheme_patch_cursor = 1
+		let g:switch_colorscheme_patch_todo = 1
+	elseif g:switch_colorscheme == 'gruvbox-material'
+		let g:switch_colorscheme_patch_todo = 1
+	elseif switch_colorscheme == 'hybrid2'
+		let g:switch_colorscheme_patch_conceal = 1
+	elseif g:switch_colorscheme == 'nightfox'
+		let g:switch_colorscheme_patch_conceal = 1
+	elseif g:switch_colorscheme == 'nord'
+		let g:switch_colorscheme_patch_background = 1
+		let g:switch_colorscheme_patch_contrast_folds = 1
+		let g:switch_colorscheme_patch_conceal = 1
+		let g:switch_colorscheme_patch_errormsg = 1
+	elseif g:switch_colorscheme == 'tender'
+		let g:switch_colorscheme_patch_conceal = 1
+		let g:switch_colorscheme_patch_todo = 1
+	elseif g:switch_colorscheme == 'zenburn'
+		let g:zenburn_high_Contrast=1
+		let g:zenburn_old_Visual=1
+		let g:zenburn_alternate_Visual=1
+		colorscheme zenburn
+	endif
+
+
 	if g:switch_colorscheme_patch_lightline == 1
 		hi Normal ctermfg=223 ctermbg=236
 		hi Folded ctermfg=223 ctermbg=238 guifg=Cyan guibg=DarkGrey
@@ -2355,7 +2369,6 @@ function RepairColors()
 	highlight NotifyDEBUGBody guibg=#000000
 	highlight NotifyTRACEBody guibg=#000000
 endfunction
-call RepairColors()
 " }}}
 
 " FIX: Treesitter weird indents for JavaScript + JSDoc {{{
