@@ -1908,7 +1908,8 @@ lua <<EOF
 EOF
 endfunction
 " }}}
-" Plugin: Themery & Color schemes {{{
+" Plugin: Themery & Color schemes - :Themery {{{
+" @url https://github.com/zaldih/themery.nvim
 Plug 'zaldih/themery.nvim', {'done': 'call s:ConfigThemery()'}
 
 function s:ConfigThemery()
