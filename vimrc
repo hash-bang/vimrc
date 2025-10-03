@@ -750,7 +750,6 @@ set t_Co=256
 " Plug area (so everything keeps updated)
 Plug 'ribru17/bamboo.nvim'
 Plug 'habamax/vim-bronzage'
-Plug 'bhrown/brown.vim'
 Plug 'nightsense/cosmic_latte'
 Plug 'morhetz/gruvbox'
 Plug 'embark-theme/vim'
@@ -1923,7 +1922,6 @@ lua <<EOF
 			'ariake',           -- Purple primary
 			'bamboo',           -- High-contrast, dark with strong foreground
 			'bronzage',         -- yellow / icy blue based muted text
-			'brown',            -- Very amber coloring
 			'cosmic_latte',     -- Very muted everything with blue & red highlights
 			'darkearth',        -- Very muted Brown tones with an earthy feel
 			'embark',           -- Very blue, over-saturated, icy theme
