@@ -613,9 +613,6 @@ map <F6> :source %<CR>:echo "Resourced " . bufname()<CR>
 map <F7> :se ft=javascript<CR>
 " F8 to give a char count for a selected visual block
 map <F8> :echoe "Str Length:" . strlen(GetVisual())<CR>gv
-" F12 - Disable hilighting
-map <silent> <F12> :set nohls<CR>
-imap <silent> <F12> <ESC>:set nohls<CR>
 " QQ to just quit
 map QQ <ESC>:qa <CR>
 " GL - Toggle line numbers
@@ -1590,9 +1587,8 @@ lua <<EOF
 EOF
 endfunction
 " }}}
-" (DISABLED) Plugin: Mini.IndentScope {{{
-" DISABLED - Slows down UI
-Plug 'echasnovski/mini.indentscope' ", {'done': 'call s:ConfigMiniIndentScope()'}
+" Plugin: Mini.IndentScope {{{
+Plug 'echasnovski/mini.indentscope', {'done': 'call s:ConfigMiniIndentScope()'}
 
 function s:ConfigMiniIndentScope()
 lua <<EOF
@@ -1918,13 +1914,20 @@ endfunction
 " Plugin: Themery & Color schemes - :Themery {{{
 " @url https://github.com/zaldih/themery.nvim
 Plug 'zaldih/themery.nvim', {'done': 'call s:ConfigThemery()'}
+" FIXME: Disabled until this plugin fixes its errors when restoring state
+"        Constnatly throws errors on boot due to mangled state config
+"        - MC 2025-09-26
 
 function s:ConfigThemery()
 lua <<EOF
 	local themery = require('themery');
 	themery.setup({
 		livePreview = true,
-		globalAfter = 'call FixColors()',
+		globalAfter = [[
+			if _G.Foo then
+				_G.Foo()
+			end
+		]],
 		themes = {
 			-- See https://base46.vercel.app for previews
 			'ariake',           -- Purple primary
