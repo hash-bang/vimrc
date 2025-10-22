@@ -20,6 +20,8 @@ snippet /*{
 snippet /*}
 	/* }}} */
 
+snippet /d
+	</div>
 
 snippet accordion
 	<div class="accordion" id="${1:accordionId}">
@@ -105,13 +107,13 @@ snippet dropdown
 	<div class="dropdown">
 		<a class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown">
 			${1:Button Text}
-		</button>
-		<ul class="dropdown-menu">
+		</a>
+		<div class="dropdown-menu">
 			<a class="dropdown-item">Action</a>
 			<a class="dropdown-item">Another action</a>
-			<div classs="dropdown-divider"/>
+			<hr classs="dropdown-divider"/>
 			<a class="dropdown-item">Something else here</a>
-		</ul>
+		</div>
 	</div>
 
 snippet fab

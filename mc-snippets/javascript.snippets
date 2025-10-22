@@ -11,6 +11,16 @@ snippet class
 
 	}
 
+snippet iif
+	(()=> {
+	})()
+
+snippet ptimeout
+	new Promise(resolve => setTimeout(resolve, $1))
+
+snippet returnp
+	return Promise.resolve()
+
 snippet throwiif
 	(()=> { throw new Error('$1') })()
 
@@ -116,6 +126,17 @@ snippet red
 
 snippet yellow
 	app.log.colors.yellow($1)
+# }}}
+
+# Console output {{{
+snippet c
+	console.log($1);
+
+snippet cj
+	console.log(JSON.stringify({$1}, null, '\t'));
+
+snippet console.j
+	console.log(JSON.stringify($1, null, '\t'));
 # }}}
 
 # Chai {{{
@@ -305,6 +326,12 @@ snippet .map
 snippet .tap
 	.then(${1:v} => {
 		console.log('TAP', {$1});
+		return $1;
+	})
+
+snippet .tapj
+	.then(${1:v} => {
+		console.log('TAP $1 =', JSON.stringify($1, null, '\t'));
 		return $1;
 	})
 
