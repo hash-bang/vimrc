@@ -1724,9 +1724,16 @@ Plug 'vuki656/package-info.nvim', {'done': 'call s:ConfigPackageInfo()'}
 function s:ConfigPackageInfo()
 lua <<EOF
 	require('package-info').setup({
-		colors = {
-			up_to_date = "#3C4048", -- Text color for up to date package virtual text
-			outdated = "#D08770", -- Text color for outdated package virtual text
+		highlights = {
+			up_to_date = { -- Text color for up to date package virtual text
+				fg = "#3C4048"
+			},
+			outdated = { -- Text color for outdated package virtual text
+				fg = "#D08770",
+			},
+			invalid = { -- highlight for invalid dependency virtual text
+				fg = "#ee4b2b"
+			},
 		},
 
 		icons = {
@@ -1734,6 +1741,7 @@ lua <<EOF
 			style = {
 				up_to_date = "  ", -- Icon for up to date packages
 				outdated = "  ", -- Icon for outdated packages
+				invalid = "|  ", -- Icon for invalid dependencies
 			},
 		},
 
