@@ -766,6 +766,8 @@ Plug 'sainnhe/gruvbox-material'
 Plug 'samharju/serene.nvim'
 Plug 'fcancelinha/nordern.nvim'
 Plug 'ilof2/posterpole.nvim'
+Plug 'alexkotusenko/nightgem.nvim'
+Plug 'jpwol/thorn.nvim'
 " }}}
 " Plugins: GENERAL SYNTAX {{{
 Plug 'hash-bang/vim-todo'
@@ -1945,11 +1947,13 @@ lua <<EOF
 			'kanagawa',         -- Bold margins + folds, colorful code
 			'melange',          -- High-contrast, colorful
 			'nightfox',         -- Dark pale blue folds, muted text
+			'nightgem',         -- Very dark with bold notes
 			'nord',             -- Default, go-to theme with blue-ice overtones
 			'nordern',          -- Icy color scheme with blue + white emphasis
 			'posterpole',       -- Muted colors with grey + blue contrast
 			'serene',           -- Dark color scheme with dark-blue background
 			'tender',           -- Very muted folds, bright colorful text
+			'thorn',            -- Green primary with saturated colors
 			'tokyonight',       -- Primarily purple with neon notes
 			'zenburn',          -- High contrast
 		},
