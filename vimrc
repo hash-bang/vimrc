@@ -2043,6 +2043,7 @@ lua <<EOF
 			'tender',           -- Very muted folds, bright colorful text
 			'thorn',            -- Green primary with saturated colors
 			'tokyonight',       -- Primarily purple with neon notes
+			'vague',            -- Dark coloring with yellow and purple notes
 			'zenburn',          -- High contrast
 		},
 	});
