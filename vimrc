@@ -1323,6 +1323,7 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'neovim/nvim-lspconfig', {'done': 'call s:ConfigLSP()'}
 Plug 'Jezda1337/nvim-html-css'
 Plug 'SergioRibera/cmp-dotenv'
+Plug 'xzbdmw/colorful-menu.nvim'
 
 function s:ConfigLSP()
 lua <<EOF
@@ -1412,6 +1413,11 @@ lua <<EOF
 		},
 		-- }}}
 	})
+
+	-- Colorful-menu config {{{
+	require('colorful-menu').setup({
+	})
+	-- }}}
 EOF
 endfunction
 " }}}
