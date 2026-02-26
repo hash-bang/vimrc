@@ -1,4 +1,9 @@
 # General shorthand {{{
+snippet .c
+	.catch(()=> $1)
+
+snippet .t
+	.then(()=> $1)
 snippet @mfdc
 	@momsfriendlydevco
 
@@ -18,6 +23,8 @@ snippet iif
 snippet ptimeout
 	new Promise(resolve => setTimeout(resolve, $1))
 
+snippet pr
+	Promise.resolve()
 snippet returnp
 	return Promise.resolve()
 
