@@ -2254,6 +2254,56 @@ if switch_wakatime == 1
 	:command -nargs=0 WakaTimeAutoOff call WakaTimeAutoOff()
 endif
 " }}}
+" Plugin: WindowPicker - Pick windows with <C-W>W|~ {{{
+Plug 's1n7ax/nvim-window-picker', {'done': 'call s:ConfigWindowPicker()'}
+
+function s:ConfigWindowPicker()
+lua <<EOF
+	require('window-picker').setup({
+		hint = 'floating-big-letter',
+		selection_chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+
+		filter_rules = {
+			-- when there is only one window available to pick from, use that window
+			autoselect_one = true,
+
+			-- whether you want to include the window you are currently on
+			include_current_win = true,
+
+			-- whether to include windows marked as unfocusable
+			include_unfocusable_windows = false,
+
+			-- filter using buffer options
+			bo = {
+				-- if the file type is one of following, the window will be ignored
+				filetype = { 'NvimTree', 'neo-tree', 'notify', 'snacks_notif' },
+
+				-- if the file type is one of following, the window will be ignored
+				buftype = {},
+			},
+		},
+	});
+
+	local function pick_window_switch()
+		local win_id = require('window-picker').pick_window();
+		vim.api.nvim_set_current_win(win_id);
+	end
+
+	local function pick_window_close()
+		local win_id = require('window-picker').pick_window();
+		vim.api.nvim_win_close(win_id, false);
+	end
+
+	-- Bind <Ctrl+W> (w|`) to window picker
+	vim.keymap.set({'n', 'x'}, '<c-w>`', pick_window_switch);
+	vim.keymap.set({'n', 'x'}, '<c-w>w', pick_window_switch);
+
+	-- Bind <Ctrl+W> (d|c) to delete/close a window
+	vim.keymap.set({'n', 'x'}, '<c-w>d', pick_window_close);
+	vim.keymap.set({'n', 'x'}, '<c-w>c', pick_window_close);
+EOF
+endfunction
+" }}}
 " Plugin: WinShift - Move windows interactively (Ctrl+W+M) {{{
 Plug 'sindrets/winshift.nvim', {'done': 'call s:ConfigWinShift()' }
 
