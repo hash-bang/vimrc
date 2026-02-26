@@ -2070,16 +2070,15 @@ EOF
 endfunction
 " }}}
 " Plugin: Treesitter (et al.) - Syntax, Indent marking, text navigation {{{
-" Use :TSInstallInfo for a list of languages
 " Use :TSInstall <lang> to update a language
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate', 'done': 'call s:ConfigTreeSitter()'}
 Plug 'lukas-reineke/indent-blankline.nvim'
-Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+Plug 'nvim-treesitter/nvim-treesitter-textobjects', {'branch': 'main'}
 Plug 'kiyoon/treesitter-indent-object.nvim'
 
 function s:ConfigTreeSitter()
 lua <<EOF
-	require('nvim-treesitter.configs').setup({
+	require('nvim-treesitter').setup({
 		ensure_installed = {
 			"bash",
 			"css",
@@ -2097,16 +2096,19 @@ lua <<EOF
 			"json",
 			"json5",
 			"just",
+			"lua",
 			"markdown",
 			"nginx",
 			"perl",
 			"php",
 			"python",
+			"r",
 			"regex",
 			"scss",
 			"sql",
 			"ssh_config",
 			"tmux",
+			"toml",
 			"tsv",
 			"typescript",
 			"vim",
@@ -2128,7 +2130,7 @@ lua <<EOF
 			move = {
 				enable = true,
 				set_jumps = true,
-				goto_next_start = {
+				--[[ goto_next_start = {
 					["]f"] = "@function.outer",
 				},
 				goto_next_end = {
@@ -2139,6 +2141,18 @@ lua <<EOF
 				},
 				goto_previous_end = {
 					["[F"] = "@function.outer",
+				}, ]]
+				keymaps = {
+					["]f"] = "@function.outer",
+					["[f"] = "@function.inner",
+				},
+			},
+			select = {
+				enable = true,
+				lookahead = true,
+				keymaps = {
+					["]f"] = "@function.outer",
+					["[f"] = "@function.inner",
 				},
 			},
 		},
