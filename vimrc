@@ -328,6 +328,7 @@ autocmd BufRead,BufNewFile MEETINGS set ft=todo
 autocmd BufRead,BufNewFile *.TODO set ft=todo
 autocmd BufRead,BufNewFile *.doop set ft=javascript
 autocmd BufRead,BufNewFile .env* set ft=dotenv
+autocmd BufRead,BufNewFile .sql* set ft=pgsql
 
 " Smart indending for Python
 autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
@@ -768,10 +769,15 @@ Plug 'fcancelinha/nordern.nvim'
 Plug 'ilof2/posterpole.nvim'
 Plug 'alexkotusenko/nightgem.nvim'
 Plug 'jpwol/thorn.nvim'
+Plug 'vague-theme/vague.nvim'
 " }}}
 " Plugins: GENERAL SYNTAX {{{
 Plug 'hash-bang/vim-todo'
 Plug 'projectfluent/fluent.vim'
+
+Plug 'lifepillar/pgsql.vim'
+" Assume default .sql file format is pgsql
+let g:sql_type_default = 'pgsql'
 " }}}
 " Plugin: SYNTAX / vim-markdown {{{
 Plug 'plasticboy/vim-markdown'
