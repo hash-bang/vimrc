@@ -458,8 +458,9 @@ nmap gtb :se ft=sh<CR>
 nmap gtc :se ft=csv<CR>:CsvViewEnable<CR>
 nmap gth :se ft=html<CR>
 nmap gtj :se ft=javascript<CR>
-nmap gts :se ft=sql<CR>:se nowrap<CR>
+nmap gtm :se ft=man<CR>
 nmap gto :se ft=json<CR>
+nmap gts :se ft=sql<CR>:se nowrap<CR>
 nmap gtv :se ft=vue<CR>
 " }}}
 " Movement {{{
