@@ -2316,9 +2316,8 @@ lua <<EOF
 	vim.keymap.set({'n', 'x'}, '<c-w>`', pick_window_switch);
 	vim.keymap.set({'n', 'x'}, '<c-w>w', pick_window_switch);
 
-	-- Bind <Ctrl+W> (d|c) to delete/close a window
-	vim.keymap.set({'n', 'x'}, '<c-w>d', pick_window_close);
-	vim.keymap.set({'n', 'x'}, '<c-w>c', pick_window_close);
+	-- Bind <Ctrl+W> x to zap (delete/close) a window
+	vim.keymap.set({'n', 'x'}, '<c-w>x', pick_window_close);
 EOF
 endfunction
 " }}}
