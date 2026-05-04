@@ -250,8 +250,9 @@ set nu
 set ic
 " Enable smart-casing (use of upper char overrides case-insensitive)
 set scs
-" Disable Auto-indent as its almost never right
-set noai
+" ~Disable Auto-indent as its almost never right~
+" 2026-02-19 Override - pressing enter while in an indent should move vertically down
+set ai
 " Smart indent (drop back when using })
 set si
 " Include <> and "" as a bracket pairing
@@ -2579,4 +2580,9 @@ lua <<EOF
 
 	vim.cmd[[autocmd FileType javascript setlocal indentexpr=v:lua.javascript_indent()]]
 EOF
+" }}}
+
+" FIX: Annoying indent "smartness" disable tests {{{
+set nocopyindent
+" set nosmartindent
 " }}}
