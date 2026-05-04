@@ -2277,7 +2277,9 @@ Plug 's1n7ax/nvim-window-picker', {'done': 'call s:ConfigWindowPicker()'}
 
 function s:ConfigWindowPicker()
 lua <<EOF
-	require('window-picker').setup({
+	local picker =require('window-picker')
+
+	picker.setup({
 		hint = 'floating-big-letter',
 		selection_chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
 
@@ -2302,15 +2304,40 @@ lua <<EOF
 		},
 	});
 
+	local function pick_window_swap()
+		local cur_win = vim.api.nvim_get_current_win();
+		local cur_buf = vim.api.nvim_win_get_buf(cur_win);
+		local wins = vim.api.nvim_tabpage_list_wins(0);
+		-- Filter out non-focusable windows
+		local focusable_wins = vim.tbl_filter(function(w)
+			return vim.api.nvim_win_get_config(w).focusable;
+		end, wins);
+		local target_win;
+		if #focusable_wins == 2 then
+			-- Auto-pick the other window
+			target_win = focusable_wins[1] == cur_win and focusable_wins[2] or focusable_wins[1];
+		else
+			target_win = require('window-picker').pick_window();
+		end
+		if target_win == nil or target_win == cur_win then return end
+		local target_buf = vim.api.nvim_win_get_buf(target_win);
+		vim.api.nvim_win_set_buf(cur_win, target_buf);
+		vim.api.nvim_win_set_buf(target_win, cur_buf);
+		vim.api.nvim_set_current_win(target_win);
+	end
+
 	local function pick_window_switch()
-		local win_id = require('window-picker').pick_window();
+		local win_id = picker.pick_window();
 		vim.api.nvim_set_current_win(win_id);
 	end
 
 	local function pick_window_close()
-		local win_id = require('window-picker').pick_window();
+		local win_id = picker.pick_window();
 		vim.api.nvim_win_close(win_id, false);
 	end
+
+	-- Bind <Ctrl+W> r to swap windows via picker
+	vim.keymap.set({'n', 'x'}, '<c-w>r', pick_window_swap);
 
 	-- Bind <Ctrl+W> (w|`) to window picker
 	vim.keymap.set({'n', 'x'}, '<c-w>`', pick_window_switch);
