@@ -1830,6 +1830,22 @@ lua <<EOF
 EOF
 endfunction
 " }}}
+" Plugin: SplitJoin {{{
+Plug 'AndrewRadev/splitjoin.vim', {'done': 'call s:ConfigSplitJoin()'}
+
+" Handled in config section below
+let g:splitjoin_split_mapping = ''
+let g:splitjoin_join_mapping = ''
+
+function s:ConfigSplitJoin()
+lua <<EOF
+	-- Map `gs` to split
+	vim.keymap.set('n', 'gs', "<Cmd>:SplitjoinSplit<CR>", { noremap = true, silent = true })
+	-- Map `gj` to join
+	vim.keymap.set('n', 'gj', "<Cmd>:SplitjoinJoin<CR>", { noremap = true, silent = true })
+EOF
+endfunction
+" }}}
 " Plugin: Startify - Nicer default startup screen {{{
 Plug 'mhinz/vim-startify'
 
