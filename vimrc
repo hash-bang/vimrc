@@ -1191,7 +1191,7 @@ map [h :lua require('gitsigns.actions').prev_hunk()<CR>
 endfunction
 " }}}
 " Plugin: Hop - Quick navigation via `` (Replaces EasyMotion) {{{
-Plug 'phaazon/hop.nvim', {'done': 'call s:ConfigHop()'}
+Plug 'smoka7/hop.nvim', {'done': 'call s:ConfigHop()'}
 function s:ConfigHop()
 lua <<EOF
 	require('hop').setup({
