@@ -851,7 +851,10 @@ Plug 'dense-analysis/ale', {'done': 'call s:ConfigALE()'}
 function s:ConfigALE()
 	" Linter overrides {{{
 	" Only enable eslint for JS
-	let g:ale_linters = {'javascript': ['eslint']}
+	let g:ale_linters = {'javascript': ['eslint'], 'vue': ['eslint']}
+
+	" Use eslint to fix things with `l=`
+	let g:ale_fixers = {'javascript': ['eslint'], 'vue': ['eslint']}
 
 	" Disable for .min.js files
 	let g:ale_pattern_options = {'\.min.js$': {'ale_enabled': 0}}
