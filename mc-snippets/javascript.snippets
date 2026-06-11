@@ -150,13 +150,13 @@ snippet var
 snippet de
 	debugger;
 
-snippet def
-	debugger; // FIXME: ${1:Check this}
-
-snippet dei
+snippet dedl
 	debugger; // eslint-disable-line no-debugger
 
-snippet esd
+snippet ed
+	/* eslint-disable $1 */
+
+snippet edl
 	// eslint-disable-line $1
 # }}}
 
@@ -166,9 +166,56 @@ snippet /**
 	* $1
 	*/
 
+snippet /**a
+	/**
+	* $1
+	*
+	* @type {Array}
+	*/
+
+snippet /**b
+	/**
+	* $1
+	*
+	* @type {Boolean}
+	*/
+
+snippet /**c
+	/**
+	* $1
+	*
+	* @type {Array<Object>}
+	*/
+
+snippet /**d
+	/**
+	* $1
+	*
+	* @type {Date}
+	*/
+
+snippet /**o
+	/**
+	* $1
+	*
+	* @type {Object}
+	*/
+
+snippet /**s
+	/**
+	* $1
+	*
+	* @type {String}
+	*/
 
 snippet *
 	* @param {$1} $2
+
+snippet @p
+	@param {$1} $2
+
+snippet @pr
+	@property {$1} $2
 
 snippet @pa
 	@param {Array} $1
