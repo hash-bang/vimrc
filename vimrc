@@ -611,9 +611,9 @@ vmap <F4> y/<C-R>"<CR>:%s//
 " F5 - Reload the current file
 map <F5> :e! %<CR>
 " F6 - Reload the current file as a VimScript (e.g. .vimrc)
-map <F6> :source %<CR>:echo "Resourced " . bufname()<CR>
-" F7 - Set JavaScript mode
-map <F7> :se ft=javascript<CR>
+map <F6> :source %<CR>:echo "Reloaded VimScript " . bufname()<CR>
+" F7 - Reload the vimrc file
+map <F7> :source $MYVIMRC<CR>:echo "Reloaded VimRC file"<CR>
 " F8 to give a char count for a selected visual block
 map <F8> :echoe "Str Length:" . strlen(GetVisual())<CR>gv
 " QQ to just quit
