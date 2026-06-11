@@ -1267,27 +1267,6 @@ lua <<EOF
 EOF
 endfunction
 " }}}
-" Plugin: Javascript - Nicer Javascript syntax {{{
-Plug 'pangloss/vim-javascript'
-let g:javascript_conceal = 1
-let g:javascript_conceal_function = "λ"
-let g:javascript_conceal_null = "ø"
-let g:javascript_conceal_this = "◉"
-let g:javascript_conceal_ctrl = "◈"
-let g:javascript_conceal_return = "∴"
-let g:javascript_conceal_undefined = "¿"
-let g:javascript_conceal_NaN = "ℕ"
-let g:javascript_conceal_prototype = "¶"
-let g:javascript_conceal_static = "•"
-let g:javascript_conceal_super = "Ω"
-let g:javascript_conceal_question = "¿"
-let g:javascript_conceal_arrow_function = "🡆"
-let g:javascript_conceal_noarg_arrow_function = "🞅"
-let g:javascript_conceal_underscore_arrow_function = "🞅"
-set conceallevel=1
-
-let g:javascript_plugin_jsdoc = 0
-" }}}
 " Plugin: JSDoc - Generate JSDoc for current function using <leader>j {{{
 Plug 'heavenshell/vim-jsdoc', {'done': 'call s:ConfigJSDoc()'}
 
@@ -2089,92 +2068,57 @@ EOF
 endfunction
 " }}}
 " Plugin: Treesitter (et al.) - Syntax, Indent marking, text navigation {{{
-" Use :TSInstall <lang> to update a language
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate', 'done': 'call s:ConfigTreeSitter()'}
+" Use :TSManager to configure
+Plug 'romus204/tree-sitter-manager.nvim', {'done': 'call s:ConfigTreeSitter()'}
 Plug 'lukas-reineke/indent-blankline.nvim'
-Plug 'nvim-treesitter/nvim-treesitter-textobjects', {'branch': 'main'}
-Plug 'kiyoon/treesitter-indent-object.nvim'
 
 function s:ConfigTreeSitter()
 lua <<EOF
-	require('nvim-treesitter').setup({
+	require('tree-sitter-manager').setup({
+		auto_install = true,
 		ensure_installed = {
-			"bash",
-			"css",
-			"csv",
-			"diff",
-			"dockerfile",
-			"gitcommit",
-			"git_config",
-			"gitignore",
-			"html",
-			"ini",
-			"javascript",
-			"jq",
-			"jsdoc",
-			"json",
-			"json5",
-			"just",
-			"lua",
-			"markdown",
-			"nginx",
-			"perl",
-			"php",
-			"python",
-			"r",
-			"regex",
-			"scss",
-			"sql",
-			"ssh_config",
-			"tmux",
-			"toml",
-			"tsv",
-			"typescript",
-			"vim",
-			"vue",
-			"xml",
-			"yaml",
+			'bash',
+			'bibtex',
+			'css',
+			'csv',
+			'diff',
+			'dockerfile',
+			'gitcommit',
+			'git_config',
+			'gitignore',
+			'html',
+			'ini',
+			'javascript',
+			'jq',
+			'jsdoc',
+			'json',
+			'json5',
+			'just',
+			'latex',
+			'lua',
+			'make',
+			'markdown',
+			'mermaid',
+			'nginx',
+			'perl',
+			'php',
+			'python',
+			'r',
+			'regex',
+			'scss',
+			'sql',
+			'ssh_config',
+			'tmux',
+			'toml',
+			'tsv',
+			'typescript',
+			'vim',
+			'vue',
+			'xml',
+			'yaml',
+			'zsh',
 		},
-		highlight = {
-			enable = true, -- false will disable the whole extension
-			additional_vim_regex_highlighting = false,
-		},
-		incremental_selection = {
-			enable = true,
-		},
-		indent = {
-			enable = false,
-		},
-		textobjects = {
-			move = {
-				enable = true,
-				set_jumps = true,
-				--[[ goto_next_start = {
-					["]f"] = "@function.outer",
-				},
-				goto_next_end = {
-					["]F"] = "@function.outer",
-				},
-				goto_previous_star = {
-					["[f"] = "@function.outer",
-				},
-				goto_previous_end = {
-					["[F"] = "@function.outer",
-				}, ]]
-				keymaps = {
-					["]f"] = "@function.outer",
-					["[f"] = "@function.inner",
-				},
-			},
-			select = {
-				enable = true,
-				lookahead = true,
-				keymaps = {
-					["]f"] = "@function.outer",
-					["[f"] = "@function.inner",
-				},
-			},
-		},
+		highlight = true,
 	})
 
 	require('ibl').setup({
@@ -2183,21 +2127,62 @@ lua <<EOF
 		},
 	})
 
-	-- `vai` to select within context, `vaI` to select + outer surround
-	-- `vii` to seletc everything within the current indent
-	require("treesitter_indent_object").setup()
+	-- JS Specific conceals for Treesitter
+	-- Largely cribbed from https://github.com/pangloss/vim-javascript
+	vim.opt.conceallevel = 2
+	vim.opt.concealcursor = '' -- Blank shows the conceal when on the active line
 
-	-- select context-aware indent
-	vim.keymap.set("x", "ai", "<Cmd>lua require'treesitter_indent_object.textobj'.select_indent_outer()<CR>")
-	-- ensure selecting entire line (or just use Vai)
-	vim.keymap.set("x", "aI", "<Cmd>lua require'treesitter_indent_object.textobj'.select_indent_outer(true)<CR>")
-	-- select inner block (only if block, only else block, etc.)
-	vim.keymap.set("x", "ii", "<Cmd>lua require'treesitter_indent_object.textobj'.select_indent_inner()<CR>")
-	-- select entire inner range (including if, else, etc.)
-	vim.keymap.set("x", "iI", "<Cmd>lua require'treesitter_indent_object.textobj'.select_indent_inner(true)<CR>")
+	-- Custom conceals - use :InspectTree on an active node to populate this
+	vim.treesitter.query.set('javascript', 'highlights', [[
+; extends
+; ^^^ Above line MUST have no indent
+
+		("function" @keyword.function (#set! conceal "λ"))
+
+		; return → ∴
+		("return" @keyword.return (#set! conceal "∴"))
+
+		; static → •
+		("static" @keyword (#set! conceal "•"))
+
+		; => (arrow) → 🡆
+		("=>" @operator (#set! conceal "🡆"))
+
+		; ? (ternary) → ¿
+		("?" @operator (#set! conceal "¿"))
+
+
+		; Named built-in nodes — tree-sitter has dedicated node types for these:
+
+		; null → ø
+		((null) @constant.builtin (#set! conceal "ø"))
+
+		; this → ◉
+		((this) @variable.builtin (#set! conceal "◉"))
+
+		; super → Ω
+		((super) @variable.builtin (#set! conceal "Ω"))
+
+
+		; Identifier text matching — undefined and NaN are identifiers in JS, not keywords, so require #eq?:
+
+		; undefined → ¿
+		((identifier) @undefined
+		 (#eq? @undefined "undefined")
+		 (#set! conceal "¿"))
+
+		; NaN → ℕ
+		((identifier) @nan
+		 (#eq? @nan "NaN")
+		 (#set! conceal "ℕ"))
+
+		; .prototype → ¶
+		((property_identifier) @proto
+		 (#eq? @proto "prototype")
+		 (#set! conceal "¶"))
+	]])
 EOF
 endfunction
-" }}}
 " Plugin: TreeSJ - Split / join code with gs/gj {{{
 Plug 'wansmer/treesj', {'done': 'call s:ConfigTreeSJ()'}
 
