@@ -900,8 +900,8 @@ function s:ConfigALE()
 	" }}}
 
 	" Key map {{{
-	" Lint NOW: ll
-	map ll <Plug>(ale_lint)
+	" Lint NOW+Nav next: ll
+	map ll <Plug>(ale_lint)<Plug>(ale_next)
 
 	" Toggle: lt || l-
 	map <silent> lt :ALEToggle<CR>
