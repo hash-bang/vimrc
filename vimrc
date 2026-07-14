@@ -955,6 +955,17 @@ function s:ConfigALE()
 	" }}}
 endfunction
 " }}}
+" Plugin: Barbecue - Topbar nesting for position within complex structures {{{
+Plug 'utilyre/barbecue.nvim', {'done': 'call s:ConfigBarbecue()'}
+Plug 'SmiteshP/nvim-navic' " Dependency
+
+function s:ConfigBarbecue()
+lua <<EOF
+	require('barbecue').setup({
+	})
+EOF
+endfunction
+" }}}
 " Plugin: Blame - Show hide blame with :ToggleBlame or gb {{{
 Plug 'FabijanZulj/blame.nvim', {'done': 'call s:ConfigBlame()'}
 
