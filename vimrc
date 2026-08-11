@@ -738,10 +738,9 @@ nnoremap <silent><leader>v :source ~/.vim/vimrc \| :PlugInstall<CR>
 " }}}
 " }}}
 
-" Plugins: START {{{
+" Plugins: SETUP {{{
 call plug#begin('~/.vim/plugged')
 " }}}
-
 " Plugins: COLOR SCHEMES {{{
 " Set 256 Colors (for consoles that can handle it)
 set termguicolors
@@ -780,14 +779,6 @@ Plug 'projectfluent/fluent.vim'
 Plug 'lifepillar/pgsql.vim'
 " Assume default .sql file format is pgsql
 let g:sql_type_default = 'pgsql'
-" }}}
-" Plugin: SYNTAX / vim-markdown {{{
-Plug 'plasticboy/vim-markdown'
-" Disable section folding
-let g:vim_markdown_folding_disabled = 1
-
-" Disable concealing
-let g:vim_markdown_conceal = 0
 " }}}
 
 " Plugin: Aerial - F1 to toggle file ToC {{{
@@ -2149,6 +2140,7 @@ lua <<EOF
 	vim.opt.concealcursor = '' -- Blank shows the conceal when on the active line
 
 	-- Custom conceals - use :InspectTree on an active node to populate this
+	-- JavaScript {{{
 	vim.treesitter.query.set('javascript', 'highlights', [[
 ; extends
 ; ^^^ Above line MUST have no indent
@@ -2197,8 +2189,26 @@ lua <<EOF
 		 (#eq? @proto "prototype")
 		 (#set! conceal "¶"))
 	]])
+	-- }}}
+	-- Markdown {{{
+	-- The triple backtick delimiter and its language annotation are both concealed AND have
+	-- their whole line hidden via `conceal_lines` in nvim-treesitter's
+	-- queries/markdown/highlights.scm. `conceal_lines` is added unconditionally
+	-- per-match (not resolved by priority like `conceal` is), so a higher-priority
+	-- @none override can't cancel it - the fence lines stayed fully hidden.
+	-- Disabling the two patterns outright removes both effects while leaving
+	-- highlighting and every other conceal (links, emphasis, etc.) untouched.
+	-- Pattern indices found via `:Inspect!` on a ``` line / language name; if a
+	-- nvim-treesitter update shifts pattern order, re-find them the same way.
+	local markdown_highlights = vim.treesitter.query.get('markdown', 'highlights')
+	if markdown_highlights then
+		markdown_highlights.query:disable_pattern(17) -- (fenced_code_block_delimiter) conceal + conceal_lines
+		markdown_highlights.query:disable_pattern(18) -- (language) conceal + conceal_lines
+	end
+	-- }}}
 EOF
 endfunction
+" }}}
 " Plugin: TreeSJ - Split / join code with gs/gj {{{
 Plug 'wansmer/treesj', {'done': 'call s:ConfigTreeSJ()'}
 
