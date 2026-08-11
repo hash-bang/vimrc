@@ -1021,7 +1021,7 @@ Plug 'miyakogi/conoline.vim'
 
 let g:conoline_auto_enable = 1
 " }}}
-" Plugin: Edit CSV files with `:CsvViewToggle` {{{
+" Plugin: CSVView - Edit CSV files with `:CsvViewToggle` {{{
 Plug 'hat0uma/csvview.nvim', {'done': 'call s:ConfigCSVView()'}
 " @url https://github.com/hat0uma/csvview.nvim
 
