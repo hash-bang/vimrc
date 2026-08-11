@@ -1332,7 +1332,9 @@ lua <<EOF
 	-- nvim_lsp is a builtin
 	-- luasnip is not managed by lspconfig
 	-- vim.lsp.enable('vue_ls') -- Throws errors
-	vim.lsp.enable('ts_ls')
+	-- ts_ls (typescript-language-server) needs classic tsserver.js, which TypeScript 7 no longer ships
+	-- tsgo is the native TS7 language server, provided by @typescript/native-preview
+	vim.lsp.enable('tsgo')
 	vim.lsp.enable('eslint')
 	vim.lsp.enable('just')
 	-- dotenv is not managed by lspconfig
@@ -1379,7 +1381,7 @@ lua <<EOF
 			{ name = 'nvim_lsp' },
 			{ name = 'luasnip' },
 			{ name = 'vue_ls' },
-			{ name = 'ts_ls' },
+			{ name = 'tsgo' },
 			{ name = 'eslint' },
 			{ name = 'just' },
 			{ name = 'dotenv' },
