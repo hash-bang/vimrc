@@ -1160,6 +1160,9 @@ let g:eregex_default_enable = 0
 " Toggle using ,/
 nnoremap <leader>/ :call eregex#toggle()<CR>
 " }}}
+" Plugin: Eunuch - Vim mappings for Unix commands :Mkdir etc. {{{
+Plug 'tpope/vim-eunuch'
+" }}}
 " Plugin: FZF - Bind ,g to FZF finder, ,r to RipGrep {{{
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
