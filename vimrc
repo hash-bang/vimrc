@@ -379,6 +379,7 @@ set virtualedit=onemore
 command -nargs=0 Wqa :wqa!
 command -nargs=0 Qw :wq
 cnoreabbrev qwa :wqa!
+cnoreabbrev qw :wq
 " }}}
 " Key Map {{{
 " Key Fixes {{{
