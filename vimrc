@@ -1831,7 +1831,7 @@ lua <<EOF
 EOF
 endfunction
 " }}}
-" Plugin: SplitJoin {{{
+" Plugin: SplitJoin - Better split/join with gs/gj {{{
 Plug 'AndrewRadev/splitjoin.vim', {'done': 'call s:ConfigSplitJoin()'}
 
 " Handled in config section below
