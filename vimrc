@@ -1607,7 +1607,7 @@ lua <<EOF
 EOF
 endfunction
 " }}}
-" Plugin: Mini.IndentScope {{{
+" Plugin: Mini.IndentScope - Select within indents with "vii" {{{
 Plug 'echasnovski/mini.indentscope', {'done': 'call s:ConfigMiniIndentScope()'}
 
 function s:ConfigMiniIndentScope()
