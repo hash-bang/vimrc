@@ -253,8 +253,10 @@ set scs
 " ~Disable Auto-indent as its almost never right~
 " 2026-02-19 Override - pressing enter while in an indent should move vertically down
 set ai
-" Smart indent (drop back when using })
-set si
+" 2026-09-10 Removed 'smartindent' (si) - it hardcodes zeroing the indent of
+" any line starting with '#' and also refuses to let ">>" shift such lines,
+" treating '#' as a C preprocessor directive. No option disables just that
+" part, so rely on filetype/treesitter indentexpr instead.
 " Include <> and "" as a bracket pairing
 set mps=(:),{:},[:],<:>,":"
 " Apply /g by default on all replacements
@@ -331,8 +333,10 @@ autocmd BufRead,BufNewFile *.doop set ft=javascript
 autocmd BufRead,BufNewFile .env* set ft=dotenv
 autocmd BufRead,BufNewFile .sql* set ft=pgsql
 
-" Smart indending for Python
-autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+" 2026-09-10 Removed 'smartindent' for Python - it zeroed the indent of any
+" line starting with '#' (i.e. every Python comment) and blocked ">>" from
+" re-indenting them. Python's built-in filetype indentexpr already handles
+" if/elif/for/etc indentation correctly without that bug.
 autocmd BufRead .xfile set ft=xfile
 
 " Remove all whitespace in certain files
